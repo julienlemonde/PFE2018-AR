@@ -22,6 +22,7 @@
 		F94043462013B04B00493D38 /* modelViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94043342013B04B00493D38 /* modelViewTableViewCell.swift */; };
 		F94043472013B04B00493D38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F94043362013B04B00493D38 /* LaunchScreen.storyboard */; };
 		F94043482013B04B00493D38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F94043382013B04B00493D38 /* Main.storyboard */; };
+		F940434A2013EAF300493D38 /* chair.png in Resources */ = {isa = PBXBuildFile; fileRef = F94043492013EAF300493D38 /* chair.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		F94043342013B04B00493D38 /* modelViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = modelViewTableViewCell.swift; sourceTree = "<group>"; };
 		F94043372013B04B00493D38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F94043392013B04B00493D38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		F94043492013EAF300493D38 /* chair.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chair.png; sourceTree = "<group>"; };
 		F9BB320C200FD3BB00FD727C /* Ar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -57,6 +59,7 @@
 		F940432A2013B04A00493D38 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F94043492013EAF300493D38 /* chair.png */,
 				F940432B2013B04A00493D38 /* duck.png */,
 				F940432C2013B04A00493D38 /* candle.png */,
 				F940432D2013B04A00493D38 /* vase.png */,
@@ -170,6 +173,7 @@
 			files = (
 				F94043472013B04B00493D38 /* LaunchScreen.storyboard in Resources */,
 				F94043482013B04B00493D38 /* Main.storyboard in Resources */,
+				F940434A2013EAF300493D38 /* chair.png in Resources */,
 				F94043452013B04B00493D38 /* Info.plist in Resources */,
 				F940433E2013B04B00493D38 /* candle.png in Resources */,
 				F940433F2013B04B00493D38 /* vase.png in Resources */,

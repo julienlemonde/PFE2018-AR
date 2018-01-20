@@ -10,7 +10,7 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
 
     
     
@@ -24,9 +24,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     //Check if planes status to see if one is available
     var planes = [UUID: VirtualPlane] ()
     var index = 0
-    var modelType: [String] = ["duck","candle","lamp","vase"]
     var selectedPlane: VirtualPlane?
     var mugNode: SCNNode!
+    var valueSentFromModelView: String?
     var returnModelFromList = String()
     
     override func viewDidLoad() {
@@ -171,6 +171,18 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
         self.mugNode = wrapperNode.clone()
         updateModelLabel(text: Modelname)
+    }
+    
+    // Method delegate to change model after selection
+    func passingModelSelection(modelSelection: String){
+        initializeMugNode(Modelname: modelSelection)
+    }
+    
+    // Method to prepare opening the model List view and recover the response
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? modelViewController {
+            destination.delegate = self
+        }
     }
     
     

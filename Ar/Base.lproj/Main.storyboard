@@ -37,7 +37,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="ZDA-Pg-vRd" kind="presentation" id="TKN-Bn-lRC"/>
+                                    <segue destination="ZDA-Pg-vRd" kind="presentation" identifier="sgModelModal" id="TKN-Bn-lRC"/>
                                 </connections>
                             </button>
                         </subviews>
