@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A9CACEA201637B900103E06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A9CACE9201637B900103E06 /* Assets.xcassets */; };
+		5A9CACED2016389C00103E06 /* Artoolkit-logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5A9CACEC2016389C00103E06 /* Artoolkit-logo.jpg */; };
 		F940433A2013B04B00493D38 /* modelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94043272013B04A00493D38 /* modelViewController.swift */; };
 		F940433B2013B04B00493D38 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = F94043282013B04A00493D38 /* art.scnassets */; };
-		F940433C2013B04B00493D38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F94043292013B04A00493D38 /* Assets.xcassets */; };
 		F940433D2013B04B00493D38 /* duck.png in Resources */ = {isa = PBXBuildFile; fileRef = F940432B2013B04A00493D38 /* duck.png */; };
 		F940433E2013B04B00493D38 /* candle.png in Resources */ = {isa = PBXBuildFile; fileRef = F940432C2013B04A00493D38 /* candle.png */; };
 		F940433F2013B04B00493D38 /* vase.png in Resources */ = {isa = PBXBuildFile; fileRef = F940432D2013B04A00493D38 /* vase.png */; };
@@ -26,9 +27,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5A9CACE9201637B900103E06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5A9CACEC2016389C00103E06 /* Artoolkit-logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Artoolkit-logo.jpg"; sourceTree = "<group>"; };
 		F94043272013B04A00493D38 /* modelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = modelViewController.swift; sourceTree = "<group>"; };
 		F94043282013B04A00493D38 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
-		F94043292013B04A00493D38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F940432B2013B04A00493D38 /* duck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = duck.png; sourceTree = "<group>"; };
 		F940432C2013B04A00493D38 /* candle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = candle.png; sourceTree = "<group>"; };
 		F940432D2013B04A00493D38 /* vase.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vase.png; sourceTree = "<group>"; };
@@ -56,6 +58,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5A9CACEB2016388300103E06 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				5A9CACEC2016389C00103E06 /* Artoolkit-logo.jpg */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
 		F940432A2013B04A00493D38 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -97,9 +107,10 @@
 		F9BB320E200FD3BB00FD727C /* Ar */ = {
 			isa = PBXGroup;
 			children = (
+				5A9CACEB2016388300103E06 /* Image */,
+				5A9CACE9201637B900103E06 /* Assets.xcassets */,
 				F94043322013B04A00493D38 /* AppDelegate.swift */,
 				F94043282013B04A00493D38 /* art.scnassets */,
-				F94043292013B04A00493D38 /* Assets.xcassets */,
 				F94043352013B04B00493D38 /* Base.lproj */,
 				F94043332013B04B00493D38 /* Info.plist */,
 				F940432A2013B04A00493D38 /* Model */,
@@ -171,13 +182,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A9CACED2016389C00103E06 /* Artoolkit-logo.jpg in Resources */,
 				F94043472013B04B00493D38 /* LaunchScreen.storyboard in Resources */,
 				F94043482013B04B00493D38 /* Main.storyboard in Resources */,
+				5A9CACEA201637B900103E06 /* Assets.xcassets in Resources */,
 				F940434A2013EAF300493D38 /* chair.png in Resources */,
 				F94043452013B04B00493D38 /* Info.plist in Resources */,
 				F940433E2013B04B00493D38 /* candle.png in Resources */,
 				F940433F2013B04B00493D38 /* vase.png in Resources */,
-				F940433C2013B04B00493D38 /* Assets.xcassets in Resources */,
 				F940433B2013B04B00493D38 /* art.scnassets in Resources */,
 				F940433D2013B04B00493D38 /* duck.png in Resources */,
 				F94043412013B04B00493D38 /* lamp.png in Resources */,
@@ -337,6 +349,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RV5GVD9EDE;
 				INFOPLIST_FILE = Ar/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = PFE.Ar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -354,6 +367,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RV5GVD9EDE;
 				INFOPLIST_FILE = Ar/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = PFE.Ar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
