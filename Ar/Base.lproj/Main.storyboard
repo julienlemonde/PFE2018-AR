@@ -22,6 +22,7 @@
                         <subviews>
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wyo-xG-nVe">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="701"/>
+                                <gestureRecognizers/>
                             </arscnView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LSJ-o4-RUn">
                                 <rect key="frame" x="149" y="613" width="76" height="34"/>

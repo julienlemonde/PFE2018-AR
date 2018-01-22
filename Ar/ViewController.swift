@@ -42,6 +42,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
         
         self.sceneView.debugOptions = [.showConstraints,.showLightExtents, .showSkeletons,ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
         
+        let pressGesture = UITapGestureRecognizer(target: self, action: #selector(addModelToView(gesture:)))
+        self.sceneView.addGestureRecognizer(pressGesture)
+        
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(editOnLongPress(gesture:)))
+        longPressGesture.minimumPressDuration = 1.0
+        self.sceneView.addGestureRecognizer(longPressGesture)
+        
+        
         // Create a new scene
         let scene = SCNScene()
         
@@ -54,6 +62,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
         
     }
     
+
     override func viewWillAppear(_ animated: Bool) {
         if(!returnModelFromList.isEmpty){
             self.initializeMugNode(Modelname: returnModelFromList)
@@ -128,15 +137,16 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
         
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first else {
+        /*guard let touch = touches.first else {
             print("Unable to identify touches on any plane. Ignoring interaction...")
             return
         }
-        
         let touchPoint = touch.location(in: sceneView)
         if let plane = virtualPlaneProperlySet(touchPoint: touchPoint) {
             addCoffeeToPlane(plane: plane, atPoint: touchPoint)
         }
+        */
+        
     }
     func virtualPlaneProperlySet(touchPoint: CGPoint) -> VirtualPlane? {
         let hits = sceneView.hitTest(touchPoint, types: .existingPlaneUsingExtent)
@@ -184,7 +194,18 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
             destination.delegate = self
         }
     }
-    
+    @objc func editOnLongPress(gesture: UILongPressGestureRecognizer) {
+        
+        if gesture.state == .ended {
+            print("Long Press")
+        }
+    }
+    @objc func addModelToView(gesture: UILongPressGestureRecognizer) {
+        
+        if gesture.state == .ended {
+            print("Short Press")
+        }
+    }
     
     
 }
