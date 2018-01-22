@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A008CEC20166DEF0081255E /* falcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A008CEB20166DEF0081255E /* falcon.png */; };
 		5A9CACEA201637B900103E06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A9CACE9201637B900103E06 /* Assets.xcassets */; };
 		5A9CACED2016389C00103E06 /* Artoolkit-logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5A9CACEC2016389C00103E06 /* Artoolkit-logo.jpg */; };
 		F940433A2013B04B00493D38 /* modelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94043272013B04A00493D38 /* modelViewController.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5A008CEB20166DEF0081255E /* falcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = falcon.png; sourceTree = "<group>"; };
 		5A9CACE9201637B900103E06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5A9CACEC2016389C00103E06 /* Artoolkit-logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Artoolkit-logo.jpg"; sourceTree = "<group>"; };
 		F94043272013B04A00493D38 /* modelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = modelViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 		F940432A2013B04A00493D38 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5A008CEB20166DEF0081255E /* falcon.png */,
 				F94043492013EAF300493D38 /* chair.png */,
 				F940432B2013B04A00493D38 /* duck.png */,
 				F940432C2013B04A00493D38 /* candle.png */,
@@ -186,6 +189,7 @@
 				F94043472013B04B00493D38 /* LaunchScreen.storyboard in Resources */,
 				F94043482013B04B00493D38 /* Main.storyboard in Resources */,
 				5A9CACEA201637B900103E06 /* Assets.xcassets in Resources */,
+				5A008CEC20166DEF0081255E /* falcon.png in Resources */,
 				F940434A2013EAF300493D38 /* chair.png in Resources */,
 				F94043452013B04B00493D38 /* Info.plist in Resources */,
 				F940433E2013B04B00493D38 /* candle.png in Resources */,
