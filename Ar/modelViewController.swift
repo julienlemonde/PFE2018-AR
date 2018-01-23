@@ -25,7 +25,6 @@ class modelViewController: UIViewController,UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! modelViewTableViewCell
         cell.myImage.image = UIImage(named: "\(modelList[indexPath.row]).png")
-        print(modelList[indexPath.row])
         cell.myLabel.text = modelList[indexPath.row]
         return cell
     }

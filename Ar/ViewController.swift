@@ -9,6 +9,7 @@
 import UIKit
 import SceneKit
 import ARKit
+import AudioToolbox
 
 class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
 
@@ -25,9 +26,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
     var planes = [UUID: VirtualPlane] ()
     var index = 0
     var selectedPlane: VirtualPlane?
-    var mugNode: SCNNode!
+    var nodeSelected: SCNNode!
     var valueSentFromModelView: String?
     var returnModelFromList = String()
+    var selectedNode: SCNNode?
+    var longPressDelay = 0.5
+    var modelSelectedString: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +50,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
         self.sceneView.addGestureRecognizer(pressGesture)
         
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(editOnLongPress(gesture:)))
-        longPressGesture.minimumPressDuration = 1.0
+        longPressGesture.minimumPressDuration = longPressDelay
         self.sceneView.addGestureRecognizer(longPressGesture)
         
         
@@ -57,6 +61,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
         // Set the scene to the view
         self.sceneView.scene = scene
         if(returnModelFromList.isEmpty) {
+            modelSelectedString = "duck"
             self.initializeMugNode(Modelname: "duck")
         }
         
@@ -64,20 +69,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
     
 
     override func viewWillAppear(_ animated: Bool) {
-        if(!returnModelFromList.isEmpty){
-            self.initializeMugNode(Modelname: returnModelFromList)
-            sceneView.session.run(sceneView.session.configuration!)
-        }
         super.viewWillAppear(animated)
         
-        
-        // Run the view's session
-        if(returnModelFromList.isEmpty) {
-            // Create a session configuration
-            let configuration = ARWorldTrackingConfiguration()
-            configuration.planeDetection = .horizontal
-            sceneView.session.run(configuration)
-        }
+        let configuration = ARWorldTrackingConfiguration()
+        configuration.planeDetection = .horizontal
+        sceneView.session.run(configuration)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -93,10 +89,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
         modelButton.setTitle(first + otherLetters, for: [])
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
-    }
 
     // MARK: - ARSCNViewDelegate
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
@@ -136,18 +128,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
         
     }
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        /*guard let touch = touches.first else {
-            print("Unable to identify touches on any plane. Ignoring interaction...")
-            return
-        }
-        let touchPoint = touch.location(in: sceneView)
-        if let plane = virtualPlaneProperlySet(touchPoint: touchPoint) {
-            addCoffeeToPlane(plane: plane, atPoint: touchPoint)
-        }
-        */
-        
-    }
     func virtualPlaneProperlySet(touchPoint: CGPoint) -> VirtualPlane? {
         let hits = sceneView.hitTest(touchPoint, types: .existingPlaneUsingExtent)
         if hits.count > 0, let firstHit = hits.first, let identifier = firstHit.anchor?.identifier, let plane = planes[identifier] {
@@ -156,21 +136,15 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
         }
         return nil
     }
-    func addCoffeeToPlane(plane: VirtualPlane, atPoint point: CGPoint) {
-        let hits = sceneView.hitTest(point, types: .existingPlaneUsingExtent)
-        if hits.count > 0, let firstHit = hits.first {
-            if let anotherMugYesPlease = mugNode?.clone() {
-                anotherMugYesPlease.position = SCNVector3Make(firstHit.worldTransform.columns.3.x, firstHit.worldTransform.columns.3.y, firstHit.worldTransform.columns.3.z)
-                sceneView.scene.rootNode.addChildNode(anotherMugYesPlease)
-            }
-        }
-    }
+    
 
     func cleanupARSession() {
         sceneView.scene.rootNode.enumerateChildNodes { (node, stop) -> Void in
             node.removeFromParentNode()
         }
     }
+    
+    //Method to initializing the model so it can be added to the scene
     func initializeMugNode(Modelname: String) {
         // Obtain the scene the coffee mug is contained inside, and extract it.
         let mugScene = SCNScene(named: "\(Modelname).scn", inDirectory: "Models.scnassets/\(Modelname)")!
@@ -179,12 +153,13 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
         for child in mugScene.rootNode.childNodes{
             wrapperNode.addChildNode(child)
         }
-        self.mugNode = wrapperNode.clone()
+        self.nodeSelected = wrapperNode.clone()
         updateModelLabel(text: Modelname)
     }
     
-    // Method delegate to change model after selection
+    // Method delegate to change model after selection from modelViewController
     func passingModelSelection(modelSelection: String){
+        modelSelectedString = modelSelection
         initializeMugNode(Modelname: modelSelection)
     }
     
@@ -195,17 +170,83 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
         }
     }
     @objc func editOnLongPress(gesture: UILongPressGestureRecognizer) {
+        if(gesture.state == .began){
+            DispatchQueue.main.asyncAfter(deadline: .now() + longPressDelay + 0.1) {
+                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+            }
+        }
         
         if gesture.state == .ended {
-            print("Long Press")
+            let touchLocation = gesture.location(in: self.sceneView)
+            let hitResults = sceneView.hitTest(touchLocation, options: [:])
+            if !hitResults.isEmpty {
+                guard let hitNodeResult = hitResults.first else { return }
+                let node = hitNodeResult.node.parent
+                if(selectedNode == nil){
+                    selectedNode = node
+                    highLightNodeChildren(parentNodeToHighLight: node!, highLight: true)
+                    
+                }
+                else {
+                    if(selectedNode == node) {
+                        highLightNodeChildren(parentNodeToHighLight: node!, highLight: false)
+                        selectedNode = nil
+                    }
+                    else {
+                        highLightNodeChildren(parentNodeToHighLight: selectedNode!, highLight: false)
+                        highLightNodeChildren(parentNodeToHighLight: node!, highLight: true)
+                        selectedNode = node
+                    }
+                }
+            }
         }
     }
-    @objc func addModelToView(gesture: UILongPressGestureRecognizer) {
-        
-        if gesture.state == .ended {
-            print("Short Press")
+    //Method to highLight all children from a parent node Ex: the chair foot and shadow, etc..
+    func highLightNodeChildren(parentNodeToHighLight: SCNNode, highLight: Bool){
+            for child in parentNodeToHighLight.childNodes{
+                if( child.geometry != nil){
+                    let nodeMaterial = (child.geometry?.firstMaterial!)
+                    if highLight {
+                        //Change the outter color for orange
+                        SCNTransaction.begin()
+                        nodeMaterial?.emission.contents = UIColor.orange
+                        SCNTransaction.commit()
+                    }
+                    else {
+                        // Remove the highLight
+                        SCNTransaction.begin()
+                        nodeMaterial?.emission.contents = UIColor.black
+                        
+                        SCNTransaction.commit()
+                    }
+                }
         }
     }
     
+    func deleteCompleteNode(node: SCNNode){
+        let parent = node.parent != nil ? node.parent : node
+        for child in (parent?.childNodes)! {
+            child.removeFromParentNode()
+        }
+    }
     
+    @objc func addModelToView(gesture: UITapGestureRecognizer) {
+        
+        if gesture.state == .ended
+        {
+             let touchPoint = gesture.location(in: sceneView)
+             if let plane = virtualPlaneProperlySet(touchPoint: touchPoint) {
+                addModelToPlane(plane: plane, atPoint: touchPoint)
+             }
+        }
+    }
+    func addModelToPlane(plane: VirtualPlane, atPoint point: CGPoint) {
+        let hits = sceneView.hitTest(point, types: .existingPlaneUsingExtent)
+        if hits.count > 0, let firstHit = hits.first {
+            let newModelToScene = nodeSelected.clone()
+            newModelToScene.position = SCNVector3Make(firstHit.worldTransform.columns.3.x, firstHit.worldTransform.columns.3.y, firstHit.worldTransform.columns.3.z)
+            sceneView.scene.rootNode.addChildNode(newModelToScene)
+            initializeMugNode(Modelname: modelSelectedString!)
+        }
+    }
 }
