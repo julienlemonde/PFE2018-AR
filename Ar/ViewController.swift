@@ -207,9 +207,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
                 if( child.geometry != nil){
                     let nodeMaterial = (child.geometry?.firstMaterial!)
                     if highLight {
-                        //Change the outter color for orange
+                        //Change the outter color for green
                         SCNTransaction.begin()
-                        nodeMaterial?.emission.contents = UIColor.orange
+                        nodeMaterial?.emission.contents = UIColor.green
                         SCNTransaction.commit()
                     }
                     else {
