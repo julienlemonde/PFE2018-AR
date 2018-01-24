@@ -19,6 +19,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
     
     @IBOutlet var sceneView: ARSCNView!
     
+    @IBOutlet weak var deleteButton: UIButton!
     
     
     // Class Variables------------------------------------
@@ -30,8 +31,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
     var valueSentFromModelView: String?
     var returnModelFromList = String()
     var selectedNode: SCNNode?
-    var longPressDelay = 0.5
+    var longPressDelay = 0.30
     var modelSelectedString: String?
+    var latestTranslatePos: CGPoint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,15 +46,27 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
         sceneView.autoenablesDefaultLighting = true
         sceneView.automaticallyUpdatesLighting = true
         
-        self.sceneView.debugOptions = [.showConstraints,.showLightExtents, .showSkeletons,ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
+        self.sceneView.debugOptions = []
         
+        
+        // Initialize View Gesture recognition
+        //Tap recognition
         let pressGesture = UITapGestureRecognizer(target: self, action: #selector(addModelToView(gesture:)))
         self.sceneView.addGestureRecognizer(pressGesture)
-        
+        //Long Press recognition
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(editOnLongPress(gesture:)))
         longPressGesture.minimumPressDuration = longPressDelay
         self.sceneView.addGestureRecognizer(longPressGesture)
         
+        //Drag recognition
+        let dragGesture = UIPanGestureRecognizer(target: self, action: #selector(moveModelAround(gesture:)))
+        self.sceneView.addGestureRecognizer(dragGesture)
+        
+        //Pinch Recognition for scale
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(scaleSelectedModel(gesture:)))
+        self.sceneView.addGestureRecognizer(pinchGesture)
+        
+        //---------------------------------------------------
         
         // Create a new scene
         let scene = SCNScene()
@@ -144,6 +158,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
         }
     }
     
+    
+    @IBAction func deleteModelAction(_ sender: Any) {
+        if(selectedNode != nil) {
+            deleteCompleteNode(node: selectedNode!)
+            deleteButton.isHidden = true
+        }
+    }
+    
     //Method to initializing the model so it can be added to the scene
     func initializeMugNode(Modelname: String) {
         // Obtain the scene the coffee mug is contained inside, and extract it.
@@ -185,12 +207,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
                 if(selectedNode == nil){
                     selectedNode = node
                     highLightNodeChildren(parentNodeToHighLight: node!, highLight: true)
+                    deleteButton.isHidden = false
                     
                 }
                 else {
                     if(selectedNode == node) {
-                        highLightNodeChildren(parentNodeToHighLight: node!, highLight: false)
-                        selectedNode = nil
+                        unselectSelectedModel()
                     }
                     else {
                         highLightNodeChildren(parentNodeToHighLight: selectedNode!, highLight: false)
@@ -224,8 +246,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
     }
     
     func deleteCompleteNode(node: SCNNode){
-        let parent = node.parent != nil ? node.parent : node
-        for child in (parent?.childNodes)! {
+        for child in (node.childNodes) {
             child.removeFromParentNode()
         }
     }
@@ -234,10 +255,15 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
         
         if gesture.state == .ended
         {
-             let touchPoint = gesture.location(in: sceneView)
-             if let plane = virtualPlaneProperlySet(touchPoint: touchPoint) {
-                addModelToPlane(plane: plane, atPoint: touchPoint)
-             }
+            if(selectedNode != nil){
+                unselectSelectedModel()
+            }
+            else{
+                 let touchPoint = gesture.location(in: sceneView)
+                 if let plane = virtualPlaneProperlySet(touchPoint: touchPoint) {
+                    addModelToPlane(plane: plane, atPoint: touchPoint)
+                 }
+            }
         }
     }
     func addModelToPlane(plane: VirtualPlane, atPoint point: CGPoint) {
@@ -247,6 +273,46 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
             newModelToScene.position = SCNVector3Make(firstHit.worldTransform.columns.3.x, firstHit.worldTransform.columns.3.y, firstHit.worldTransform.columns.3.z)
             sceneView.scene.rootNode.addChildNode(newModelToScene)
             initializeMugNode(Modelname: modelSelectedString!)
+        }
+    }
+    
+    func unselectSelectedModel(){
+        if(selectedNode != nil){
+            highLightNodeChildren(parentNodeToHighLight: selectedNode!, highLight: false)
+            selectedNode = nil
+            deleteButton.isHidden = true
+        }
+    }
+    
+    
+    // Used help from https://stackoverflow.com/questions/44729610/dragging-scnnode-in-arkit-using-scenekit to understand how UIPanGestureRecognizer worked and changed it
+    // to fit our needs
+    @objc func moveModelAround(gesture: UIPanGestureRecognizer){
+        let position = gesture.location(in: self.sceneView)
+        let state = gesture.state
+        
+        if(state == .failed || state == .cancelled){
+            print("Error while dragging object")
+            return
+        }
+        if(state == .began){
+            latestTranslatePos = position
+        }
+        else if let _ = selectedNode{
+            let deltaX = Float(position.x - latestTranslatePos!.x)/800
+            let deltaY = Float(position.y - latestTranslatePos!.y)/800
+            selectedNode!.localTranslate(by: SCNVector3Make(deltaX, 0.0, deltaY))
+            latestTranslatePos = position
+            
+        }
+        
+    }
+    //Handle models scaling in scene
+    @objc func scaleSelectedModel(gesture: UIPinchGestureRecognizer){
+        if(selectedNode != nil) {
+            let pinch = SCNAction.scale(by: gesture.scale, duration: 0.0)
+            selectedNode?.runAction(pinch)
+            gesture.scale = 1.0
         }
     }
 }

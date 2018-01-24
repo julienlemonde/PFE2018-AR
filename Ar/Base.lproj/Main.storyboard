@@ -44,15 +44,26 @@
                                     <segue destination="ZDA-Pg-vRd" kind="presentation" identifier="sgModelModal" id="TKN-Bn-lRC"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWM-hk-Prh">
+                                <rect key="frame" x="160" y="550" width="55" height="55"/>
+                                <state key="normal" image="trash.png"/>
+                                <connections>
+                                    <action selector="deleteModelAction:" destination="BV1-FR-VrT" eventType="touchUpInside" id="EhH-59-umN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="LSJ-o4-RUn" firstAttribute="top" secondItem="DWM-hk-Prh" secondAttribute="bottom" constant="8" id="7XO-w9-1XV"/>
                             <constraint firstItem="LSJ-o4-RUn" firstAttribute="centerX" secondItem="Y2N-qZ-d16" secondAttribute="centerX" id="D8r-7G-X7z"/>
+                            <constraint firstItem="DWM-hk-Prh" firstAttribute="leading" secondItem="daY-kG-Z6w" secondAttribute="leading" constant="160" id="Ifj-nQ-zQ9"/>
                             <constraint firstItem="Wyo-xG-nVe" firstAttribute="trailing" secondItem="daY-kG-Z6w" secondAttribute="trailing" id="L2R-rz-4Xr"/>
                             <constraint firstItem="Wyo-xG-nVe" firstAttribute="top" secondItem="Y2N-qZ-d16" secondAttribute="top" id="PO3-xu-zuk"/>
+                            <constraint firstItem="DWM-hk-Prh" firstAttribute="top" secondItem="daY-kG-Z6w" secondAttribute="top" constant="530" id="a18-gg-7bv"/>
                             <constraint firstItem="Wyo-xG-nVe" firstAttribute="leading" secondItem="daY-kG-Z6w" secondAttribute="leading" id="hDB-Fm-oVW"/>
                             <constraint firstAttribute="bottomMargin" secondItem="Wyo-xG-nVe" secondAttribute="bottom" constant="-34" id="iLd-hw-EzW"/>
                             <constraint firstItem="daY-kG-Z6w" firstAttribute="bottom" secondItem="LSJ-o4-RUn" secondAttribute="bottom" constant="20" id="m9P-ul-0pZ"/>
+                            <constraint firstItem="DWM-hk-Prh" firstAttribute="centerX" secondItem="LSJ-o4-RUn" secondAttribute="centerX" id="sDY-57-mTy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="daY-kG-Z6w"/>
                     </view>
@@ -62,13 +73,14 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
+                        <outlet property="deleteButton" destination="DWM-hk-Prh" id="eWX-Tc-hqH"/>
                         <outlet property="modelButton" destination="LSJ-o4-RUn" id="E2X-Pw-CvK"/>
                         <outlet property="sceneView" destination="Wyo-xG-nVe" id="ICf-46-d3S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="36" y="33.620689655172413"/>
+            <point key="canvasLocation" x="36" y="32.833583208395808"/>
         </scene>
         <!--Model View Controller-->
         <scene sceneID="3Ow-5q-aEM">
@@ -173,4 +185,7 @@
             <point key="canvasLocation" x="981.60000000000002" y="33.733133433283363"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="trash.png" width="256" height="256"/>
+    </resources>
 </document>

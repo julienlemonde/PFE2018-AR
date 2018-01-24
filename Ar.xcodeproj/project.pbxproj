@@ -10,6 +10,7 @@
 		5A008CEC20166DEF0081255E /* falcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A008CEB20166DEF0081255E /* falcon.png */; };
 		5A9CACEA201637B900103E06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A9CACE9201637B900103E06 /* Assets.xcassets */; };
 		5A9CACED2016389C00103E06 /* Artoolkit-logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5A9CACEC2016389C00103E06 /* Artoolkit-logo.jpg */; };
+		F937F00A20190C140015B838 /* trash.png in Resources */ = {isa = PBXBuildFile; fileRef = F937F00920190C140015B838 /* trash.png */; };
 		F940433A2013B04B00493D38 /* modelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94043272013B04A00493D38 /* modelViewController.swift */; };
 		F940433B2013B04B00493D38 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = F94043282013B04A00493D38 /* art.scnassets */; };
 		F940433D2013B04B00493D38 /* duck.png in Resources */ = {isa = PBXBuildFile; fileRef = F940432B2013B04A00493D38 /* duck.png */; };
@@ -31,6 +32,7 @@
 		5A008CEB20166DEF0081255E /* falcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = falcon.png; sourceTree = "<group>"; };
 		5A9CACE9201637B900103E06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5A9CACEC2016389C00103E06 /* Artoolkit-logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Artoolkit-logo.jpg"; sourceTree = "<group>"; };
+		F937F00920190C140015B838 /* trash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash.png; sourceTree = "<group>"; };
 		F94043272013B04A00493D38 /* modelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = modelViewController.swift; sourceTree = "<group>"; };
 		F94043282013B04A00493D38 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		F940432B2013B04A00493D38 /* duck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = duck.png; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				5A9CACEC2016389C00103E06 /* Artoolkit-logo.jpg */,
+				F937F00920190C140015B838 /* trash.png */,
 			);
 			path = Image;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 				F94043472013B04B00493D38 /* LaunchScreen.storyboard in Resources */,
 				F94043482013B04B00493D38 /* Main.storyboard in Resources */,
 				5A9CACEA201637B900103E06 /* Assets.xcassets in Resources */,
+				F937F00A20190C140015B838 /* trash.png in Resources */,
 				5A008CEC20166DEF0081255E /* falcon.png in Resources */,
 				F940434A2013EAF300493D38 /* chair.png in Resources */,
 				F94043452013B04B00493D38 /* Info.plist in Resources */,
