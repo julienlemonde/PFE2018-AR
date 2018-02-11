@@ -63,7 +63,7 @@ class modelViewController: UIViewController,UITableViewDelegate, UITableViewData
         var modelListToReturn: Array<String> = []
         var isDir: ObjCBool = false
         let fileManager = FileManager.default
-        let path = Bundle.main.resourcePath! + "/Models.scnassets/"
+        let path = Bundle.main.resourcePath! + "/Models.objassets/"
         do {
             let items = try fileManager.contentsOfDirectory(atPath: path)
             for item in items {

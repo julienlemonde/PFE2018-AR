@@ -26,6 +26,28 @@
 		F94043472013B04B00493D38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F94043362013B04B00493D38 /* LaunchScreen.storyboard */; };
 		F94043482013B04B00493D38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F94043382013B04B00493D38 /* Main.storyboard */; };
 		F940434A2013EAF300493D38 /* chair.png in Resources */ = {isa = PBXBuildFile; fileRef = F94043492013EAF300493D38 /* chair.png */; };
+		FA0D66BF2030A2AF0031B50F /* Structure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0D66BE2030A2AF0031B50F /* Structure.framework */; };
+		FA0D66E22030A6DF0031B50F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0D66C02030A6DD0031B50F /* main.m */; };
+		FA0D66E32030A6DF0031B50F /* MeshViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA0D66C12030A6DD0031B50F /* MeshViewController.mm */; };
+		FA0D66E42030A6DF0031B50F /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = FA0D66C22030A6DD0031B50F /* en.lproj */; };
+		FA0D66E52030A6DF0031B50F /* ViewController+SLAM.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA0D66C42030A6DD0031B50F /* ViewController+SLAM.mm */; };
+		FA0D66E62030A6DF0031B50F /* ViewpointController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA0D66C62030A6DD0031B50F /* ViewpointController.mm */; };
+		FA0D66E72030A6DF0031B50F /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA0D66C72030A6DD0031B50F /* AppDelegate.mm */; };
+		FA0D66E82030A6DF0031B50F /* CustomUIKitStyles.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA0D66C92030A6DD0031B50F /* CustomUIKitStyles.mm */; };
+		FA0D66E92030A6DF0031B50F /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA0D66CA2030A6DD0031B50F /* ViewController.mm */; };
+		FA0D66EA2030A6DF0031B50F /* ViewController+Camera.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA0D66CB2030A6DD0031B50F /* ViewController+Camera.mm */; };
+		FA0D66EB2030A6DF0031B50F /* CalibrationOverlay.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA0D66CE2030A6DD0031B50F /* CalibrationOverlay.mm */; };
+		FA0D66EC2030A6DF0031B50F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA0D66D12030A6DE0031B50F /* Images.xcassets */; };
+		FA0D66ED2030A6DF0031B50F /* ViewController+Sensor.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA0D66D32030A6DE0031B50F /* ViewController+Sensor.mm */; };
+		FA0D66EE2030A6DF0031B50F /* Graphics in Resources */ = {isa = PBXBuildFile; fileRef = FA0D66D62030A6DE0031B50F /* Graphics */; };
+		FA0D66EF2030A6DF0031B50F /* MeshRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA0D66D72030A6DE0031B50F /* MeshRenderer.mm */; };
+		FA0D66F02030A6DF0031B50F /* CustomShaders.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA0D66D82030A6DE0031B50F /* CustomShaders.mm */; };
+		FA0D66F12030A6DF0031B50F /* MeshView_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0D66DA2030A6DE0031B50F /* MeshView_iPhone.xib */; };
+		FA0D66F22030A6DF0031B50F /* MeshView_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0D66DB2030A6DE0031B50F /* MeshView_iPad.xib */; };
+		FA0D66F32030A6DF0031B50F /* ViewController+OpenGL.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA0D66DD2030A6DF0031B50F /* ViewController+OpenGL.mm */; };
+		FA0D66F42030A6DF0031B50F /* EAGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA0D66DE2030A6DF0031B50F /* EAGLView.mm */; };
+		FA0D66F52030A6DF0031B50F /* Scanner-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA0D66E12030A6DF0031B50F /* Scanner-Info.plist */; };
+		FAD959EB201E4C8E000779C2 /* Models.objassets in Resources */ = {isa = PBXBuildFile; fileRef = FAD959EA201E49DC000779C2 /* Models.objassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +71,43 @@
 		F94043392013B04B00493D38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
 		F94043492013EAF300493D38 /* chair.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chair.png; sourceTree = "<group>"; };
 		F9BB320C200FD3BB00FD727C /* Ar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA0D66BE2030A2AF0031B50F /* Structure.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Structure.framework; sourceTree = "<group>"; };
+		FA0D66C02030A6DD0031B50F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../../../Desktop/StSDK_2/Samples/Scanner/main.m; sourceTree = "<group>"; };
+		FA0D66C12030A6DD0031B50F /* MeshViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MeshViewController.mm; path = ../../../Desktop/StSDK_2/Samples/Scanner/MeshViewController.mm; sourceTree = "<group>"; };
+		FA0D66C22030A6DD0031B50F /* en.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = en.lproj; path = ../../../Desktop/StSDK_2/Samples/Scanner/en.lproj; sourceTree = "<group>"; };
+		FA0D66C32030A6DD0031B50F /* Scanner-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Scanner-Prefix.pch"; path = "../../../Desktop/StSDK_2/Samples/Scanner/Scanner-Prefix.pch"; sourceTree = "<group>"; };
+		FA0D66C42030A6DD0031B50F /* ViewController+SLAM.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "ViewController+SLAM.mm"; path = "../../../Desktop/StSDK_2/Samples/Scanner/ViewController+SLAM.mm"; sourceTree = "<group>"; };
+		FA0D66C52030A6DD0031B50F /* MeshViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeshViewController.h; path = ../../../Desktop/StSDK_2/Samples/Scanner/MeshViewController.h; sourceTree = "<group>"; };
+		FA0D66C62030A6DD0031B50F /* ViewpointController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ViewpointController.mm; path = ../../../Desktop/StSDK_2/Samples/Scanner/ViewpointController.mm; sourceTree = "<group>"; };
+		FA0D66C72030A6DD0031B50F /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = ../../../Desktop/StSDK_2/Samples/Scanner/AppDelegate.mm; sourceTree = "<group>"; };
+		FA0D66C82030A6DD0031B50F /* CustomShaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomShaders.h; path = ../../../Desktop/StSDK_2/Samples/Scanner/CustomShaders.h; sourceTree = "<group>"; };
+		FA0D66C92030A6DD0031B50F /* CustomUIKitStyles.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CustomUIKitStyles.mm; path = ../../../Desktop/StSDK_2/Samples/Scanner/CustomUIKitStyles.mm; sourceTree = "<group>"; };
+		FA0D66CA2030A6DD0031B50F /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ViewController.mm; path = ../../../Desktop/StSDK_2/Samples/Scanner/ViewController.mm; sourceTree = "<group>"; };
+		FA0D66CB2030A6DD0031B50F /* ViewController+Camera.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "ViewController+Camera.mm"; path = "../../../Desktop/StSDK_2/Samples/Scanner/ViewController+Camera.mm"; sourceTree = "<group>"; };
+		FA0D66CC2030A6DD0031B50F /* ViewController+SLAM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ViewController+SLAM.h"; path = "../../../Desktop/StSDK_2/Samples/Scanner/ViewController+SLAM.h"; sourceTree = "<group>"; };
+		FA0D66CD2030A6DD0031B50F /* CalibrationOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CalibrationOverlay.h; path = ../../../Desktop/StSDK_2/Samples/Scanner/CalibrationOverlay.h; sourceTree = "<group>"; };
+		FA0D66CE2030A6DD0031B50F /* CalibrationOverlay.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CalibrationOverlay.mm; path = ../../../Desktop/StSDK_2/Samples/Scanner/CalibrationOverlay.mm; sourceTree = "<group>"; };
+		FA0D66CF2030A6DE0031B50F /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../../../Desktop/StSDK_2/Samples/Scanner/ViewController.h; sourceTree = "<group>"; };
+		FA0D66D02030A6DE0031B50F /* MeshRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeshRenderer.h; path = ../../../Desktop/StSDK_2/Samples/Scanner/MeshRenderer.h; sourceTree = "<group>"; };
+		FA0D66D12030A6DE0031B50F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../../../Desktop/StSDK_2/Samples/Scanner/Images.xcassets; sourceTree = "<group>"; };
+		FA0D66D22030A6DE0031B50F /* ViewController+Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ViewController+Camera.h"; path = "../../../Desktop/StSDK_2/Samples/Scanner/ViewController+Camera.h"; sourceTree = "<group>"; };
+		FA0D66D32030A6DE0031B50F /* ViewController+Sensor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "ViewController+Sensor.mm"; path = "../../../Desktop/StSDK_2/Samples/Scanner/ViewController+Sensor.mm"; sourceTree = "<group>"; };
+		FA0D66D42030A6DE0031B50F /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EAGLView.h; path = ../../../Desktop/StSDK_2/Samples/Scanner/EAGLView.h; sourceTree = "<group>"; };
+		FA0D66D52030A6DE0031B50F /* ViewController+Sensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ViewController+Sensor.h"; path = "../../../Desktop/StSDK_2/Samples/Scanner/ViewController+Sensor.h"; sourceTree = "<group>"; };
+		FA0D66D62030A6DE0031B50F /* Graphics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Graphics; path = ../../../Desktop/StSDK_2/Samples/Scanner/Graphics; sourceTree = "<group>"; };
+		FA0D66D72030A6DE0031B50F /* MeshRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MeshRenderer.mm; path = ../../../Desktop/StSDK_2/Samples/Scanner/MeshRenderer.mm; sourceTree = "<group>"; };
+		FA0D66D82030A6DE0031B50F /* CustomShaders.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CustomShaders.mm; path = ../../../Desktop/StSDK_2/Samples/Scanner/CustomShaders.mm; sourceTree = "<group>"; };
+		FA0D66D92030A6DE0031B50F /* ViewController+OpenGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ViewController+OpenGL.h"; path = "../../../Desktop/StSDK_2/Samples/Scanner/ViewController+OpenGL.h"; sourceTree = "<group>"; };
+		FA0D66DA2030A6DE0031B50F /* MeshView_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MeshView_iPhone.xib; path = ../../../Desktop/StSDK_2/Samples/Scanner/MeshView_iPhone.xib; sourceTree = "<group>"; };
+		FA0D66DB2030A6DE0031B50F /* MeshView_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MeshView_iPad.xib; path = ../../../Desktop/StSDK_2/Samples/Scanner/MeshView_iPad.xib; sourceTree = "<group>"; };
+		FA0D66DC2030A6DF0031B50F /* ViewpointController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewpointController.h; path = ../../../Desktop/StSDK_2/Samples/Scanner/ViewpointController.h; sourceTree = "<group>"; };
+		FA0D66DD2030A6DF0031B50F /* ViewController+OpenGL.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "ViewController+OpenGL.mm"; path = "../../../Desktop/StSDK_2/Samples/Scanner/ViewController+OpenGL.mm"; sourceTree = "<group>"; };
+		FA0D66DE2030A6DF0031B50F /* EAGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = EAGLView.mm; path = ../../../Desktop/StSDK_2/Samples/Scanner/EAGLView.mm; sourceTree = "<group>"; };
+		FA0D66DF2030A6DF0031B50F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../../Desktop/StSDK_2/Samples/Scanner/AppDelegate.h; sourceTree = "<group>"; };
+		FA0D66E02030A6DF0031B50F /* CustomUIKitStyles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomUIKitStyles.h; path = ../../../Desktop/StSDK_2/Samples/Scanner/CustomUIKitStyles.h; sourceTree = "<group>"; };
+		FA0D66E12030A6DF0031B50F /* Scanner-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Scanner-Info.plist"; path = "../../../Desktop/StSDK_2/Samples/Scanner/Scanner-Info.plist"; sourceTree = "<group>"; };
+		FAB9428C20309E8C00479511 /* Ar-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Ar-Bridging-Header.h"; sourceTree = "<group>"; };
+		FAD959EA201E49DC000779C2 /* Models.objassets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Models.objassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA0D66BF2030A2AF0031B50F /* Structure.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +159,7 @@
 			children = (
 				F9BB320E200FD3BB00FD727C /* Ar */,
 				F9BB320D200FD3BB00FD727C /* Products */,
+				FA0D66BD2030A2AF0031B50F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,6 +174,7 @@
 		F9BB320E200FD3BB00FD727C /* Ar */ = {
 			isa = PBXGroup;
 			children = (
+				FAD959EA201E49DC000779C2 /* Models.objassets */,
 				5A9CACEB2016388300103E06 /* Image */,
 				5A9CACE9201637B900103E06 /* Assets.xcassets */,
 				F94043322013B04A00493D38 /* AppDelegate.swift */,
@@ -124,8 +186,51 @@
 				F94043272013B04A00493D38 /* modelViewController.swift */,
 				F94043342013B04B00493D38 /* modelViewTableViewCell.swift */,
 				F94043312013B04A00493D38 /* ViewController.swift */,
+				FAB9428C20309E8C00479511 /* Ar-Bridging-Header.h */,
+				FA0D66DF2030A6DF0031B50F /* AppDelegate.h */,
+				FA0D66C72030A6DD0031B50F /* AppDelegate.mm */,
+				FA0D66CD2030A6DD0031B50F /* CalibrationOverlay.h */,
+				FA0D66CE2030A6DD0031B50F /* CalibrationOverlay.mm */,
+				FA0D66C82030A6DD0031B50F /* CustomShaders.h */,
+				FA0D66D82030A6DE0031B50F /* CustomShaders.mm */,
+				FA0D66E02030A6DF0031B50F /* CustomUIKitStyles.h */,
+				FA0D66C92030A6DD0031B50F /* CustomUIKitStyles.mm */,
+				FA0D66D42030A6DE0031B50F /* EAGLView.h */,
+				FA0D66DE2030A6DF0031B50F /* EAGLView.mm */,
+				FA0D66C22030A6DD0031B50F /* en.lproj */,
+				FA0D66D62030A6DE0031B50F /* Graphics */,
+				FA0D66D12030A6DE0031B50F /* Images.xcassets */,
+				FA0D66C02030A6DD0031B50F /* main.m */,
+				FA0D66D02030A6DE0031B50F /* MeshRenderer.h */,
+				FA0D66D72030A6DE0031B50F /* MeshRenderer.mm */,
+				FA0D66DB2030A6DE0031B50F /* MeshView_iPad.xib */,
+				FA0D66DA2030A6DE0031B50F /* MeshView_iPhone.xib */,
+				FA0D66C52030A6DD0031B50F /* MeshViewController.h */,
+				FA0D66C12030A6DD0031B50F /* MeshViewController.mm */,
+				FA0D66E12030A6DF0031B50F /* Scanner-Info.plist */,
+				FA0D66C32030A6DD0031B50F /* Scanner-Prefix.pch */,
+				FA0D66CF2030A6DE0031B50F /* ViewController.h */,
+				FA0D66CA2030A6DD0031B50F /* ViewController.mm */,
+				FA0D66D22030A6DE0031B50F /* ViewController+Camera.h */,
+				FA0D66CB2030A6DD0031B50F /* ViewController+Camera.mm */,
+				FA0D66D92030A6DE0031B50F /* ViewController+OpenGL.h */,
+				FA0D66DD2030A6DF0031B50F /* ViewController+OpenGL.mm */,
+				FA0D66D52030A6DE0031B50F /* ViewController+Sensor.h */,
+				FA0D66D32030A6DE0031B50F /* ViewController+Sensor.mm */,
+				FA0D66CC2030A6DD0031B50F /* ViewController+SLAM.h */,
+				FA0D66C42030A6DD0031B50F /* ViewController+SLAM.mm */,
+				FA0D66DC2030A6DF0031B50F /* ViewpointController.h */,
+				FA0D66C62030A6DD0031B50F /* ViewpointController.mm */,
 			);
 			path = Ar;
+			sourceTree = "<group>";
+		};
+		FA0D66BD2030A2AF0031B50F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FA0D66BE2030A2AF0031B50F /* Structure.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,7 +265,7 @@
 				TargetAttributes = {
 					F9BB320B200FD3BB00FD727C = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 0920;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -188,8 +293,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA0D66E42030A6DF0031B50F /* en.lproj in Resources */,
 				5A9CACED2016389C00103E06 /* Artoolkit-logo.jpg in Resources */,
 				F94043472013B04B00493D38 /* LaunchScreen.storyboard in Resources */,
+				FA0D66F52030A6DF0031B50F /* Scanner-Info.plist in Resources */,
 				F94043482013B04B00493D38 /* Main.storyboard in Resources */,
 				5A9CACEA201637B900103E06 /* Assets.xcassets in Resources */,
 				F937F00A20190C140015B838 /* trash.png in Resources */,
@@ -197,9 +304,14 @@
 				F940434A2013EAF300493D38 /* chair.png in Resources */,
 				F94043452013B04B00493D38 /* Info.plist in Resources */,
 				F940433E2013B04B00493D38 /* candle.png in Resources */,
+				FA0D66F12030A6DF0031B50F /* MeshView_iPhone.xib in Resources */,
 				F940433F2013B04B00493D38 /* vase.png in Resources */,
+				FA0D66EC2030A6DF0031B50F /* Images.xcassets in Resources */,
 				F940433B2013B04B00493D38 /* art.scnassets in Resources */,
 				F940433D2013B04B00493D38 /* duck.png in Resources */,
+				FA0D66F22030A6DF0031B50F /* MeshView_iPad.xib in Resources */,
+				FAD959EB201E4C8E000779C2 /* Models.objassets in Resources */,
+				FA0D66EE2030A6DF0031B50F /* Graphics in Resources */,
 				F94043412013B04B00493D38 /* lamp.png in Resources */,
 				F94043422013B04B00493D38 /* Models.scnassets in Resources */,
 			);
@@ -214,9 +326,23 @@
 			files = (
 				F94043442013B04B00493D38 /* AppDelegate.swift in Sources */,
 				F94043432013B04B00493D38 /* ViewController.swift in Sources */,
+				FA0D66E32030A6DF0031B50F /* MeshViewController.mm in Sources */,
+				FA0D66E62030A6DF0031B50F /* ViewpointController.mm in Sources */,
 				F94043402013B04B00493D38 /* VirtualPlane.swift in Sources */,
 				F94043462013B04B00493D38 /* modelViewTableViewCell.swift in Sources */,
+				FA0D66E52030A6DF0031B50F /* ViewController+SLAM.mm in Sources */,
+				FA0D66E82030A6DF0031B50F /* CustomUIKitStyles.mm in Sources */,
+				FA0D66F42030A6DF0031B50F /* EAGLView.mm in Sources */,
+				FA0D66F02030A6DF0031B50F /* CustomShaders.mm in Sources */,
+				FA0D66E92030A6DF0031B50F /* ViewController.mm in Sources */,
+				FA0D66E22030A6DF0031B50F /* main.m in Sources */,
+				FA0D66ED2030A6DF0031B50F /* ViewController+Sensor.mm in Sources */,
+				FA0D66EF2030A6DF0031B50F /* MeshRenderer.mm in Sources */,
+				FA0D66F32030A6DF0031B50F /* ViewController+OpenGL.mm in Sources */,
+				FA0D66E72030A6DF0031B50F /* AppDelegate.mm in Sources */,
+				FA0D66EA2030A6DF0031B50F /* ViewController+Camera.mm in Sources */,
 				F940433A2013B04B00493D38 /* modelViewController.swift in Sources */,
+				FA0D66EB2030A6DF0031B50F /* CalibrationOverlay.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,11 +482,16 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RV5GVD9EDE;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Ar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = PFE.Ar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Ar/Ar-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -374,11 +505,16 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RV5GVD9EDE;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Ar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = PFE.Ar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Ar/Ar-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

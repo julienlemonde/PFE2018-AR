@@ -10,6 +10,7 @@ import UIKit
 import SceneKit
 import ARKit
 import AudioToolbox
+import SceneKit.ModelIO
 
 class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
 
@@ -75,8 +76,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
         // Set the scene to the view
         self.sceneView.scene = scene
         if(returnModelFromList.isEmpty) {
-            modelSelectedString = "duck"
-            self.initializeMugNode(Modelname: "duck")
+            modelSelectedString = "batman"
+            self.initializeObjNode(Modelname: "batman")
         }
         
     }
@@ -179,10 +180,23 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
         updateModelLabel(text: Modelname)
     }
     
+    //Method to initializing the model so it can be added to the scene
+    func initializeObjNode(Modelname: String) {
+        // Obtain the scene the coffee mug is contained inside, and extract it.
+        
+        let url = URL(string: "Models.objassets/batman/batman.obj")
+        let asset = MDLAsset(url: url!)
+        let object = asset.object(at: 0)
+        let node = SCNNode.init(mdlObject: object)
+        
+        self.nodeSelected = node.clone()
+        updateModelLabel(text: Modelname)
+    }
+    
     // Method delegate to change model after selection from modelViewController
     func passingModelSelection(modelSelection: String){
         modelSelectedString = modelSelection
-        initializeMugNode(Modelname: modelSelection)
+        initializeObjNode(Modelname: modelSelection)
     }
     
     // Method to prepare opening the model List view and recover the response
@@ -272,7 +286,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
             let newModelToScene = nodeSelected.clone()
             newModelToScene.position = SCNVector3Make(firstHit.worldTransform.columns.3.x, firstHit.worldTransform.columns.3.y, firstHit.worldTransform.columns.3.z)
             sceneView.scene.rootNode.addChildNode(newModelToScene)
-            initializeMugNode(Modelname: modelSelectedString!)
+            initializeObjNode(Modelname: modelSelectedString!)
         }
     }
     
