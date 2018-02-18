@@ -218,8 +218,6 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, UIGestu
 	var _motionManager: CMMotionManager? = nil
 	var _imuQueue: OperationQueue? = nil
 
-	var _naiveColorizeTask: STBackgroundTask? = nil
-	var _enhancedColorizeTask: STBackgroundTask? = nil
 	var _depthAsRgbaVisualizer: STDepthToRgba? = nil
 
 	var _useColorCamera = true
@@ -257,8 +255,6 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, UIGestu
 
         // Do any additional setup after loading the view.
         _slamState.initialized = false
-        _enhancedColorizeTask = nil
-        _naiveColorizeTask = nil
 
 		setupGL()
 
@@ -280,15 +276,18 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, UIGestu
 
     override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
+        
 
 		// The framebuffer will only be really ready with its final size after the view appears.
 		self.eview.setFramebuffer()
+        
 
 		setupGLViewport()
 
 		updateAppStatusMessage()
 
         let defaults = UserDefaults.standard
+        
 
         if !defaults.bool(forKey: "instructionOverlay") {
 
@@ -311,13 +310,10 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, UIGestu
     var hasLaunched = false
 
     @objc func appDidBecomeActive() {
-
 		if currentStateNeedsSensor() {
 			connectToStructureSensorAndStartStreaming()
 		}
 
-		// Abort the current scan if we were still scanning before going into background since we
-		// are not likely to recover well.
 		if _slamState.scannerState == .Scanning {
             resetButtonPressed(sender: resetButton)
 		}
@@ -736,9 +732,8 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, UIGestu
 	}
 
     @IBAction func toggleNewTrackerVisible(sender: UILongPressGestureRecognizer) {
-
+        print("tha fuck")
         if (sender.state == .began) {
-
             toggleTracker(show: enableNewTrackerView.isHidden)
         }
     }

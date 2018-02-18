@@ -14,6 +14,7 @@
 		9047F9182038CC3E00FFC0C7 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9047F9172038CC3E00FFC0C7 /* ImageIO.framework */; };
 		9047F91A2038CC4400FFC0C7 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9047F9192038CC4400FFC0C7 /* Accelerate.framework */; };
 		90938518203A071B00DD2F5B /* Scanner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90938516203A071B00DD2F5B /* Scanner.storyboard */; };
+		90938524203A2D6D00DD2F5B /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90938523203A2D6D00DD2F5B /* Main_iPad.storyboard */; };
 		90C7249B2038D103008C3F82 /* Structure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C7249A2038D103008C3F82 /* Structure.framework */; };
 		90C7249D2038D2ED008C3F82 /* libz.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C7249C2038D2EC008C3F82 /* libz.1.tbd */; };
 		90C724B82039E7EC008C3F82 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C724B32039E7E8008C3F82 /* ScannerViewController.swift */; };
@@ -45,22 +46,21 @@
 		5A008CEB20166DEF0081255E /* falcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = falcon.png; sourceTree = "<group>"; };
 		5A9CACE9201637B900103E06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5A9CACEC2016389C00103E06 /* Artoolkit-logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Artoolkit-logo.jpg"; sourceTree = "<group>"; };
-		9047F8EB2038B74700FFC0C7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		9047F8F12038B74700FFC0C7 /* calibration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calibration.png; sourceTree = "<group>"; };
-		9047F8F22038B74700FFC0C7 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		9047F8F32038B74700FFC0C7 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
-		9047F8F42038B74700FFC0C7 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
-		9047F8F52038B74700FFC0C7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		9047F8F62038B74700FFC0C7 /* doneButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "doneButton@2x.png"; sourceTree = "<group>"; };
-		9047F8F72038B74700FFC0C7 /* resetScanButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "resetScanButton@2x.png"; sourceTree = "<group>"; };
-		9047F8F82038B74700FFC0C7 /* Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Splash.png; sourceTree = "<group>"; };
-		9047F8F92038B74700FFC0C7 /* startScanButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "startScanButton@2x.png"; sourceTree = "<group>"; };
-		9047F8FA2038B74700FFC0C7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9047F9132038CC2E00FFC0C7 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		9047F9152038CC3700FFC0C7 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		9047F9172038CC3E00FFC0C7 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		9047F9192038CC4400FFC0C7 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		90938517203A071B00DD2F5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ../../StructureScannerSwift/Scanner/Base.lproj/Scanner.storyboard; sourceTree = "<group>"; };
+		9093851A203A232000DD2F5B /* calibration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calibration.png; sourceTree = "<group>"; };
+		9093851B203A232000DD2F5B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		9093851C203A232000DD2F5B /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
+		9093851D203A232000DD2F5B /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		9093851E203A232000DD2F5B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		9093851F203A232000DD2F5B /* doneButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doneButton.png; sourceTree = "<group>"; };
+		90938520203A232000DD2F5B /* resetScanButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resetScanButton.png; sourceTree = "<group>"; };
+		90938521203A232000DD2F5B /* Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Splash.png; sourceTree = "<group>"; };
+		90938522203A232000DD2F5B /* startScanButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startScanButton.png; sourceTree = "<group>"; };
+		90938523203A2D6D00DD2F5B /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
 		90C7249A2038D103008C3F82 /* Structure.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Structure.framework; sourceTree = "<group>"; };
 		90C7249C2038D2EC008C3F82 /* libz.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.tbd; path = usr/lib/libz.1.tbd; sourceTree = SDKROOT; };
 		90C724B32039E7E8008C3F82 /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
@@ -109,43 +109,19 @@
 		5A9CACEB2016388300103E06 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				9093851A203A232000DD2F5B /* calibration.png */,
+				9093851B203A232000DD2F5B /* Default-568h@2x.png */,
+				9093851C203A232000DD2F5B /* Default-Landscape@2x~ipad.png */,
+				9093851D203A232000DD2F5B /* Default-Landscape~ipad.png */,
+				9093851E203A232000DD2F5B /* Default.png */,
+				9093851F203A232000DD2F5B /* doneButton.png */,
+				90938520203A232000DD2F5B /* resetScanButton.png */,
+				90938521203A232000DD2F5B /* Splash.png */,
+				90938522203A232000DD2F5B /* startScanButton.png */,
 				5A9CACEC2016389C00103E06 /* Artoolkit-logo.jpg */,
 				F937F00920190C140015B838 /* trash.png */,
 			);
 			path = Image;
-			sourceTree = "<group>";
-		};
-		9047F8DF2038B74700FFC0C7 /* Scanner */ = {
-			isa = PBXGroup;
-			children = (
-				9047F8EA2038B74700FFC0C7 /* InfoPlist.strings */,
-				9047F8F02038B74700FFC0C7 /* Graphics */,
-				9047F8FA2038B74700FFC0C7 /* Images.xcassets */,
-				90938516203A071B00DD2F5B /* Scanner.storyboard */,
-				90C724BF2039ECDE008C3F82 /* EAGLView.swift */,
-				90C724B52039E7E9008C3F82 /* ScannerExtensions.swift */,
-				90C724B32039E7E8008C3F82 /* ScannerViewController.swift */,
-				90C724B42039E7E9008C3F82 /* ScannerViewController+Camera.swift */,
-				90C724B62039E7EA008C3F82 /* ScannerViewController+OpenGL.swift */,
-				90C724B72039E7EB008C3F82 /* ScannerViewController+SLAM.swift */,
-			);
-			path = Scanner;
-			sourceTree = "<group>";
-		};
-		9047F8F02038B74700FFC0C7 /* Graphics */ = {
-			isa = PBXGroup;
-			children = (
-				9047F8F12038B74700FFC0C7 /* calibration.png */,
-				9047F8F22038B74700FFC0C7 /* Default-568h@2x.png */,
-				9047F8F32038B74700FFC0C7 /* Default-Landscape@2x~ipad.png */,
-				9047F8F42038B74700FFC0C7 /* Default-Landscape~ipad.png */,
-				9047F8F52038B74700FFC0C7 /* Default@2x.png */,
-				9047F8F62038B74700FFC0C7 /* doneButton@2x.png */,
-				9047F8F72038B74700FFC0C7 /* resetScanButton@2x.png */,
-				9047F8F82038B74700FFC0C7 /* Splash.png */,
-				9047F8F92038B74700FFC0C7 /* startScanButton@2x.png */,
-			);
-			path = Graphics;
 			sourceTree = "<group>";
 		};
 		F940432A2013B04A00493D38 /* Model */ = {
@@ -167,6 +143,7 @@
 			children = (
 				F94043362013B04B00493D38 /* LaunchScreen.storyboard */,
 				F94043382013B04B00493D38 /* Main.storyboard */,
+				90938516203A071B00DD2F5B /* Scanner.storyboard */,
 			);
 			path = Base.lproj;
 			sourceTree = "<group>";
@@ -174,7 +151,7 @@
 		F9BB3203200FD3BA00FD727C = {
 			isa = PBXGroup;
 			children = (
-				9047F8DF2038B74700FFC0C7 /* Scanner */,
+				90938523203A2D6D00DD2F5B /* Main_iPad.storyboard */,
 				F9BB320E200FD3BB00FD727C /* Ar */,
 				F9BB320D200FD3BB00FD727C /* Products */,
 				90C7249A2038D103008C3F82 /* Structure.framework */,
@@ -204,6 +181,12 @@
 				F94043302013B04A00493D38 /* Models.scnassets */,
 				F94043272013B04A00493D38 /* modelViewController.swift */,
 				F94043342013B04B00493D38 /* modelViewTableViewCell.swift */,
+				90C724BF2039ECDE008C3F82 /* EAGLView.swift */,
+				90C724B52039E7E9008C3F82 /* ScannerExtensions.swift */,
+				90C724B32039E7E8008C3F82 /* ScannerViewController.swift */,
+				90C724B42039E7E9008C3F82 /* ScannerViewController+Camera.swift */,
+				90C724B62039E7EA008C3F82 /* ScannerViewController+OpenGL.swift */,
+				90C724B72039E7EB008C3F82 /* ScannerViewController+SLAM.swift */,
 				F94043312013B04A00493D38 /* ViewController.swift */,
 				FAB9428C20309E8C00479511 /* AR-Bridging-Header.h */,
 			);
@@ -286,6 +269,7 @@
 				F94043472013B04B00493D38 /* LaunchScreen.storyboard in Resources */,
 				F94043482013B04B00493D38 /* Main.storyboard in Resources */,
 				5A9CACEA201637B900103E06 /* Assets.xcassets in Resources */,
+				90938524203A2D6D00DD2F5B /* Main_iPad.storyboard in Resources */,
 				F937F00A20190C140015B838 /* trash.png in Resources */,
 				5A008CEC20166DEF0081255E /* falcon.png in Resources */,
 				F940434A2013EAF300493D38 /* chair.png in Resources */,
@@ -325,14 +309,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		9047F8EA2038B74700FFC0C7 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9047F8EB2038B74700FFC0C7 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		90938516203A071B00DD2F5B /* Scanner.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -485,7 +461,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-lc++";
-				PRODUCT_BUNDLE_IDENTIFIER = PFE.Ar;
+				PRODUCT_BUNDLE_IDENTIFIER = Ar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Ar/Ar-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -512,7 +488,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-lc++";
-				PRODUCT_BUNDLE_IDENTIFIER = PFE.Ar;
+				PRODUCT_BUNDLE_IDENTIFIER = Ar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Ar/Ar-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;

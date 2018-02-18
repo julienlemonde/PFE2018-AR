@@ -199,7 +199,7 @@
         <!--Scanner-->
         <scene sceneID="8e0-VK-Efl">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="ScannerViewController" storyboardName="Scanner" id="yWi-yw-oHu" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="ScannerViewController" storyboardName="Scanner" bundleIdentifier="Ar" id="yWi-yw-oHu" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9KV-FS-lu3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="898" y="509"/>

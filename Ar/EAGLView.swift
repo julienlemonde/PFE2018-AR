@@ -56,7 +56,10 @@ class EAGLView: UIView {
 
 	//The EAGL view is stored in the nib file. When it's unarchived it's sent -initWithCoder:.
 	required  init(coder: NSCoder) {
+        print("teehee")
 		super.init(coder: coder)!
+        
+        print("teehee 2")
 		
 
         eaglLayer.isOpaque = true

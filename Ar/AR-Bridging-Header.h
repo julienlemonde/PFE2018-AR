@@ -5,3 +5,5 @@
 #define HAS_LIBCXX
 #import "Structure.h"
 #import "StructureSLAM.h"
+#import <OpenGLES/gltypes.h>
+#import <MessageUI/MessageUI.h>
