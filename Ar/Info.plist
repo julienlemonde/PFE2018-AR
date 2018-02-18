@@ -4,6 +4,12 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>UISupportedExternalAccessoryProtocols</key>
+	<array>
+		<string>io.structure.protocol</string>
+		<string>io.structure.depth</string>
+		<string>io.structure.infrared</string>
+	</array>
 	<key>CFBundleDisplayName</key>
 	<string>AR</string>
 	<key>CFBundleExecutable</key>
