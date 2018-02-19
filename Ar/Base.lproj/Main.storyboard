@@ -204,17 +204,6 @@
         <!--Scanner-->
         <scene sceneID="Kl1-he-Fra">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Nje-X9-X3H" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <pinchGestureRecognizer id="pS1-9p-YIH">
-                    <connections>
-                        <action selector="pinchGesture:" destination="aqv-gs-feA" id="UFa-kf-GER"/>
-                    </connections>
-                </pinchGestureRecognizer>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="j6d-Ov-FnB">
-                    <connections>
-                        <action selector="toggleNewTrackerVisible:" destination="aqv-gs-feA" id="Zkw-KR-wWh"/>
-                    </connections>
-                </pongPressGestureRecognizer>
                 <viewController storyboardIdentifier="Scanner" title="Scanner" id="aqv-gs-feA" customClass="ScannerViewController" customModule="Ar" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RdA-Xx-unk"/>
@@ -492,8 +481,137 @@ Please Realign or Press Reset.</string>
                         <outlet property="trackingLostLabel" destination="FOK-gf-Vkn" id="MrL-8U-4dm"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nje-X9-X3H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pinchGestureRecognizer id="pS1-9p-YIH">
+                    <connections>
+                        <action selector="pinchGesture:" destination="aqv-gs-feA" id="UFa-kf-GER"/>
+                    </connections>
+                </pinchGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="j6d-Ov-FnB">
+                    <connections>
+                        <action selector="toggleNewTrackerVisible:" destination="aqv-gs-feA" id="Zkw-KR-wWh"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="782" y="833"/>
+        </scene>
+        <!--Mesh View Controller-->
+        <scene sceneID="ZyT-sE-XJZ">
+            <objects>
+                <viewController storyboardIdentifier="MeshViewController" id="udL-OO-OyY" customClass="MeshViewController" customModule="Ar" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eUP-jc-fOI"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ua9-V6-3FV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Tqw-br-PvB" customClass="EAGLView" customModule="Scanner">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Colorizing..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2IM-kj-KK2" userLabel="Label - Structure Message">
+                                <rect key="frame" x="252" y="346" width="520" height="76"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.19869087839999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="36"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="0F7-Gc-Kig">
+                                <rect key="frame" x="312" y="110" width="400" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.76470588240000004" blue="1" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+                                <segments>
+                                    <segment title="X-Ray View"/>
+                                    <segment title="Shaded View"/>
+                                    <segment title="Color View"/>
+                                </segments>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="size">
+                                        <size key="value" width="400" height="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="displayControlChanged:" destination="udL-OO-OyY" eventType="valueChanged" id="616-K2-AiW"/>
+                                </connections>
+                            </segmentedControl>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ABQ-8X-k1N">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.30315667229999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="ZtJ-YE-WoP"/>
+                                </constraints>
+                                <color key="barTintColor" red="1" green="1" blue="1" alpha="0.30315667229999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <items>
+                                    <navigationItem title="Structure Sensor Scanner" id="OSH-Qc-xb5">
+                                        <barButtonItem key="leftBarButtonItem" title="Scan" id="7kQ-pe-pca">
+                                            <connections>
+                                                <action selector="dismissView:" destination="udL-OO-OyY" id="D5e-8G-FkO"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Email" id="Kcr-a4-zAL">
+                                            <connections>
+                                                <action selector="emailMesh:" destination="udL-OO-OyY" id="ppv-Ct-4PX"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ABQ-8X-k1N" secondAttribute="trailing" id="XmE-He-N5F"/>
+                            <constraint firstItem="ABQ-8X-k1N" firstAttribute="leading" secondItem="Tqw-br-PvB" secondAttribute="leading" id="aNS-Tv-QtC"/>
+                            <constraint firstItem="ABQ-8X-k1N" firstAttribute="top" secondItem="Tqw-br-PvB" secondAttribute="top" id="s5F-Gx-Py8"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Z30-2V-F5E"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="DMN-MM-RSi" appends="YES" id="7jG-9B-WAT"/>
+                            <outletCollection property="gestureRecognizers" destination="uA1-d6-gqs" appends="YES" id="XyH-yW-0Eh"/>
+                            <outletCollection property="gestureRecognizers" destination="pMA-t7-XGs" appends="YES" id="169-DW-oYI"/>
+                            <outletCollection property="gestureRecognizers" destination="aci-UZ-Hp0" appends="YES" id="8X6-la-uZj"/>
+                        </connections>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="displayControl" destination="0F7-Gc-Kig" id="4q1-4v-FcB"/>
+                        <outlet property="eview" destination="Tqw-br-PvB" id="ty4-0n-Kig"/>
+                        <outlet property="meshViewerMessageLabel" destination="2IM-kj-KK2" id="tqh-Z4-IKx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OM6-aF-xme" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" maximumNumberOfTouches="1" id="DMN-MM-RSi" userLabel="One Finger Pan">
+                    <connections>
+                        <action selector="oneFingerPanGesture:" destination="udL-OO-OyY" id="H2f-U8-8Rf"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="2" maximumNumberOfTouches="2" id="uA1-d6-gqs" userLabel="Two Finger Pan">
+                    <connections>
+                        <action selector="twoFingersPanGesture:" destination="udL-OO-OyY" id="Tvg-cQ-DH3"/>
+                    </connections>
+                </panGestureRecognizer>
+                <pinchGestureRecognizer id="pMA-t7-XGs">
+                    <connections>
+                        <action selector="pinchScaleGesture:" destination="udL-OO-OyY" id="S4i-14-nMN"/>
+                    </connections>
+                </pinchGestureRecognizer>
+                <tapGestureRecognizer id="aci-UZ-Hp0">
+                    <connections>
+                        <action selector="tapGesture:" destination="udL-OO-OyY" id="Eg8-gK-WQA"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="992.2027587890625" y="1738.064778645833"/>
         </scene>
     </scenes>
     <resources>

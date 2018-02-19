@@ -175,7 +175,8 @@ struct DisplayData {
 	var meshRenderingAlpha: Float = 0.8
 }
 
-class ScannerViewController: UIViewController, STBackgroundTaskDelegate, UIGestureRecognizerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate {
+class ScannerViewController: UIViewController, STBackgroundTaskDelegate, MeshViewDelegate, UIGestureRecognizerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate {
+
 
     @IBOutlet weak var eview: EAGLView!
 
@@ -213,6 +214,8 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, UIGestu
 
 	// Scale of the scanning volume.
 	var _volumeScale = PinchScaleState()
+    
+    var meshViewController: MeshViewController!
 
 	// IMU handling.
 	var _motionManager: CMMotionManager? = nil
@@ -222,6 +225,9 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, UIGestu
 
 	var _useColorCamera = true
     var trackerShowingScanStart = false
+    
+    var _naiveColorizeTask: STBackgroundTask? = nil
+    var _enhancedColorizeTask: STBackgroundTask? = nil
 
 	var avCaptureSession: AVCaptureSession? = nil
 	var videoDevice: AVCaptureDevice? = nil
@@ -255,10 +261,14 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, UIGestu
 
         // Do any additional setup after loading the view.
         _slamState.initialized = false
+        _enhancedColorizeTask = nil
+        _naiveColorizeTask = nil
 
 		setupGL()
 
 		setupUserInterface()
+        
+        setupMeshViewController()
 
 		setupStructureSensor()
 
@@ -311,8 +321,17 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, UIGestu
 		if currentStateNeedsSensor() {
 			connectToStructureSensorAndStartStreaming()
 		}
+        
+        if _slamState.scannerState == .Scanning {
+            resetButtonPressed(sender: resetButton)
+        }
 	}
 
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        respondToMemoryWarning()
+    }
+    
 	func initializeDynamicOptions() {
 
 		_dynamicOptions = DynamicOptions()
@@ -352,6 +371,49 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, UIGestu
 		appStatusMessageLabel.layer.zPosition = 100
 	}
 
+    func setupMeshViewController() {
+        // The mesh viewer will be used after scanning.
+        meshViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MeshViewController") as! MeshViewController
+    }
+    
+    func presentMeshViewer(mesh: STMesh) {
+        
+        meshViewController.setupGL(context: _display!.context!)
+        meshViewController.colorEnabled = _useColorCamera
+        meshViewController.mesh = mesh
+        meshViewController.setCameraProjectionMatrix(projection: _display!.depthCameraGLProjectionMatrix)
+        
+        // Sample a few points to estimate the volume center
+        var totalNumVertices: Int32 = 0
+        
+        for  i in 0..<mesh.numberOfMeshes() {
+            totalNumVertices += mesh.number(ofMeshVertices: Int32(i))
+        }
+        
+        let sampleStep = Int(max(1, totalNumVertices / 1000))
+        var sampleCount: Int32 = 0
+        var volumeCenter = GLKVector3Make(0, 0,0)
+        
+        for i in 0..<mesh.numberOfMeshes() {
+            let numVertices = Int(mesh.number(ofMeshVertices: i))
+            let vertex = mesh.meshVertices(Int32(i))
+            
+            for j in stride(from: 0, to: numVertices, by: sampleStep) {
+                volumeCenter = GLKVector3Add(volumeCenter, vertex![Int(j)])
+                sampleCount += 1
+            }
+        }
+        
+        if sampleCount > 0 {
+            volumeCenter = GLKVector3DivideScalar(volumeCenter, Float(sampleCount))
+        } else {
+            volumeCenter = GLKVector3MultiplyScalar(_slamState.volumeSizeInMeters, 0.5)
+        }
+        
+        meshViewController.resetMeshCenter(center: volumeCenter)
+        meshViewController.delegate = self
+        present(meshViewController!, animated: true, completion: nil)
+    }
 
 	func enterCubePlacementState() {
 
@@ -429,6 +491,8 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, UIGestu
 		_slamState.mapper!.finalizeTriangleMesh()
 
         let mesh = _slamState.scene!.lockAndGetMesh()
+        
+        presentMeshViewer(mesh: mesh)
 
         _slamState.scene!.unlockMesh()
 
@@ -750,6 +814,178 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, UIGestu
                 }, completion: { (finished: Bool) -> Void in
                     self.enableNewTrackerView.isHidden = true
             })
+        }
+    }
+    //MARK: - MeshViewController delegates
+    
+    func meshViewWillDismiss() {
+        
+        // If we are running colorize work, we should cancel it.
+        if _naiveColorizeTask != nil {
+            _naiveColorizeTask!.cancel()
+            _naiveColorizeTask = nil
+        }
+        
+        if _enhancedColorizeTask != nil {
+            _enhancedColorizeTask!.cancel()
+            _enhancedColorizeTask = nil
+        }
+        
+        self.meshViewController.hideMeshViewerMessage()
+    }
+    
+    func meshViewDidDismiss() {
+        
+        _appStatus.statusMessageDisabled = false
+        updateAppStatusMessage()
+        
+        connectToStructureSensorAndStartStreaming()
+        resetSLAM()
+    }
+    
+    func backgroundTask(sender: STBackgroundTask!, didUpdateProgress progress: Double) {
+        
+        if sender == _naiveColorizeTask {
+            DispatchQueue.main.async(execute: {
+                self.meshViewController.showMeshViewerMessage(msg: String.init(format: "Processing: % 3d%%", Int(progress*20)))
+            })
+        } else if sender == _enhancedColorizeTask {
+            
+            DispatchQueue.main.async(execute: {
+                self.meshViewController.showMeshViewerMessage(msg: String.init(format: "Processing: % 3d%%", Int(progress*80)+20))
+            })
+        }
+    }
+    
+    func meshViewDidRequestColorizing(mesh: STMesh, previewCompletionHandler: @escaping () -> Void, enhancedCompletionHandler: @escaping () -> Void) -> Bool {
+        
+        if _naiveColorizeTask != nil { // already one running?
+            
+            NSLog("Already one colorizing task running!")
+            return false
+        }
+        
+        _naiveColorizeTask = try! STColorizer.newColorizeTask(with: mesh,
+                                                                      scene: _slamState.scene,
+                                                                      keyframes: _slamState.keyFrameManager!.getKeyFrames(),
+                                                                      completionHandler: { error in
+                                                                        if error != nil {
+                                                                        } else {
+                                                                            DispatchQueue.main.async(execute: {
+                                                                                previewCompletionHandler()
+                                                                                self.meshViewController.mesh = mesh
+                                                                                self.performEnhancedColorize(mesh: mesh, enhancedCompletionHandler:enhancedCompletionHandler)
+                                                                            })
+                                                                            self._naiveColorizeTask = nil
+                                                                        }
+        },
+                                                                      options: [kSTColorizerTypeKey : STColorizerType.perVertex.rawValue,
+                                                                                kSTColorizerPrioritizeFirstFrameColorKey: _options.prioritizeFirstFrameColor]
+        )
+        
+        if _naiveColorizeTask != nil {
+            // Release the tracking and mapping resources. It will not be possible to resume a scan after this point
+            _slamState.mapper!.reset()
+            _slamState.tracker!.reset()
+            
+            _naiveColorizeTask!.delegate = self
+            _naiveColorizeTask!.start()
+            
+            return true
+        }
+        
+        return false
+    }
+    
+    func performEnhancedColorize(mesh: STMesh, enhancedCompletionHandler: @escaping () -> Void) {
+        
+        _enhancedColorizeTask = try! STColorizer.newColorizeTask(with: mesh, scene: _slamState.scene, keyframes: _slamState.keyFrameManager!.getKeyFrames(), completionHandler: {error in
+            if error != nil {
+                NSLog("Error during colorizing: %@", error!.localizedDescription)
+            } else {
+                DispatchQueue.main.async(execute: {
+                    enhancedCompletionHandler()
+                    
+                    self.meshViewController.mesh = mesh
+                })
+                
+                self._enhancedColorizeTask = nil
+            }
+        }, options: [kSTColorizerTypeKey : STColorizerType.textureMapForObject.rawValue, kSTColorizerPrioritizeFirstFrameColorKey: _options.prioritizeFirstFrameColor, kSTColorizerQualityKey: _options.colorizerQuality.rawValue, kSTColorizerTargetNumberOfFacesKey: _options.colorizerTargetNumFaces])
+        
+        if _enhancedColorizeTask != nil {
+            
+            // We don't need the keyframes anymore now that the final colorizing task was started.
+            // Clearing it now gives a chance to early release the keyframe memory when the colorizer
+            // stops needing them.
+            _slamState.keyFrameManager!.clear()
+            
+            _enhancedColorizeTask!.delegate = self
+            _enhancedColorizeTask!.start()
+        }
+    }
+    
+    func respondToMemoryWarning() {
+        NSLog("respondToMemoryWarning")
+        switch _slamState.scannerState {
+        case .Viewing:
+            // If we are running a colorizing task, abort it
+            if _enhancedColorizeTask != nil && !_slamState.showingMemoryWarning {
+                
+                _slamState.showingMemoryWarning = true
+                
+                // stop the task
+                _enhancedColorizeTask!.cancel()
+                _enhancedColorizeTask = nil
+                
+                // hide progress bar
+                self.meshViewController.hideMeshViewerMessage()
+                
+                let alertCtrl = UIAlertController(
+                    title: "Memory Low",
+                    message: "Colorizing was canceled.",
+                    preferredStyle: .alert)
+                
+                let okAction = UIAlertAction(
+                    title: "OK",
+                    style: .default,
+                    handler: { _ in
+                        self._slamState.showingMemoryWarning = false
+                })
+                
+                alertCtrl.addAction(okAction)
+                
+                // show the alert in the meshViewController
+                self.meshViewController.present(alertCtrl, animated: true, completion: nil)
+            }
+            
+        case .Scanning:
+            
+            if !_slamState.showingMemoryWarning {
+                
+                _slamState.showingMemoryWarning = true
+                
+                let alertCtrl = UIAlertController(
+                    title: "Memory Low",
+                    message: "Scanning will be stopped to avoid loss.",
+                    preferredStyle: .alert)
+                
+                let okAction = UIAlertAction(
+                    title: "OK", style: .default,
+                    handler: { _ in
+                        self._slamState.showingMemoryWarning = false
+                        self.enterViewingState()
+                })
+                
+                alertCtrl.addAction(okAction)
+                
+                // show the alert
+                present(alertCtrl, animated: true, completion: nil)
+            }
+            
+        default:
+            // not much we can do here
+            break
         }
     }
 }
