@@ -41,7 +41,7 @@
 	<true/>
 	<key>UISupportedExternalAccessoryProtocols</key>
 	<array>
-		<string>io.structure.protocol</string>
+		<string>io.structure.control</string>
 		<string>io.structure.depth</string>
 		<string>io.structure.infrared</string>
 	</array>

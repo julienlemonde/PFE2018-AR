@@ -268,8 +268,6 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, UIGestu
 		_useColorCamera = STSensorController.approximateCalibrationGuaranteedForDevice()
 
 		// Make sure we get notified when the app becomes active to start/restore the sensor state if necessary.
-        NotificationCenter.default.addObserver(self, selector: #selector(ScannerViewController.appDidBecomeActive), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
-
 		initializeDynamicOptions()
 		syncUIfromDynamicOptions()
     }
@@ -303,8 +301,8 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, UIGestu
                 })
             })
         }
-
-		// We will connect to the sensor when we receive appDidBecomeActive.
+        
+        appDidBecomeActive();
 	}
 
     var hasLaunched = false
@@ -312,10 +310,6 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, UIGestu
     @objc func appDidBecomeActive() {
 		if currentStateNeedsSensor() {
 			connectToStructureSensorAndStartStreaming()
-		}
-
-		if _slamState.scannerState == .Scanning {
-            resetButtonPressed(sender: resetButton)
 		}
 	}
 
@@ -503,12 +497,12 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, UIGestu
 
 	//MARK: - UI Callbacks
 
-    @IBAction func calibrationButtonClicked(button: UIButton) {
+    @IBAction func calibrationButtonClicked(_ button: UIButton) {
 
         STSensorController.launchCalibratorAppOrGoToAppStore()
     }
 
-    @IBAction func instructionButtonClicked(button: UIButton) {
+    @IBAction func instructionButtonClicked(_ button: UIButton) {
 
         let defaults = UserDefaults.standard
         defaults.set(true, forKey: "instructionOverlay")
@@ -516,7 +510,7 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, UIGestu
         instructionOverlay.isHidden = true
     }
 
-	@IBAction func newTrackerSwitchChanged(sender: UISwitch) {
+	@IBAction func newTrackerSwitchChanged(_ sender: UISwitch) {
 
 
         _dynamicOptions.newTrackerIsOn = enableNewTrackerSwitch.isOn
@@ -524,7 +518,7 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, UIGestu
 		onSLAMOptionsChanged()
 	}
 
-	@IBAction func highResolutionColorSwitchChanged(sender: UISwitch) {
+	@IBAction func highResolutionColorSwitchChanged(_ sender: UISwitch) {
 
         _dynamicOptions.highResColoring = self.enableHighResolutionColorSwitch.isOn
 
@@ -546,13 +540,13 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, UIGestu
 	}
 
 
-	@IBAction func newMapperSwitchChanged(sender: UISwitch) {
+	@IBAction func newMapperSwitchChanged(_ sender: UISwitch) {
 
         _dynamicOptions.newMapperIsOn = self.enableNewMapperSwitch.isOn
 		onSLAMOptionsChanged() // will call UI sync
 	}
 
-	@IBAction func highResMappingSwitchChanged(sender: UISwitch) {
+	@IBAction func highResMappingSwitchChanged(_ sender: UISwitch) {
 
         _dynamicOptions.highResMapping = self.enableHighResMappingSwitch.isOn
 		onSLAMOptionsChanged() // will call UI sync
@@ -705,7 +699,7 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, UIGestu
 		hideAppStatusMessage()
 	}
 
-	@IBAction func pinchGesture(sender: UIPinchGestureRecognizer) {
+	@IBAction func pinchGesture(_ sender: UIPinchGestureRecognizer) {
 
         if sender.state == .began {
 			if _slamState.scannerState == .CubePlacement {
@@ -731,8 +725,7 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, UIGestu
 		}
 	}
 
-    @IBAction func toggleNewTrackerVisible(sender: UILongPressGestureRecognizer) {
-        print("tha fuck")
+    @IBAction func toggleNewTrackerVisible(_ sender: UILongPressGestureRecognizer) {
         if (sender.state == .began) {
             toggleTracker(show: enableNewTrackerView.isHidden)
         }

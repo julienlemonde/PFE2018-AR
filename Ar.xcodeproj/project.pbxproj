@@ -13,7 +13,6 @@
 		9047F9162038CC3700FFC0C7 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9047F9152038CC3700FFC0C7 /* ExternalAccessory.framework */; };
 		9047F9182038CC3E00FFC0C7 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9047F9172038CC3E00FFC0C7 /* ImageIO.framework */; };
 		9047F91A2038CC4400FFC0C7 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9047F9192038CC4400FFC0C7 /* Accelerate.framework */; };
-		90938518203A071B00DD2F5B /* Scanner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90938516203A071B00DD2F5B /* Scanner.storyboard */; };
 		90938524203A2D6D00DD2F5B /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90938523203A2D6D00DD2F5B /* Main_iPad.storyboard */; };
 		90C7249B2038D103008C3F82 /* Structure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C7249A2038D103008C3F82 /* Structure.framework */; };
 		90C7249D2038D2ED008C3F82 /* libz.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C7249C2038D2EC008C3F82 /* libz.1.tbd */; };
@@ -50,7 +49,6 @@
 		9047F9152038CC3700FFC0C7 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		9047F9172038CC3E00FFC0C7 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		9047F9192038CC4400FFC0C7 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		90938517203A071B00DD2F5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ../../StructureScannerSwift/Scanner/Base.lproj/Scanner.storyboard; sourceTree = "<group>"; };
 		9093851A203A232000DD2F5B /* calibration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calibration.png; sourceTree = "<group>"; };
 		9093851B203A232000DD2F5B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9093851C203A232000DD2F5B /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
@@ -143,7 +141,6 @@
 			children = (
 				F94043362013B04B00493D38 /* LaunchScreen.storyboard */,
 				F94043382013B04B00493D38 /* Main.storyboard */,
-				90938516203A071B00DD2F5B /* Scanner.storyboard */,
 			);
 			path = Base.lproj;
 			sourceTree = "<group>";
@@ -278,7 +275,6 @@
 				F940433F2013B04B00493D38 /* vase.png in Resources */,
 				F940433B2013B04B00493D38 /* art.scnassets in Resources */,
 				F940433D2013B04B00493D38 /* duck.png in Resources */,
-				90938518203A071B00DD2F5B /* Scanner.storyboard in Resources */,
 				FAD959EB201E4C8E000779C2 /* Models.objassets in Resources */,
 				F94043412013B04B00493D38 /* lamp.png in Resources */,
 				F94043422013B04B00493D38 /* Models.scnassets in Resources */,
@@ -309,14 +305,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		90938516203A071B00DD2F5B /* Scanner.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				90938517203A071B00DD2F5B /* Base */,
-			);
-			name = Scanner.storyboard;
-			sourceTree = "<group>";
-		};
 		F94043362013B04B00493D38 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

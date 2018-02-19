@@ -566,6 +566,8 @@ extension ScannerViewController: STSensorControllerDelegate {
                 }
             }
             
+            print("should start camera")
+            
             startColorCamera()
             
         } else {

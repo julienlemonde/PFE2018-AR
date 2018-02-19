@@ -79,7 +79,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
             modelSelectedString = "batman"
             self.initializeObjNode(Modelname: "batman")
         }
-        
     }
     
 
