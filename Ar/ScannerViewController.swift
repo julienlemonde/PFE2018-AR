@@ -492,7 +492,7 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, MeshVie
 
         let mesh = _slamState.scene!.lockAndGetMesh()
         
-        presentMeshViewer(mesh: mesh)
+        presentMeshViewer(mesh: mesh!)
 
         _slamState.scene!.unlockMesh()
 
