@@ -182,13 +182,21 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
     //Method to initializing the model so it can be added to the scene
     func initializeObjNode(Modelname: String) {
         // Obtain the scene the coffee mug is contained inside, and extract it.
-        
-        let url = URL(string: "Models.objassets/batman/batman.obj")
-        let asset = MDLAsset(url: url!)
-        let object = asset.object(at: 0)
-        let node = SCNNode.init(mdlObject: object)
-        
+        print("AM : InitializeObjNode Called")
+        guard let url = Bundle.main.url(forResource: "Models.objassets/batman/Model", withExtension: "obj") else {
+            fatalError("Failed to find model file.")
+        }
+        print("AM : OBJ File read")
+        let asset = MDLAsset(url:url)
+        guard let object = asset.object(at:0) as? MDLMesh else {
+            fatalError("Failed to get mesh from asset.")
+        }
+        print("AM : object file conversion")
+        let scene = SCNScene()
+        let node = SCNNode(mdlObject: object)
+        scene.rootNode.addChildNode(node)
         self.nodeSelected = node.clone()
+        print("AM : New node added to scene")
         updateModelLabel(text: Modelname)
     }
     
