@@ -282,12 +282,13 @@ extension ScannerViewController  {
 		
 		// Add the output to the capture session.
 		if (avCaptureSession?.canAddOutput(dataOutput) == true) {
+            print("add me some output")
 			avCaptureSession?.addOutput(dataOutput)
 		}
 		
 		// Dispatch the capture callbacks on the main thread, where OpenGL calls can be made synchronously.
 		
-		dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue.main)
+        dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue.main)
 		
 		
 		// Force the framerate to 30 FPS, to be in sync with Structure Sensor.
@@ -340,6 +341,7 @@ extension ScannerViewController  {
 		}
 
 		// Start streaming color images.
+        print("at this point should start camera");
 		avCaptureSession!.startRunning()
 	}
 	

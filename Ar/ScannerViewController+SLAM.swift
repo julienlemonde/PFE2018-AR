@@ -89,6 +89,7 @@ extension ScannerViewController {
         _depthAsRgbaVisualizer = STDepthToRgba.init(options: [kSTDepthToRgbaStrategyKey: STDepthToRgbaStrategy.gray.rawValue])
 		
 		_slamState.initialized = true
+        print("initialized")
 	}
     
     func resetSLAM() {
@@ -190,7 +191,7 @@ extension ScannerViewController {
 			}
 			else { // for others, check the speed.
 			
-				var deltaAngularSpeedInDegreesPerSecond = FLT_MAX
+				var deltaAngularSpeedInDegreesPerSecond = Float.greatestFiniteMagnitude
 				let deltaSeconds = depthFrame.timestamp - _slamState.prevFrameTimeStamp
 	
 				// If deltaSeconds is 2x longer than the frame duration of the active video device, do not use it either
@@ -328,10 +329,10 @@ extension ScannerViewController {
 				
 				// Tracking messages have higher priority.
 				if  trackingMessage != nil {
-                    showTrackingMessage(message: trackingMessage as! String)
+                    showTrackingMessage(message: trackingMessage! as String)
 				}
 				else if keyframeMessage != nil {
-                    showTrackingMessage(message: keyframeMessage as! String)
+                    showTrackingMessage(message: keyframeMessage! as String)
 				}
 				else {
 					hideTrackingErrorMessage()
@@ -426,11 +427,6 @@ extension ScannerViewController: STSensorControllerDelegate {
         }
         
         NSLog("[Structure] Sensor disconnected!")
-        
-        // Reset the scan on disconnect, since we won't be able to recover afterwards.
-        if _slamState.scannerState == .Scanning {
-            resetButtonPressed(sender: scanButton)
-        }
         
         if _useColorCamera {
             stopColorCamera()
@@ -546,9 +542,9 @@ extension ScannerViewController: STSensorControllerDelegate {
                 // If we use registered depth, we also need to specify a fixed lens position value for the color camera.
                 do {
                     //	NSLog("RegisteredDepth320x240")
-                    try _sensorController.startStreaming(options: [kSTStreamConfigKey: STStreamConfig.registeredDepth320x240.rawValue, kSTFrameSyncConfigKey:  STFrameSyncConfig.depthAndRgb.rawValue, kSTColorCameraFixedLensPositionKey: _options.lensPosition])
+                    try _sensorController.startStreaming(options: [kSTStreamConfigKey: STStreamConfig.depth320x240.rawValue, kSTFrameSyncConfigKey:  STFrameSyncConfig.depthAndRgb.rawValue, kSTColorCameraFixedLensPositionKey: _options.lensPosition])
                 } catch let error as NSError {
-                    
+
                     NSLog("Error during streaming start: %s", error.localizedDescription)
                     
                     return
@@ -556,9 +552,11 @@ extension ScannerViewController: STSensorControllerDelegate {
             } else {
                 // We are using the color camera, so let's make sure the depth gets synchronized with it.
                 do {
+                    print("yolo")
                     //NSLog("Depth320x240")
                     try _sensorController.startStreaming(options: [kSTStreamConfigKey: STStreamConfig.depth320x240.rawValue, kSTFrameSyncConfigKey: STFrameSyncConfig.depthAndRgb.rawValue])
                 } catch let error as NSError {
+                    print("yo yo")
                     
                     NSLog("Error during streaming start: %s", error.localizedDescription)
                     
@@ -596,10 +594,11 @@ extension ScannerViewController: STSensorControllerDelegate {
         let deviceIsLikelySupportedByCalibratorApp = (UIDevice.current.userInterfaceIdiom == .pad)
         
         let calibrationType = _sensorController.calibrationType()
+        
         // Only present the option to switch over to the Calibrator app if the sensor doesn't already have a device specific
         // calibration and the app knows how to calibrate this iOS device.
         if calibrationType != .deviceSpecific && deviceIsLikelySupportedByCalibratorApp {
-            
+
             calibrationOverlay.alpha = 1
             calibrationOverlay.isHidden = false
         }
@@ -609,12 +608,13 @@ extension ScannerViewController: STSensorControllerDelegate {
         }
         
         if !_slamState.initialized {
+            print("calibrator not setup")
             setupSLAM()
         }
     }
     
-    func sensorDidOutputSynchronizedDepthFrame(depthFrame: STDepthFrame!, colorFrame: STColorFrame!) {
-        
+    func sensorDidOutputSynchronizedDepthFrame(depthFrame: STDepthFrame, colorFrame: STColorFrame) {
+        print("yo")
         if _slamState.initialized {
             
             processDepthFrame(depthFrame: depthFrame, colorFrame: colorFrame)
@@ -623,8 +623,8 @@ extension ScannerViewController: STSensorControllerDelegate {
         }
     }
     
-    func sensorDidOutputDepthFrame(depthFrame: STDepthFrame) {
-        
+    func sensorDidOutputDepthFrame(_ depthFrame: STDepthFrame!) {
+        print("yo")
         if _slamState.initialized {
             
             processDepthFrame(depthFrame: depthFrame, colorFrame: nil)

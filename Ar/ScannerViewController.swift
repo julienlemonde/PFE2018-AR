@@ -321,10 +321,6 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, MeshVie
 		if currentStateNeedsSensor() {
 			connectToStructureSensorAndStartStreaming()
 		}
-        
-        if _slamState.scannerState == .Scanning {
-            resetButtonPressed(sender: resetButton)
-        }
 	}
 
     override func didReceiveMemoryWarning() {
@@ -643,7 +639,7 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, MeshVie
 		_display!.cubeRenderer!.adjustCubeSize(_slamState.volumeSizeInMeters)
 	}
 
-	@IBAction func scanButtonPressed(sender: UIButton) {
+	@IBAction func scanButtonPressed(_ sender: UIButton) {
         // hide windows while scanning
         trackerShowingScanStart =  !enableNewTrackerView.isHidden
 
@@ -651,7 +647,7 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, MeshVie
         enterScanningState()
 	}
 
-	@IBAction func resetButtonPressed(sender: UIButton) {
+	@IBAction func resetButtonPressed(_ sender: UIButton) {
         // restore window after scanning
         if trackerShowingScanStart {
             toggleTracker(show: true)

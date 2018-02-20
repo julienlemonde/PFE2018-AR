@@ -181,6 +181,8 @@ extension ScannerViewController {
         glClear( GLbitfield(GL_DEPTH_BUFFER_BIT))
 		
         glViewport(GLint(_display!.viewport[0]), GLint(_display!.viewport[1]), GLint(_display!.viewport[2]), GLint(_display!.viewport[3]))
+        
+        print(String(describing: _slamState.scannerState))
 		
         switch _slamState.scannerState {
 			
