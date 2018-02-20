@@ -12,7 +12,7 @@ import ARKit
 import AudioToolbox
 import SceneKit.ModelIO
 
-class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate, UIGestureRecognizerDelegate {
 
     
     
@@ -61,11 +61,17 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
         
         //Drag recognition
         let dragGesture = UIPanGestureRecognizer(target: self, action: #selector(moveModelAround(gesture:)))
+        dragGesture.maximumNumberOfTouches = 1
         self.sceneView.addGestureRecognizer(dragGesture)
         
-        //Pinch Recognition for scale
         let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(scaleSelectedModel(gesture:)))
-        self.sceneView.addGestureRecognizer(pinchGesture)
+        let rotationGesture = UIRotationGestureRecognizer(target: self, action: #selector(rotateSelectedModel(gesture:)))
+        
+        pinchGesture.delegate = self
+        rotationGesture.delegate = self
+        
+        view.addGestureRecognizer(pinchGesture)
+        view.addGestureRecognizer(rotationGesture)
         
         //---------------------------------------------------
         
@@ -320,6 +326,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
             latestTranslatePos = position
         }
         else if let _ = selectedNode{
+            // Move the node based on the real world translation
+            guard let result = sceneView.hitTest(position, types: .existingPlane).first else { return }
             let deltaX = Float(position.x - latestTranslatePos!.x)/800
             let deltaY = Float(position.y - latestTranslatePos!.y)/800
             selectedNode!.localTranslate(by: SCNVector3Make(deltaX, 0.0, deltaY))
@@ -328,6 +336,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
         }
         
     }
+    
     //Handle models scaling in scene
     @objc func scaleSelectedModel(gesture: UIPinchGestureRecognizer){
         if(selectedNode != nil) {
@@ -335,5 +344,15 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate {
             selectedNode?.runAction(pinch)
             gesture.scale = 1.0
         }
+    }
+    @objc func rotateSelectedModel(gesture: UIRotationGestureRecognizer) {
+        if(selectedNode != nil) {
+            let rotation = SCNAction.rotateBy(x: 0.0, y: -gesture.rotation*2.5, z: 0.0, duration: 0.0)
+            selectedNode?.runAction(rotation)
+            gesture.rotation = 0.0
+        }
+    }
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }
