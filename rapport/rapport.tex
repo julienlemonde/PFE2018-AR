@@ -2,16 +2,19 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{babel}
-\usepackage[top=2cm,bottom=3cm,left=2.5cm,right=2.5cm,asymmetric]{geometry}
+\usepackage[top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm,asymmetric]{geometry}
 \usepackage{hyperref}
 \usepackage{hypcap}
 \usepackage{titlesec}
 \usepackage{ragged2e}
 \usepackage{hyphenat}
+\usepackage{berasans}
 
 \usepackage{abstract}
 \renewcommand{\abstractname}{}
 \renewcommand{\absnamepos}{empty}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage[T1]{fontenc}
 
 \hypersetup{pdftex,colorlinks=true,allcolors=blue}
 \newcommand{\reportTitle}{\uppercase{Détection de modèle humain\\Pour application de réalité augumentée}}
@@ -37,7 +40,6 @@
 \pagenumbering{Roman}
 \begin{titlepage}
     \begin{center}
-        \vfill
         \uppercase{Rapport technique de projet de fin d'études\\Présenté à l'école de technologie supérieure\\Dans le cadre du cours GTI795 Projet de fin d'études en TI}
         \vfill
         \textbf{\reportTitle}
@@ -49,7 +51,6 @@
         \textbf{Professeur-superviseur\\Carlos Vazquez}
         \vfill
         \uppercase{Montréal, 25 avril 2018\\Hiver 2018\\Université du Québec}
-        \vfill
     \end{center}
 \end{titlepage}
 \cleardoublepage
