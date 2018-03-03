@@ -1,0 +1,78 @@
+\documentclass[letterpaper,twoside,12pt]{report}
+\usepackage[utf8]{inputenc}
+\newcommand{\reportTitle}{\uppercase{Détection de modèle humain\\Pour application de réalité augumentée}}
+\newcommand{\reportAuthors}{\uppercase{Vincent Boiteau-Robert\\BOIV14029409\\Marc-Antoine Hébert\\HEBM14019401\\Julien Lemonde\\LEMJ20059208\\Alexandre Malo\\MALA0702940}}
+\usepackage{abstract}
+\usepackage{hyperref}
+\hypersetup{pdftex,colorlinks=true,allcolors=blue}
+\usepackage{hypcap}
+\renewcommand{\abstractname}{}
+\renewcommand{\absnamepos}{empty}
+\usepackage{titlesec}
+
+\titleformat
+{\chapter}
+[display]
+{\bfseries\normalsize}
+{}
+{0.5ex}
+{
+    \vspace{1ex}
+}
+{
+    \vspace{-0.5ex}
+}
+
+\begin{document}
+\pagenumbering{Roman}
+\begin{titlepage}
+    \begin{center}
+        \vfill
+        \uppercase{Rapport technique\\Présenté à l'école de technologie supérieure\\Dans le cadre du cours GTI795 Projet de fin d'études en TI}
+        \vfill
+        \textbf{\reportTitle}
+        \vfill
+        \reportAuthors
+        \vfill
+        \uppercase{Département de génie logiciel et TI}
+        \vfill
+        \textbf{Professeur-superviseur\\Carlos Vazquez}
+        \vfill
+        \uppercase{Montréal, 25 avril 2018\\Hiver 2018}
+        \vfill
+    \end{center}
+\end{titlepage}
+\begin{abstract}
+    \begin{center}{}
+        \textbf{\reportTitle}
+        \\ \vspace{1\baselineskip}
+        \reportAuthors
+        \\ \vspace{1\baselineskip}
+        text résumé ici
+    \end{center}
+    \vspace{-\baselineskip}
+\end{abstract}
+\tableofcontents
+\listoftables
+\listoffigures
+\cleardoublepage
+\pagenumbering{arabic}
+\chapter*{\uppercase{Introduction}}
+\addcontentsline{toc}{chapter}{INTRODUCTION}
+introduction text
+\chapter*{\uppercase{Revue de la documentation}}
+\addcontentsline{toc}{chapter}{REVUE DE LA DOCUMENTATION}
+revue text
+\chapter*{\uppercase{Méthodologie de travail}}
+\addcontentsline{toc}{chapter}{MÉTHODOLOGIE DE TRAVAIL}
+méthodologie text
+\chapter*{\uppercase{Processus de conception}}
+\addcontentsline{toc}{chapter}{PROCESSUS DE CONCEPTION}
+processus text
+\chapter*{\uppercase{Discussion}}
+\addcontentsline{toc}{chapter}{DISCUSSION}
+discussion text
+\chapter*{\uppercase{Conclusion}}
+\addcontentsline{toc}{chapter}{CONCLUSION}
+conclusion text
+\end{document}
