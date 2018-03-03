@@ -49,7 +49,7 @@
 }
 
 \begin{document}
-\setlength{\parindent}{0cm}\setlength{\parskip}{2ex plus 0.3ex minus 0.1ex}
+\setlength{\parindent}{0cm}\setlength{\parskip}{2ex minus 0.2ex}
 \pagenumbering{Roman}
 \begin{titlepage}
     \begin{center}
@@ -104,17 +104,26 @@ interface de programmation applicative ARKit conçu par appel offre un environne
 développement simplifié au développur d'applications (Statt, N. 2017.) Toutefois, ces technologies
 permettent l'interaction avec des modèles généré de façon synthétique. Un défi qui n'a pas encore
 de solution reconnue est l'usage de modèles provenant de l'environnement de l'utilisateur dans la
-réalité augmentée.
+réalité augmentée. Certaines technologies offrent des pistes de solution, mais leur taux d'adoption
+et le nivewu de compatibilité avec les autres outils de l'environnement de développement Apple sont
+limités.
 \par
-Des technologies comme le Structure Sensor permettent la modélisation d'objets dans un
-environnement réel afin de créer des modèles 3D numériques (Molitch-Hou, M. 2016.). Par contre,
-celui-ci étant une nouvelle technologie et ayant une clientèle assez niche a peu de solutions
-pour interagir avec les autres technologies de l'appareil.
+Une des technologies les plus intéressante est le Structure Sensor (Molitch-Hou, M. 2016.) Celle-ci
+consiste en un périphérique qui doit être attacher à l'appareil. Le périphérique ajoute une caméra
+et un senseur 3D. Avec l'usage de la caméra de l'appareil, celui de l'appareil ont peut avoir une
+meilleur compréhension de l'environnemetn 3D. L'outils vient avec une trousse de développement
+logiciel permettant de prendre les coordonées d'un objets sous quatres dimensions, x, y, z et la
+couleur. Toutefois cette solution n'est pas très connu et a un nombre de ressources limités.
 \par
-Ainsi la première problématique qui souhaite être adressé par ce projet est le développement
-d'une technique d'interaction entre les deux technologies. Ce genre d'avancer permettrait donc
-de non seulement à l'utilisateur d'ajouter des objets dans son environnement. Mais aussi
-amener des modifications à ce qui l'entoure.
+Les deux technologies décrites plus haut apporte chacune des possibilités très intéressantes pour
+le développement d'application de réalité augmentée. L'usage des fonctionnalité d'une dans l'autre
+serait très intéressante. Toutefois au moment où l'équipe a débuté le projet, il n'y a pas
+d'interface une telle combinaison. Les deux interfaces utilisent la caméra, par contre chacun
+utilise un utilitaire différent pour le contrôle de celle-ci. Les deux utilisent des modèles
+numériques 3D, mais chacun a choisi une norme différente. En effet, le Structure Sensor permet
+l'extraction en Modèle I/O. Alors que le ARKit utilise les modèles de type scène qui est un format
+propriètaire à Apple. Le principal défi du projet consistera à la combinaison de plusieurs
+interfaces de programmation pour créer un outils fonctionnel.
 \section*{Objectifs}
 Comme décrit dans la section précédente, le principal objectif du projet est la création d'une
 interface entre deux technologies mobiles, soit un scanner d'environnement 3D, le Structure
