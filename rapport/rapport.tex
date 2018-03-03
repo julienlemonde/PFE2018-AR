@@ -1,19 +1,28 @@
-\documentclass[letterpaper,twoside,12pt]{report}
+\documentclass[letterpaper,twoside,12pt,french]{report}
 \usepackage[utf8]{inputenc}
-\newcommand{\reportTitle}{\uppercase{Détection de modèle humain\\Pour application de réalité augumentée}}
-\newcommand{\reportAuthors}{\uppercase{Vincent Boiteau-Robert\\BOIV14029409\\Marc-Antoine Hébert\\HEBM14019401\\Julien Lemonde\\LEMJ20059208\\Alexandre Malo\\MALA0702940}}
-\usepackage{abstract}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage[top=2cm,bottom=3cm,left=2.5cm,right=2.5cm,asymmetric]{geometry}
 \usepackage{hyperref}
-\hypersetup{pdftex,colorlinks=true,allcolors=blue}
 \usepackage{hypcap}
+\usepackage{titlesec}
+\usepackage{ragged2e}
+\usepackage{hyphenat}
+
+\usepackage{abstract}
 \renewcommand{\abstractname}{}
 \renewcommand{\absnamepos}{empty}
-\usepackage{titlesec}
+
+\hypersetup{pdftex,colorlinks=true,allcolors=blue}
+\newcommand{\reportTitle}{\uppercase{Détection de modèle humain\\Pour application de réalité augumentée}}
+\newcommand{\reportAuthors}{Vincent \uppercase{Boiteau-Robert\\BOIV14029409}\\Marc-Antoine \uppercase{Hébert\\HEBM14019401}\\Julien \uppercase{Lemonde\\LEMJ20059208}\\Alexandre \uppercase{Malo\\MALA0702940}}
+
+\newcommand{\abbrItem}[2]{\item[\uppercase{\textbf{#1}} -] #2}
 
 \titleformat
 {\chapter}
 [display]
-{\bfseries\normalsize}
+{\bfseries\Large}
 {}
 {0.5ex}
 {
@@ -24,11 +33,12 @@
 }
 
 \begin{document}
+\setlength{\parindent}{0cm}\setlength{\parskip}{2ex plus 0.3ex minus 0.1ex}
 \pagenumbering{Roman}
 \begin{titlepage}
     \begin{center}
         \vfill
-        \uppercase{Rapport technique\\Présenté à l'école de technologie supérieure\\Dans le cadre du cours GTI795 Projet de fin d'études en TI}
+        \uppercase{Rapport technique de projet de fin d'études\\Présenté à l'école de technologie supérieure\\Dans le cadre du cours GTI795 Projet de fin d'études en TI}
         \vfill
         \textbf{\reportTitle}
         \vfill
@@ -38,13 +48,16 @@
         \vfill
         \textbf{Professeur-superviseur\\Carlos Vazquez}
         \vfill
-        \uppercase{Montréal, 25 avril 2018\\Hiver 2018}
+        \uppercase{Montréal, 25 avril 2018\\Hiver 2018\\Université du Québec}
         \vfill
     \end{center}
 \end{titlepage}
+\cleardoublepage
 \begin{abstract}
-    \begin{center}{}
-        \textbf{\reportTitle}
+    \begin{center}
+        \textbf{\uppercase{\Large{Résumé}}}
+        \vspace{2ex}
+        \\ \textbf{\reportTitle}
         \\ \vspace{1\baselineskip}
         \reportAuthors
         \\ \vspace{1\baselineskip}
@@ -52,14 +65,61 @@
     \end{center}
     \vspace{-\baselineskip}
 \end{abstract}
+\cleardoublepage
 \tableofcontents
+\cleardoublepage
 \listoftables
+\cleardoublepage
 \listoffigures
+\cleardoublepage
+\chapter*{\uppercase{Liste des abbréviations}}
+\begin{enumerate}
+        \abbrItem{ÉTS}{École de Technologie Supérieure}
+\end{enumerate}
 \cleardoublepage
 \pagenumbering{arabic}
 \chapter*{\uppercase{Introduction}}
 \addcontentsline{toc}{chapter}{INTRODUCTION}
-introduction text
+\section*{Problématique}
+Les avancés technologiques des caméras sur les appareils mobiles ont concrétisés la possibilité
+de la réalité augmentée au cours des dernières années. Le développement est maintenant plus
+démocratisé avec la création d'environnement comme le ARKit de Apple (Statt, N. 2017.).
+Toutefois, ces technologies permettent l'interaction avec des modèles généré de façon
+synthétique. Un défi qui n'a pas encore de solution reconnue et acceptée par la communauté est
+l'usage de modèles provenant de l'environnement de l'utilisateur dans la réalité augmentée.
+\par
+Des technologies comme le Structure Sensor permettent la modélisation d'objets dans un
+environnement réel afin de créer des modèles 3D numériques (Molitch-Hou, M. 2016.). Par contre,
+celui-ci étant une nouvelle technologie et ayant une clientèle assez niche a peu de solutions
+pour interagir avec les autres technologies de l'appareil.
+\par
+Ainsi la première problématique qui souhaite être adressé par ce projet est le développement
+d'une technique d'interaction entre les deux technologies. Ce genre d'avancer permettrait donc
+de non seulement à l'utilisateur d'ajouter des objets dans son environnement. Mais aussi
+amener des modifications à ce qui l'entoure.
+\section*{Objectifs}
+Comme décrit dans la section précédente, le principal objectif du projet est la création d'une
+interface entre deux technologies mobiles, soit un scanner d'environnement 3D, le Structure
+Sensor (Molitch-Hou, M. 2016.), et la trousse de développement de réalité augmentée d'Apple
+(Statt, N. 2017.). Autrement dit, l'équipe s'attend en fin de session d'avoir une application mobile
+permettant la prise de modèle à l'aide du senseur et l'ajout d'un modèle extrait sur une surface
+plane. L'application devra permettre cette chaîne d'action avec une expérience utilisateur
+agréable et naturelle à l'utilisateur.
+\par
+L'application décrite ci-haut représente les attentes pessimistes par rapport aux résultats finaux.
+Toutefois, une telle application apporte un éventail de possibilités sur la manipulation de
+l'environnement augmentée. Par exemple, une des retombées envisageables et
+commercialisable est la numérisation de catalogue de magasin comme Ikea. L'usager peut
+donc ajouter un item dans une pièce de sa maison. Si plusieurs couleurs sont disponibles pour
+un modèle, chacune des variantes seront disponibles à la modélisation.
+\par
+Une autre ouverture technologique, qu'une telle application apporterait, est dans un contexte
+d'animation 3D. En effet, la création d'un modèle permettrait l'ajout d'un squelette dans celui-ci.
+Une fois le squelette créé l'animation du modèle pourrait être fait. Cette possibilité est
+particulièrement intéressante pour l'équipe en charge du projet. Dans l'éventualité où la vision
+de base du projet serait complétée avant la fin de la session d'Hiver 2018, l'équipe compte se
+concentrer sur la création de ce squelette et possiblement la manipulation de celui-ci.
+\section*{Hypothèses}
 \chapter*{\uppercase{Revue de la documentation}}
 \addcontentsline{toc}{chapter}{REVUE DE LA DOCUMENTATION}
 revue text
