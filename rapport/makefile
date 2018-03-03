@@ -22,7 +22,6 @@ clean:
 $(FILE).pdf:
 	pdflatex --shell-escape $(FILE).tex
 	pdflatex --shell-escape $(FILE).tex
-	makeindex $(FILE)
 	pdflatex --shell-escape $(FILE).tex
 	pdflatex --shell-escape $(FILE).tex
 
