@@ -22,6 +22,7 @@ clean:
 $(FILE).pdf:
 	pdflatex --shell-escape $(FILE).tex
 	pdflatex --shell-escape $(FILE).tex
+	bibtex $(FILE)
 	pdflatex --shell-escape $(FILE).tex
 	pdflatex --shell-escape $(FILE).tex
 

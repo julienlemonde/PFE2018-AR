@@ -9,6 +9,8 @@
 \usepackage{ragged2e}
 \usepackage{hyphenat}
 \usepackage{berasans}
+\usepackage{setspace}
+\usepackage{natbib}
 
 \usepackage{abstract}
 \renewcommand{\abstractname}{}
@@ -100,14 +102,14 @@ Un de ces domaine est la réalité augmentée, où la superposition d'éléments
 capture de l'environnement réel en temps réel. Une démocratisation du développement d'application
 utilisant cette technologie c'est fait au cours de l'année précédente, 2017. En effet, la nouvelle
 interface de programmation applicative ARKit conçu par appel offre un environnement de
-développement simplifié au développur d'applications (Statt, N. 2017.) Toutefois, ces technologies
+développement simplifié au développur d'applications \citep*{StattN2017}. Toutefois, ces technologies
 permettent l'interaction avec des modèles généré de façon synthétique. Un défi qui n'a pas encore
 de solution reconnue est l'usage de modèles provenant de l'environnement de l'utilisateur dans la
 réalité augmentée. Certaines technologies offrent des pistes de solution, mais leur taux d'adoption
 et le nivewu de compatibilité avec les autres outils de l'environnement de développement Apple sont
 limités.
 \par
-Une des technologies les plus intéressante est le Structure Sensor (Molitch-Hou, M. 2016.) Celle-ci
+Une des technologies les plus intéressante est le Structure Sensor\citep*{molitchHou01}. Celle-ci
 consiste en un périphérique qui doit être attacher à l'appareil. Le périphérique ajoute une caméra
 et un senseur 3D. Avec l'usage de la caméra de l'appareil, celui de l'appareil ont peut avoir une
 meilleur compréhension de l'environnemetn 3D. L'outils vient avec une trousse de développement
@@ -125,12 +127,12 @@ propriètaire à Apple. Le principal défi du projet consistera à la combinaiso
 interfaces de programmation pour créer un outils fonctionnel.
 \par
 Comme décrit dans la section précédente, le principal objectif du projet est la création d'une
-interface entre deux technologies mobiles, soit un périphérique d'acquisition de modèle 3D, le Structure
-Sensor (Molitch-Hou, M. 2016.), et la trousse de développement de réalité augmentée d'Apple
-(Statt, N. 2017.). Autrement dit, l'équipe s'attend en fin de session d'avoir produit une application mobile
-permettant la prise de modèle à l'aide du senseur. L'application permettra d'ajouter un modèle
-extrait sur une surface plane. L'application permet cette chaîne d'action avec une expérience
-utilisateur agréable et naturelle à l'utilisateur.
+interface entre deux technologies mobiles, soit un périphérique d'acquisition de modèle 3D, le
+Structure Sensor et la trousse de développement de réalité augmentée d'Apple. Autrement dit,
+l'équipe s'attend en fin de session d'avoir produit une application mobile permettant la prise
+de modèle à l'aide du senseur. L'application permettra d'ajouter un modèle extrait sur une surface
+plane. L'application permet cette chaîne d'action avec une expérience utilisateur agréable et
+naturelle à l'utilisateur.
 \par
 L'application décrite ci-haut représente les attentes pessimistes par rapport aux résultats finaux.
 Toutefois, une telle application apporte un éventail de possibilités sur la manipulation de
@@ -187,4 +189,12 @@ discussion text
 \chapter*{\uppercase{Conclusion}}
 \addcontentsline{toc}{chapter}{CONCLUSION}
 conclusion text
+\newpage
+\begin{spacing}{1}
+    \nocite{*}
+    \bibliographystyle{bibETS}
+    \addcontentsline{toc}{chapter}{BIBLIOGRAPHIE}
+
+    \bibliography{biblio_fr}
+\end{spacing}
 \end{document}
