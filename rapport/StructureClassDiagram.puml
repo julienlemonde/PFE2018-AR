@@ -1,0 +1,7 @@
+@startuml
+skinparam style strictuml
+hide empty members
+title Structure SDK Interface Class diagram
+
+
+@enduml
