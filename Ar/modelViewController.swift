@@ -9,7 +9,7 @@
 import UIKit
 
 protocol MCDelegate {
-    func passingModelSelection(modelSelection: String)
+    func passingModelSelection(modelSelection: String, type: Bool)
 }
 
 class modelViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
@@ -30,7 +30,7 @@ class modelViewController: UIViewController,UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.passingModelSelection(modelSelection: modelList[indexPath.row])
+        delegate?.passingModelSelection(modelSelection: modelList[indexPath.row], type: extensionList[indexPath.row].contains("obj") ? true : false)
         dismiss(animated: true, completion: nil)
     }
     
@@ -41,6 +41,7 @@ class modelViewController: UIViewController,UITableViewDelegate, UITableViewData
     }
     @IBOutlet weak var modelTableView: UITableView!
     var modelList: Array<String> = []
+    var extensionList: Array<String> = []
     
 
     override func viewDidLoad() {
@@ -63,18 +64,22 @@ class modelViewController: UIViewController,UITableViewDelegate, UITableViewData
         var modelListToReturn: Array<String> = []
         var isDir: ObjCBool = false
         let fileManager = FileManager.default
-        let path = Bundle.main.resourcePath! + "/Models.objassets/"
-        do {
-            let items = try fileManager.contentsOfDirectory(atPath: path)
-            for item in items {
-                if(fileManager.fileExists(atPath: path + item, isDirectory:&isDir))
-                {
-                    modelListToReturn.append(item)
+        let objType = ["objassets", "scnassets"]
+        for type in objType {
+            let Systempath = Bundle.main.resourcePath! + "/Models.\(type)/"
+            do {
+                let items = try fileManager.contentsOfDirectory(atPath: Systempath)
+                for item in items {
+                    if(fileManager.fileExists(atPath: Systempath + item, isDirectory:&isDir))
+                    {
+                        modelListToReturn.append(item)
+                        extensionList.append(type)
+                    }
                 }
             }
-        }
-        catch{
-            
+            catch{
+                
+            }
         }
         return modelListToReturn
     }

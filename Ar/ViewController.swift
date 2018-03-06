@@ -13,6 +13,8 @@ import AudioToolbox
 import SceneKit.ModelIO
 
 class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate, UIGestureRecognizerDelegate {
+    
+    
 
     
     
@@ -28,13 +30,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate, UIGesture
     var planes = [UUID: VirtualPlane] ()
     var index = 0
     var selectedPlane: VirtualPlane?
-    var nodeSelected: SCNNode!
+    var modelSelected: SCNNode!
     var valueSentFromModelView: String?
     var returnModelFromList = String()
     var selectedNode: SCNNode?
     var longPressDelay = 0.30
     var modelSelectedString: String?
     var latestTranslatePos: CGPoint?
+    var isObjType = Bool()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,6 +86,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate, UIGesture
         self.sceneView.scene = scene
         if(returnModelFromList.isEmpty) {
             modelSelectedString = "batman"
+            isObjType = true
             self.initializeObjNode(Modelname: "batman")
         }
     }
@@ -173,15 +177,16 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate, UIGesture
     }
     
     //Method to initializing the model so it can be added to the scene
-    func initializeMugNode(Modelname: String) {
+    func initializeScnNode(Modelname: String) {
+        print("AM : InitializeSCNNode Called")
         // Obtain the scene the coffee mug is contained inside, and extract it.
-        let mugScene = SCNScene(named: "\(Modelname).scn", inDirectory: "Models.scnassets/\(Modelname)")!
+        let scnScene = SCNScene(named: "\(Modelname).scn", inDirectory: "Models.scnassets/\(Modelname)")!
         let wrapperNode = SCNNode()
-        
-        for child in mugScene.rootNode.childNodes{
+        print("AM : SCN File read")
+        for child in scnScene.rootNode.childNodes{
             wrapperNode.addChildNode(child)
         }
-        self.nodeSelected = wrapperNode.clone()
+        self.modelSelected = wrapperNode.clone()
         updateModelLabel(text: Modelname)
     }
     
@@ -198,18 +203,25 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate, UIGesture
             fatalError("Failed to get mesh from asset.")
         }
         print("AM : object file conversion")
-        let scene = SCNScene()
+        let rootNode = SCNNode()
         let node = SCNNode(mdlObject: object)
-        scene.rootNode.addChildNode(node)
-        self.nodeSelected = node.clone()
+        rootNode.addChildNode(node)
+        self.modelSelected = rootNode.clone()
         print("AM : New node added to scene")
         updateModelLabel(text: Modelname)
     }
     
     // Method delegate to change model after selection from modelViewController
-    func passingModelSelection(modelSelection: String){
+    func passingModelSelection(modelSelection: String, type: Bool){
         modelSelectedString = modelSelection
-        initializeObjNode(Modelname: modelSelection)
+        isObjType = type
+        if(isObjType){
+            initializeObjNode(Modelname: modelSelection)
+        }
+        else {
+            initializeScnNode(Modelname: modelSelection)
+        }
+        
     }
     
     // Method to prepare opening the model List view and recover the response
@@ -296,10 +308,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate, UIGesture
     func addModelToPlane(plane: VirtualPlane, atPoint point: CGPoint) {
         let hits = sceneView.hitTest(point, types: .existingPlaneUsingExtent)
         if hits.count > 0, let firstHit = hits.first {
-            let newModelToScene = nodeSelected.clone()
+            let newModelToScene = modelSelected.clone()
             newModelToScene.position = SCNVector3Make(firstHit.worldTransform.columns.3.x, firstHit.worldTransform.columns.3.y, firstHit.worldTransform.columns.3.z)
             sceneView.scene.rootNode.addChildNode(newModelToScene)
-            initializeObjNode(Modelname: modelSelectedString!)
+            passingModelSelection(modelSelection: modelSelectedString!, type: isObjType)
         }
     }
     
@@ -315,26 +327,32 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate, UIGesture
     // Used help from https://stackoverflow.com/questions/44729610/dragging-scnnode-in-arkit-using-scenekit to understand how UIPanGestureRecognizer worked and changed it
     // to fit our needs
     @objc func moveModelAround(gesture: UIPanGestureRecognizer){
-        let position = gesture.location(in: self.sceneView)
+        /*let position = gesture.location(in: self.sceneView)
         let state = gesture.state
         
         if(state == .failed || state == .cancelled){
             print("Error while dragging object")
             return
         }
-        if(state == .began){
-            latestTranslatePos = position
-        }
+        
         else if let _ = selectedNode{
-            // Move the node based on the real world translation
-            guard let result = sceneView.hitTest(position, types: .existingPlane).first else { return }
             let deltaX = Float(position.x - latestTranslatePos!.x)/800
             let deltaY = Float(position.y - latestTranslatePos!.y)/800
             selectedNode!.localTranslate(by: SCNVector3Make(deltaX, 0.0, deltaY))
             latestTranslatePos = position
             
-        }
+        }*/
+        // Find the location in the view
+        let location = gesture.location(in: sceneView)
         
+        if(gesture.state == .changed){
+            // Move the node based on the real world translation
+            guard let result = sceneView.hitTest(location, types: .existingPlane).first else { return }
+            
+            let transform = result.worldTransform
+            let newPosition = float3(transform.columns.3.x, (selectedNode?.position.y)!, transform.columns.3.z)
+            selectedNode?.simdPosition = newPosition
+        }
     }
     
     //Handle models scaling in scene
