@@ -1,17 +1,16 @@
 @startuml
-skinparam style strictuml
 title Structure SDK Interface Class diagram
 
 package Structure {
-class STColorFrame {
+class "STColorFrame" as CColorFrame {
     width : int
     hegiht : int
     shiftData : uint16_T
     depthInMillimeters : float
     halfResolutionDepthFrame : STDepthFrame
     timestamp : NSTimeInterval
-    glProjectionMatrix : GLKMatrix4
-    applyExpensiveCorrection : bool
+    GLKMatrix4 : glProjectionMatrix()
+    bool : applyExpensiveCorrection()
     STDepthFrame : registeredToColorFrame(colorFrame : STColorFrame)
     void : colorCameraPoseInDepthCoordinateFrame(matrix4x4: float)
 }
@@ -19,8 +18,95 @@ class STColorFrame {
 interface STDepthFrame {
 
 }
+
+interface STInfraredFrame {
+    data : uint16_t
+    width : int
+    height : int
+    timestamp : NSTimeInterval
 }
 
-STDepthFrame <|-down- STColorFrame
+interface STColorFrame {
+    sampleBuffer : CMSampleBufferRef
+    width : int
+    height : int
+    timestamp : NSTimeInterval
+    halfResolutionColorFrame : STColorFrame
+    GLKMatrix4 : glProjectionMatrix()
+}
+
+class STSensorControllerDelegate {
+    void : sensorDidConnect()
+    void : sensorDidDisconnect()
+    void : sensorDidStopSteaming(reason : STSensorControllerDidStopStreamingReason)
+    void : sensorDidLeaveLowPowerMode()
+    void : sensorBatteryNeedsCharging()
+    void : sensorDidOutputDepthFrame(depthFrame : STDepthFrame)
+    void : sensorDidOutputInfraredFrame(irFrame : STInfraredFrame)
+    void : sensorDidOutputSynchronizedDepthFrame(depthFrame : STDepthFrame, colorFrame : STColorFrame)
+    void : sensorDidOutputSynchronizedInfraredFrame(irFrame : STInfraredFrame, colorFrame : STColorFrame)
+}
+interface STSensorController {
+    sharedController : STSensorController
+    delegate : STSensorControllerDelegate
+    STSensorControllerInitStatus : initializeSensorConnection()
+    bool : startStreamingWithOptions(options : NSDictionary, error : NSError)
+    void : stopStreaming()
+    void : frameSyncNewColorBuffer(sampleBuffer : CMSampleBufferRef)
+    bool : isConnected()
+    bool : isLowPower()
+    int : getBatteryChargePercentatge()
+    string : getName()
+    string : getSerialNumber()
+    string : getFirmwareRevision()
+    string : getHardwareRevision()
+    bool : launchCalibratorAppOrGoToAppStore()
+    bool : approximateCalibrationGuaranteedForDevice()
+    STCalibrationType : calibrationType()
+    void : setHighGainEnabled(enabled : bool)
+    void : colorCameraPoseInSensorCoordinateFrame(matrix4x4 : float)
+}
+interface STGLTextureShaderRGBA {
+    void : useShaderProgram()
+    void : renderTexture(textureUnit : GLint)
+}
+interface STGLTextureShaderYCbCr {
+    void : useShaderProgram()
+    void : renderWithLumaTexture(lumaTextureUnit : GLint, chromaTextureUnit : GLint)
+}
+interface STGLTextureShaderGray {
+    void : useShaderProgram()
+    void : renderWithLumaTexture(lumaTextureUnit : GLint)
+}
+interface STDepthToRgba {
+    rgbaBuffer : uint8_t
+    width : int
+    height : int
+    instancetype : initWithOptions(options : NSDictionary)
+    uint8_t : convertDepthFrameToRgba(frame : STDepthFrame)
+}
+interface STWirelessLog {
+    void : broadcastLogsToWirelessConsoleAtAddress(ipv4Address : String, port : int, error : NSError)
+}
+interface STBackgroundTask {
+    isCancelled : bool
+    delegate : id<STBackgroundTaskDelegate>
+    void : start()
+    void : cancel()
+    void : waitUntilCompletion()
+}
+class STBackgroundTaskDelegate {
+    void : backgroundTask(sender : STBackgroundTask, progress: Double)
+}
+}
+
+STDepthFrame <|-right- CColorFrame
+STColorFrame <|-down- CColorFrame
+STSensorControllerDelegate -right-> STDepthFrame
+STSensorControllerDelegate -down-> STInfraredFrame
+STSensorControllerDelegate -right-> CColorFrame
+STSensorController -down-> STSensorControllerDelegate
+STDepthToRgba -up-> STDepthFrame
+STBackgroundTask -down-> STBackgroundTaskDelegate
 
 @enduml
