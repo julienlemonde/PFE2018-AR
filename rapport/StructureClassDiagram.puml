@@ -2,6 +2,7 @@
 skinparam style strictuml
 title Structure SDK Interface Class diagram
 
+package Structure {
 class STColorFrame {
     width : int
     hegiht : int
@@ -11,12 +12,13 @@ class STColorFrame {
     timestamp : NSTimeInterval
     glProjectionMatrix : GLKMatrix4
     applyExpensiveCorrection : bool
-    STDepthFrame : registereoColorFrame(colorFrame : STColorFrame)
+    STDepthFrame : registeredToColorFrame(colorFrame : STColorFrame)
     void : colorCameraPoseInDepthCoordinateFrame(matrix4x4: float)
 }
 
 interface STDepthFrame {
-    
+
+}
 }
 
 STDepthFrame <|-down- STColorFrame
