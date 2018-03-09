@@ -20,7 +20,7 @@
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="currentContext" id="BV1-FR-VrT" customClass="ViewController" customModule="Ar" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainAr" autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="currentContext" id="BV1-FR-VrT" customClass="ViewController" customModule="Ar" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y2N-qZ-d16">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -102,7 +102,7 @@
         <!--Model View Controller-->
         <scene sceneID="3Ow-5q-aEM">
             <objects>
-                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="ZDA-Pg-vRd" customClass="modelViewController" customModule="Ar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="modeListStory" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="ZDA-Pg-vRd" customClass="modelViewController" customModule="Ar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sYw-rQ-Qkg">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
