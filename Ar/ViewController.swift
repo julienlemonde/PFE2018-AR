@@ -209,6 +209,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate, UIGesture
         print("AM : object file conversion")
         let rootNode = SCNNode()
         let node = SCNNode(mdlObject: object)
+        let rotation = SCNAction.rotateBy(x: CGFloat( Double.pi), y: 0.0, z: 0.0, duration: 0.0)
+        node.runAction(rotation)
+        let newPosition = float3(node.position.x, (node.position.y + 0.1), node.position.z)
+        node.simdPosition = newPosition
         rootNode.addChildNode(node)
         self.modelSelected = rootNode.clone()
         print("AM : New node added to scene")
@@ -230,6 +234,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate, UIGesture
         print("AM : object file conversion")
         let rootNode = SCNNode()
         let node = SCNNode(mdlObject: object)
+        //Modification Node ICI
+        let rotation = SCNAction.rotateBy(x: CGFloat( Double.pi), y: 0.0, z: 0.0, duration: 0.0)
+        node.runAction(rotation)
+        let newPosition = float3(node.position.x - 0.1, (Float(node.position.y) + Float(0.4)), node.position.z)
+        node.simdPosition = newPosition
         rootNode.addChildNode(node)
         self.modelSelected = rootNode.clone()
         print("AM : New node added to scene")
