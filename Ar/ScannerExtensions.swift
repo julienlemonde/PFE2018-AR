@@ -149,6 +149,30 @@ public class FileMgr: NSObject {
             return nil
         }
     }
+    func saveMeshObj( name: String, data: STMesh) -> NSData? {
+        
+        let options: [NSObject : AnyObject] = [ kSTMeshWriteOptionFileFormatKey as NSObject : STMeshWriteOptionFileFormat.objFile.rawValue as AnyObject]
+        
+        let fullPathFile = self.basePath.appendingPathComponent(name)
+        
+        if self.exists(name: fullPathFile) {
+            self.del(name: fullPathFile)
+        }
+        
+        do {
+            try data.write(toFile: fullPathFile, options: options)
+            
+            if let zipData = NSData(contentsOfFile: fullPathFile) {
+                return zipData
+            }
+            print("Error reading mesh")
+            return nil
+        }
+        catch {
+            print("Error writing mesh \(error)")
+            return nil
+        }
+    }
     
     func filepath( subdir: String, name: String) -> String? {
         

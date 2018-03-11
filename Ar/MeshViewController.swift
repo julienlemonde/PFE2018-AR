@@ -357,9 +357,44 @@ public class MeshViewController: UIViewController, UIGestureRecognizerDelegate, 
         if UIDevice.current.userInterfaceIdiom == .pad {
             mailViewController!.modalPresentationStyle = .formSheet
 		}
-		
+        
+        //ALERT TO ASK NAME NEW OF MODEL
+        var modelName = ""
+        let alert = UIAlertController(title: "Save Model", message: "Please choose a unique name for your new model", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.text = "NewModel"
+        }
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+            modelName = (textField?.text)!
+            print("MALO-MODELNAME_ENTERED")
+            print(modelName)
+            if(!modelName.isEmpty){
+                var modelPath = "/"
+//                var modelPath = "/Models.objassets/"
+                //modelPath += modelName
+//                modelPath += "/"
+                print("MALO-MODELFULLPATH")
+                print(modelPath)
+//                do {
+//                    try FileManager.default.createDirectory(atPath: modelPath, withIntermediateDirectories: false, attributes: nil)
+//                } catch let error as NSError {
+//                    print("MALO_FAILED_TO_ADD_DIRECTORY")
+//                    print(error.localizedDescription);
+//                }
+                var modelFileName = modelPath
+                modelFileName += "\(modelName).obj"
+                print("MALO-MODELFULLPATH_OBJMODEL")
+                print(modelFileName)
+                FileMgr.sharedInstance.saveMeshObj(name: modelFileName, data: self.mesh!)
+                //prepareScreenShot(screenshotPath: fullPathFilename)
+            }
+        }))
+        
+        // 4. Present the alert.
+        self.present(alert, animated: true, completion: nil)
+        
 		// Setup paths and filenames.
-
 		let zipFilename = "Model.zip"
 		let screenshotFilename = "Preview.jpg"
 

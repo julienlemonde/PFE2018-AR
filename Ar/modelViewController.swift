@@ -9,7 +9,7 @@
 import UIKit
 
 protocol MCDelegate {
-    func passingModelSelection(modelSelection: String, type: Bool)
+    func passingModelSelection(modelSelection: String, type: String)
 }
 
 class modelViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
@@ -30,7 +30,7 @@ class modelViewController: UIViewController,UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.passingModelSelection(modelSelection: modelList[indexPath.row], type: extensionList[indexPath.row].contains("obj") ? true : false)
+        delegate?.passingModelSelection(modelSelection: modelList[indexPath.row], type: extensionList[indexPath.row])
         dismiss(animated: true, completion: nil)
     }
     
@@ -81,6 +81,26 @@ class modelViewController: UIViewController,UITableViewDelegate, UITableViewData
                 
             }
         }
+        var urlObjRunTime = FileMgr.sharedInstance.root() as String
+        urlObjRunTime += "/scannerCache/"
+        do{
+            let items = try fileManager.contentsOfDirectory(atPath: urlObjRunTime)
+            for item in items {
+                if(fileManager.fileExists(atPath: urlObjRunTime + item))
+                {
+                    if item.range(of:".obj") != nil {
+                        modelListToReturn.append(String(item.dropLast(4)))
+                        extensionList.append("objRunTime")
+                    }
+                }
+            }
+        }
+        catch{
+            
+        }
+    
+
+        
         return modelListToReturn
     }
     

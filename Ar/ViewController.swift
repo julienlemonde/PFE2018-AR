@@ -37,7 +37,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate, UIGesture
     var longPressDelay = 0.30
     var modelSelectedString: String?
     var latestTranslatePos: CGPoint?
-    var isObjType = Bool()
+    var isObjType = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,7 +86,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate, UIGesture
         self.sceneView.scene = scene
         if(returnModelFromList.isEmpty) {
             modelSelectedString = "batman"
-            isObjType = true
+            isObjType = "objassets"
             self.initializeObjNode(Modelname: "batman")
         }
     }
@@ -194,11 +194,36 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate, UIGesture
     func initializeObjNode(Modelname: String) {
         // Obtain the scene the coffee mug is contained inside, and extract it.
         print("AM : InitializeObjNode Called")
-        guard let url = Bundle.main.url(forResource: "Models.objassets/batman/Model", withExtension: "obj") else {
+        print(FileMgr.sharedInstance.root())
+        var urltoParse = FileMgr.sharedInstance.root() as String
+        urltoParse += "/scannerCache/\(Modelname).obj"
+        let url2 = NSURL(string: urltoParse)
+        guard let url = Bundle.main.url(forResource: "Models.objassets/\(Modelname)/Model", withExtension: "obj") else {
             fatalError("Failed to find model file.")
         }
         print("AM : OBJ File read")
-        let asset = MDLAsset(url:url)
+        let asset = MDLAsset(url: url)
+        guard let object = asset.object(at:0) as? MDLMesh else {
+            fatalError("Failed to get mesh from asset.")
+        }
+        print("AM : object file conversion")
+        let rootNode = SCNNode()
+        let node = SCNNode(mdlObject: object)
+        rootNode.addChildNode(node)
+        self.modelSelected = rootNode.clone()
+        print("AM : New node added to scene")
+        updateModelLabel(text: Modelname)
+    }
+    
+    func initializeObjRunTimeNode(Modelname: String) {
+        // Obtain the scene the coffee mug is contained inside, and extract it.
+        print("AM : InitializeObjNode Called")
+        print(FileMgr.sharedInstance.root())
+        var urltoParse = FileMgr.sharedInstance.root() as String
+        urltoParse += "/scannerCache/\(Modelname).obj"
+        let url2 = NSURL(string: urltoParse)
+        print("AM : OBJ File read")
+        let asset = MDLAsset(url: url2! as URL)
         guard let object = asset.object(at:0) as? MDLMesh else {
             fatalError("Failed to get mesh from asset.")
         }
@@ -212,14 +237,16 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate, UIGesture
     }
     
     // Method delegate to change model after selection from modelViewController
-    func passingModelSelection(modelSelection: String, type: Bool){
+    func passingModelSelection(modelSelection: String, type: String){
         modelSelectedString = modelSelection
         isObjType = type
-        if(isObjType){
+        if(type.contains("objassets")){
             initializeObjNode(Modelname: modelSelection)
         }
-        else {
+        else if (type.contains("scnassets")){
             initializeScnNode(Modelname: modelSelection)
+        } else {
+            initializeObjRunTimeNode(Modelname: modelSelection)
         }
         
     }
@@ -345,7 +372,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate, UIGesture
         // Find the location in the view
         let location = gesture.location(in: sceneView)
         
-        if(gesture.state == .changed){
+        if(gesture.state == .changed && selectedNode != nil){
             // Move the node based on the real world translation
             guard let result = sceneView.hitTest(location, types: .existingPlane).first else { return }
             
