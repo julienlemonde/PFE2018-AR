@@ -463,8 +463,8 @@ extension ScannerViewController: STSensorControllerDelegate {
             
             let calibrationType = _sensorController.calibrationType()
             
-            //_useColorCamera = (calibrationType == .approximate || calibrationType == .deviceSpecific)
-            _useColorCamera = false
+            _useColorCamera = (calibrationType == .approximate || calibrationType == .deviceSpecific)
+            // _useColorCamera = false
             
             if _useColorCamera {
                 

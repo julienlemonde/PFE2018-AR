@@ -9,7 +9,7 @@
 //
 
  
-extension ScannerViewController  {
+ extension ScannerViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
 	
 	func queryCameraAuthorizationStatusAndNotifyUserIfNotGranted() -> Bool {
 		
@@ -56,7 +56,7 @@ extension ScannerViewController  {
 		
 		for format in videoDevice!.formats {
 
-            let formatDesc = (format as! AVCaptureDevice.Format).formatDescription
+            let formatDesc = format.formatDescription
 			let fourCharCode = CMFormatDescriptionGetMediaSubType(formatDesc)
 			
 			let videoFormatDesc = formatDesc
@@ -78,7 +78,7 @@ extension ScannerViewController  {
 				continue
 			}
 			
-            selectedFormat = format as? AVCaptureDevice.Format
+            selectedFormat = format as AVCaptureDevice.Format
 		}
 		
 		videoDevice!.activeFormat = selectedFormat!
@@ -141,7 +141,7 @@ extension ScannerViewController  {
 		
         for format in (testVideoDevice?.formats)! {
 	
-            let firstFrameRateRange = (format as! AVCaptureDevice.Format).videoSupportedFrameRateRanges[0]
+            let firstFrameRateRange = format.videoSupportedFrameRateRanges[0]
 			
 			let formatMinFps = firstFrameRateRange.minFrameRate
 			let formatMaxFps = firstFrameRateRange.maxFrameRate
@@ -154,7 +154,7 @@ extension ScannerViewController  {
 
             let formatDesc: CMFormatDescription
 		
-            formatDesc = (format as! AVCaptureDevice.Format).formatDescription
+            formatDesc = format.formatDescription
 
 			let fourCharCode = CMFormatDescriptionGetMediaSubType(formatDesc)
 	
@@ -405,7 +405,7 @@ extension ScannerViewController  {
 		}
 	}
     
-    func captureOutput(captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, fromConnection connection: AVCaptureConnection!) {
+    func captureOutput(_ captureOutput: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         print("MALO-CaptureOutpur")
 		// Pass color buffers directly to the driver, which will then produce synchronized depth/color pairs.
         _sensorController.frameSyncNewColorBuffer(sampleBuffer)
