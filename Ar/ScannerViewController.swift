@@ -223,7 +223,7 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, MeshVie
 
 	var _depthAsRgbaVisualizer: STDepthToRgba? = nil
 
-	var _useColorCamera = true
+	var _useColorCamera = false
     var trackerShowingScanStart = false
     
     var _naiveColorizeTask: STBackgroundTask? = nil
@@ -275,8 +275,10 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, MeshVie
 		setupIMU()
 
 		// Later, we’ll set this true if we have a device-specific calibration
-		_useColorCamera = STSensorController.approximateCalibrationGuaranteedForDevice()
-
+		//_useColorCamera = STSensorController.approximateCalibrationGuaranteedForDevice()
+        
+        _useColorCamera = false
+        
 		// Make sure we get notified when the app becomes active to start/restore the sensor state if necessary.
 		initializeDynamicOptions()
 		syncUIfromDynamicOptions()
@@ -370,10 +372,13 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, MeshVie
     func setupMeshViewController() {
         // The mesh viewer will be used after scanning.
         meshViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MeshViewController") as! MeshViewController
+        print("MALO-MESHCONTROLLER_VIEW")
+        print(meshViewController.view)
     }
     
     func presentMeshViewer(mesh: STMesh) {
-        
+        print("MALO-PRESENTMESHVIEWER")
+        print(meshViewController.view)
         meshViewController.setupGL(context: _display!.context!)
         meshViewController.colorEnabled = _useColorCamera
         meshViewController.mesh = mesh
@@ -656,7 +661,7 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, MeshVie
 		resetSLAM()
 	}
 
-	@IBAction func doneButtonPressed(sender: UIButton) {
+	@IBAction func doneButtonPressed(_ sender: UIButton) {
         // restore window after scanning
         if trackerShowingScanStart {
             toggleTracker(show: true)

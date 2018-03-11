@@ -267,6 +267,7 @@ extension ScannerViewController {
         
         _display!.depthCameraGLProjectionMatrix = depthFrame.glProjectionMatrix()
         if colorFrame != nil {
+            print("MALO-colorFrame")
             _display!.colorCameraGLProjectionMatrix = colorFrame!.glProjectionMatrix()
         }
         
@@ -462,7 +463,8 @@ extension ScannerViewController: STSensorControllerDelegate {
             
             let calibrationType = _sensorController.calibrationType()
             
-            _useColorCamera = (calibrationType == .approximate || calibrationType == .deviceSpecific)
+            //_useColorCamera = (calibrationType == .approximate || calibrationType == .deviceSpecific)
+            _useColorCamera = false
             
             if _useColorCamera {
                 
@@ -537,12 +539,16 @@ extension ScannerViewController: STSensorControllerDelegate {
         if _useColorCamera {
             
             if _options.useHardwareRegisteredDepth {
-                
+                print("MALO-is-useHardwareRegisteredDepth")
                 // We are using the color camera, so let's make sure the depth gets synchronized with it.
                 // If we use registered depth, we also need to specify a fixed lens position value for the color camera.
                 do {
                     //	NSLog("RegisteredDepth320x240")
-                    try _sensorController.startStreaming(options: [kSTStreamConfigKey: STStreamConfig.depth320x240.rawValue, kSTFrameSyncConfigKey:  STFrameSyncConfig.depthAndRgb.rawValue, kSTColorCameraFixedLensPositionKey: _options.lensPosition])
+                    
+                    try _sensorController.startStreaming(options: [
+                        kSTStreamConfigKey: NSNumber(value: STStreamConfig.depth320x240.rawValue as Int),
+                        kSTFrameSyncConfigKey: NSNumber(value: STFrameSyncConfig.depthAndRgb.rawValue as Int), kSTColorCameraFixedLensPositionKey: _options.lensPosition
+                        ])
                 } catch let error as NSError {
 
                     NSLog("Error during streaming start: %s", error.localizedDescription)
@@ -552,9 +558,14 @@ extension ScannerViewController: STSensorControllerDelegate {
             } else {
                 // We are using the color camera, so let's make sure the depth gets synchronized with it.
                 do {
-                    print("yolo")
+                    print("MALO-not-useHardwareRegisteredDepth")
+                    let options : [AnyHashable: Any] = [
+                        kSTStreamConfigKey: NSNumber(value: STStreamConfig.depth320x240.rawValue as Int),
+                        kSTFrameSyncConfigKey: NSNumber(value: STFrameSyncConfig.depthAndRgb.rawValue as Int),
+                        kSTHoleFilterEnabledKey: true
+                    ]
                     //NSLog("Depth320x240")
-                    try _sensorController.startStreaming(options: [kSTStreamConfigKey: STStreamConfig.depth320x240.rawValue, kSTFrameSyncConfigKey: STFrameSyncConfig.depthAndRgb.rawValue])
+                    try _sensorController.startStreaming(options: options as [AnyHashable: Any])
                 } catch let error as NSError {
                     print("yo yo")
                     
@@ -571,8 +582,14 @@ extension ScannerViewController: STSensorControllerDelegate {
         } else {
             
             do {
-                //NSLog("Depth320x240")
-                try _sensorController.startStreaming(options: [kSTStreamConfigKey: STStreamConfig.depth320x240.rawValue, kSTFrameSyncConfigKey: STFrameSyncConfig.off.rawValue])
+//                //NSLog("Depth320x240")
+//                try _sensorController.startStreaming(options: [kSTStreamConfigKey: STStreamConfig.depth320x240.rawValue, kSTFrameSyncConfigKey: STFrameSyncConfig.off.rawValue])
+                let options : [AnyHashable: Any] = [
+                    kSTStreamConfigKey: NSNumber(value: STStreamConfig.depth320x240.rawValue as Int),
+                    kSTFrameSyncConfigKey: NSNumber(value: STFrameSyncConfig.off.rawValue as Int),
+                    kSTHoleFilterEnabledKey: true
+                ]
+                try _sensorController.startStreaming(options: options as [AnyHashable: Any])
                 
             } catch let error as NSError {
                 
@@ -606,17 +623,20 @@ extension ScannerViewController: STSensorControllerDelegate {
             calibrationOverlay.alpha = 0
             calibrationOverlay.isHidden = true
         }
+        print("MALO-initialized sensored")
+        print(_slamState.initialized)
         
         if !_slamState.initialized {
+            
             print("calibrator not setup")
             setupSLAM()
         }
     }
     
-    func sensorDidOutputSynchronizedDepthFrame(depthFrame: STDepthFrame, colorFrame: STColorFrame) {
-        print("yo")
+    func sensorDidOutputSynchronizedDepthFrame(_ depthFrame: STDepthFrame!, _ colorFrame: STColorFrame!) {
+        print("MALO-DidOutputSynchronizedDepthFrame")
         if _slamState.initialized {
-            
+    
             processDepthFrame(depthFrame: depthFrame, colorFrame: colorFrame)
             // Scene rendering is triggered by new frames to avoid rendering the same view several times.
             renderSceneForDepthFrame(depthFrame: depthFrame, colorFrame: colorFrame)
@@ -624,7 +644,7 @@ extension ScannerViewController: STSensorControllerDelegate {
     }
     
     func sensorDidOutputDepthFrame(_ depthFrame: STDepthFrame!) {
-        print("yo")
+        print("MALO-sensorDidOutputDepthFrame")
         if _slamState.initialized {
             
             processDepthFrame(depthFrame: depthFrame, colorFrame: nil)

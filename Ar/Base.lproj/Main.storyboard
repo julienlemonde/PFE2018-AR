@@ -483,7 +483,7 @@ Please Realign or Press Reset.</string>
                         <viewControllerLayoutGuide type="top" id="eUP-jc-fOI"/>
                         <viewControllerLayoutGuide type="bottom" id="Ua9-V6-3FV"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Tqw-br-PvB" customClass="EAGLView" customModule="Scanner">
+                    <view key="view" contentMode="scaleToFill" id="Tqw-br-PvB" customClass="EAGLView" customModule="Ar">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>

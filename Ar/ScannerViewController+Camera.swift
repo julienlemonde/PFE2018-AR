@@ -14,6 +14,8 @@ extension ScannerViewController  {
 	func queryCameraAuthorizationStatusAndNotifyUserIfNotGranted() -> Bool {
 		
         let numCameras = AVCaptureDevice.devices(for: AVMediaType.video)
+        print("MALO1")
+        print(numCameras)
 
 		if 0 == numCameras.count {
 			return false
@@ -336,13 +338,13 @@ extension ScannerViewController  {
 		}
 
 		if avCaptureSession == nil {
- 
 			self.setupColorCamera()
 		}
 
 		// Start streaming color images.
         print("at this point should start camera");
-		avCaptureSession!.startRunning()
+		print(avCaptureSession!.startRunning())
+        print(avCaptureSession!.isRunning)
 	}
 	
 	func stopColorCamera() {
@@ -404,9 +406,8 @@ extension ScannerViewController  {
 	}
     
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, fromConnection connection: AVCaptureConnection!) {
-
+        print("MALO-CaptureOutpur")
 		// Pass color buffers directly to the driver, which will then produce synchronized depth/color pairs.
-
         _sensorController.frameSyncNewColorBuffer(sampleBuffer)
 	}
 

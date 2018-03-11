@@ -148,7 +148,7 @@ public class MeshViewController: UIViewController, UIGestureRecognizerDelegate, 
         viewport[3] = Float(framebufferSize.height)
     }
     
-	@IBAction func dismissView(sender: AnyObject) {
+	@IBAction func dismissView(_ sender: AnyObject) {
 
 		displayControl.selectedSegmentIndex = 1
         renderer.setRenderingMode(mode: .LightedGray)
@@ -336,7 +336,7 @@ public class MeshViewController: UIViewController, UIGestureRecognizerDelegate, 
         glDeleteRenderbuffers(1, &depthRenderBuffer)
     }
 
-	@IBAction func emailMesh(sender: AnyObject) {
+	@IBAction func emailMesh(_ sender: AnyObject) {
         
 		mailViewController = MFMailComposeViewController.init()
 		
@@ -449,13 +449,13 @@ public class MeshViewController: UIViewController, UIGestureRecognizerDelegate, 
 	
     //MARK: Touch & Gesture Control
     
-    @IBAction func tapGesture(sender: UITapGestureRecognizer) {
+    @IBAction func tapGesture(_ sender: UITapGestureRecognizer) {
         if sender.state == .ended {
             viewpointController.onTouchBegan()
         }
     }
 	
-	@IBAction func pinchScaleGesture(sender: UIPinchGestureRecognizer) {
+	@IBAction func pinchScaleGesture(_ sender: UIPinchGestureRecognizer) {
 
         // Forward to the ViewpointController.
         if sender.state == .began {
@@ -466,7 +466,7 @@ public class MeshViewController: UIViewController, UIGestureRecognizerDelegate, 
         }
     }
     
-	@IBAction func oneFingerPanGesture(sender: UIPanGestureRecognizer) {
+	@IBAction func oneFingerPanGesture(_ sender: UIPanGestureRecognizer) {
 
         let touchPos = sender.location(in: view)
         let touchVel = sender.velocity(in: view)
@@ -532,7 +532,7 @@ public class MeshViewController: UIViewController, UIGestureRecognizerDelegate, 
 		}
     }
     
-    @IBAction func displayControlChanged(sender: AnyObject) {
+    @IBAction func displayControlChanged(_ sender: AnyObject) {
 
         switch displayControl.selectedSegmentIndex {
 		case 0: // x-ray
