@@ -633,7 +633,7 @@ extension ScannerViewController: STSensorControllerDelegate {
         }
     }
     
-    func sensorDidOutputSynchronizedDepthFrame(_ depthFrame: STDepthFrame!, _ colorFrame: STColorFrame!) {
+    func sensorDidOutputSynchronizedDepthFrame(_ depthFrame: STDepthFrame!, colorFrame: STColorFrame) {
         print("MALO-DidOutputSynchronizedDepthFrame")
         if _slamState.initialized {
     
