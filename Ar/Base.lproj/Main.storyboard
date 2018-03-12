@@ -34,6 +34,9 @@
                                 <color key="backgroundColor" red="0.92612532380000001" green="0.92612532380000001" blue="0.92612532380000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="R1h-Js-atm"/>
+                                    <constraint firstAttribute="width" secondItem="LSJ-o4-RUn" secondAttribute="height" multiplier="38:17" id="dBU-JH-9be"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="76" id="dBd-wY-a6K"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="oe8-2W-2r7"/>
                                     <constraint firstAttribute="width" constant="76" id="xCa-01-EiF"/>
                                 </constraints>
                                 <color key="tintColor" red="0.92612532380000001" green="0.92612532380000001" blue="0.92612532380000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -49,16 +52,8 @@
                                     <segue destination="ZDA-Pg-vRd" kind="presentation" identifier="sgModelModal" id="TKN-Bn-lRC"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWM-hk-Prh">
-                                <rect key="frame" x="160" y="550" width="55" height="55"/>
-                                <state key="normal" image="trash.png"/>
-                                <connections>
-                                    <action selector="deleteModelAction:" destination="BV1-FR-VrT" eventType="touchUpInside" id="EhH-59-umN"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVO-vv-x2e">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVO-vv-x2e">
                                 <rect key="frame" x="16" y="20" width="57" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Scanner">
@@ -68,19 +63,32 @@
                                     <segue destination="aqv-gs-feA" kind="show" id="dgS-jx-Ulq"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWM-hk-Prh">
+                                <rect key="frame" x="149" y="529" width="76" height="76"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="76" id="7XF-0H-JDl"/>
+                                    <constraint firstAttribute="width" secondItem="DWM-hk-Prh" secondAttribute="height" multiplier="1:1" id="7kP-tS-4Ys"/>
+                                    <constraint firstAttribute="height" constant="76" id="fN4-1V-Skz"/>
+                                </constraints>
+                                <state key="normal" image="trash.png"/>
+                                <connections>
+                                    <action selector="deleteModelAction:" destination="BV1-FR-VrT" eventType="touchUpInside" id="EhH-59-umN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="LSJ-o4-RUn" firstAttribute="top" secondItem="DWM-hk-Prh" secondAttribute="bottom" constant="8" id="7XO-w9-1XV"/>
+                            <constraint firstItem="LSJ-o4-RUn" firstAttribute="top" secondItem="DWM-hk-Prh" secondAttribute="bottom" constant="8" symbolic="YES" id="3NG-2X-4lY"/>
                             <constraint firstItem="LSJ-o4-RUn" firstAttribute="centerX" secondItem="Y2N-qZ-d16" secondAttribute="centerX" id="D8r-7G-X7z"/>
-                            <constraint firstItem="DWM-hk-Prh" firstAttribute="leading" secondItem="daY-kG-Z6w" secondAttribute="leading" constant="160" id="Ifj-nQ-zQ9"/>
+                            <constraint firstItem="DWM-hk-Prh" firstAttribute="trailing" secondItem="LSJ-o4-RUn" secondAttribute="trailing" id="EDN-kT-qCT"/>
+                            <constraint firstItem="DWM-hk-Prh" firstAttribute="leading" secondItem="LSJ-o4-RUn" secondAttribute="leading" id="Fgo-Qn-YEX"/>
+                            <constraint firstItem="aVO-vv-x2e" firstAttribute="leading" secondItem="Y2N-qZ-d16" secondAttribute="leadingMargin" id="HMj-7h-7Dj"/>
                             <constraint firstItem="Wyo-xG-nVe" firstAttribute="trailing" secondItem="daY-kG-Z6w" secondAttribute="trailing" id="L2R-rz-4Xr"/>
                             <constraint firstItem="Wyo-xG-nVe" firstAttribute="top" secondItem="Y2N-qZ-d16" secondAttribute="top" id="PO3-xu-zuk"/>
-                            <constraint firstItem="DWM-hk-Prh" firstAttribute="top" secondItem="daY-kG-Z6w" secondAttribute="top" constant="530" id="a18-gg-7bv"/>
                             <constraint firstItem="Wyo-xG-nVe" firstAttribute="leading" secondItem="daY-kG-Z6w" secondAttribute="leading" id="hDB-Fm-oVW"/>
                             <constraint firstAttribute="bottomMargin" secondItem="Wyo-xG-nVe" secondAttribute="bottom" constant="-34" id="iLd-hw-EzW"/>
                             <constraint firstItem="daY-kG-Z6w" firstAttribute="bottom" secondItem="LSJ-o4-RUn" secondAttribute="bottom" constant="20" id="m9P-ul-0pZ"/>
-                            <constraint firstItem="DWM-hk-Prh" firstAttribute="centerX" secondItem="LSJ-o4-RUn" secondAttribute="centerX" id="sDY-57-mTy"/>
+                            <constraint firstItem="aVO-vv-x2e" firstAttribute="top" secondItem="daY-kG-Z6w" secondAttribute="top" id="rY8-Le-Qc1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="daY-kG-Z6w"/>
                     </view>
@@ -97,7 +105,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="36" y="32.833583208395808"/>
+            <point key="canvasLocation" x="35.44921875" y="32.421875"/>
         </scene>
         <!--Model View Controller-->
         <scene sceneID="3Ow-5q-aEM">
