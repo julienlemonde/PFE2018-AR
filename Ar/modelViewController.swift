@@ -70,10 +70,11 @@ class modelViewController: UIViewController,UITableViewDelegate, UITableViewData
             do {
                 let items = try fileManager.contentsOfDirectory(atPath: Systempath)
                 for item in items {
-                    if(fileManager.fileExists(atPath: Systempath + item, isDirectory:&isDir))
-                    {
-                        modelListToReturn.append(item)
-                        extensionList.append(type)
+                    if(fileManager.fileExists(atPath: Systempath + item, isDirectory:&isDir)) {
+                        if(isDir.boolValue) {
+                            modelListToReturn.append(item)
+                            extensionList.append(type)
+                        }
                     }
                 }
             }
