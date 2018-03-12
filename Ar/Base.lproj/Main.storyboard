@@ -63,7 +63,7 @@
                                     <segue destination="aqv-gs-feA" kind="show" id="dgS-jx-Ulq"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWM-hk-Prh">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWM-hk-Prh">
                                 <rect key="frame" x="149" y="529" width="76" height="76"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="76" id="7XF-0H-JDl"/>
