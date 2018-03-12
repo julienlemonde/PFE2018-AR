@@ -175,7 +175,7 @@ struct DisplayData {
 	var meshRenderingAlpha: Float = 0.8
 }
 
-class ScannerViewController: UIViewController, STBackgroundTaskDelegate, MeshViewDelegate, UIGestureRecognizerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate {
+class ScannerViewController: UIViewController, STBackgroundTaskDelegate, MeshViewDelegate, UIGestureRecognizerDelegate {
 
 
     @IBOutlet weak var eview: EAGLView!
@@ -223,7 +223,7 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, MeshVie
 
 	var _depthAsRgbaVisualizer: STDepthToRgba? = nil
 
-	var _useColorCamera = false
+	var _useColorCamera = true
     var trackerShowingScanStart = false
     
     var _naiveColorizeTask: STBackgroundTask? = nil
@@ -275,9 +275,9 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, MeshVie
 		setupIMU()
 
 		// Later, we’ll set this true if we have a device-specific calibration
-		//_useColorCamera = STSensorController.approximateCalibrationGuaranteedForDevice()
+		_useColorCamera = STSensorController.approximateCalibrationGuaranteedForDevice()
         
-        _useColorCamera = false
+        // _useColorCamera = false
         
 		// Make sure we get notified when the app becomes active to start/restore the sensor state if necessary.
 		initializeDynamicOptions()
