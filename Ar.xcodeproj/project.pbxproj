@@ -10,6 +10,36 @@
 		5A008CEC20166DEF0081255E /* falcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A008CEB20166DEF0081255E /* falcon.png */; };
 		5A9CACEA201637B900103E06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A9CACE9201637B900103E06 /* Assets.xcassets */; };
 		5A9CACED2016389C00103E06 /* Artoolkit-logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5A9CACEC2016389C00103E06 /* Artoolkit-logo.jpg */; };
+		90398466203B789D00272C25 /* Scanner-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90398465203B789C00272C25 /* Scanner-Info.plist */; };
+		90398468203B7C6C00272C25 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90398467203B7C6C00272C25 /* Metal.framework */; };
+		9039846A203B7C7900272C25 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90398469203B7C7900272C25 /* MessageUI.framework */; };
+		9039846C203B7C8A00272C25 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9039846B203B7C8A00272C25 /* CoreImage.framework */; };
+		9039846E203B7CA400272C25 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9039846D203B7CA400272C25 /* CoreGraphics.framework */; };
+		90398470203B7CAA00272C25 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9039846F203B7CAA00272C25 /* QuartzCore.framework */; };
+		90398472203B7CB900272C25 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90398471203B7CB900272C25 /* CoreMedia.framework */; };
+		90398474203B7CC200272C25 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90398473203B7CC200272C25 /* CoreVideo.framework */; };
+		90398476203B7CCD00272C25 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90398475203B7CCC00272C25 /* AVFoundation.framework */; };
+		90398478203B7CD500272C25 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90398477203B7CD500272C25 /* OpenGLES.framework */; };
+		9039847A203B7CDE00272C25 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90398479203B7CDE00272C25 /* UIKit.framework */; };
+		9039847C203B7CEF00272C25 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9039847B203B7CEF00272C25 /* Foundation.framework */; };
+		9039847E203B7CFB00272C25 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9039847D203B7CFB00272C25 /* GLKit.framework */; };
+		90398480203B7D0300272C25 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9039847F203B7D0300272C25 /* CoreMotion.framework */; };
+		903C4306203A609B00BA406F /* CustomShaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903C4302203A609900BA406F /* CustomShaders.swift */; };
+		903C4307203A609B00BA406F /* ViewpointController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903C4303203A609A00BA406F /* ViewpointController.swift */; };
+		903C4308203A609B00BA406F /* MeshRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903C4304203A609A00BA406F /* MeshRenderer.swift */; };
+		903C4309203A609B00BA406F /* MeshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903C4305203A609B00BA406F /* MeshViewController.swift */; };
+		9047F9162038CC3700FFC0C7 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9047F9152038CC3700FFC0C7 /* ExternalAccessory.framework */; };
+		9047F9182038CC3E00FFC0C7 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9047F9172038CC3E00FFC0C7 /* ImageIO.framework */; };
+		9047F91A2038CC4400FFC0C7 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9047F9192038CC4400FFC0C7 /* Accelerate.framework */; };
+		90938524203A2D6D00DD2F5B /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90938523203A2D6D00DD2F5B /* Main_iPad.storyboard */; };
+		90C7249B2038D103008C3F82 /* Structure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C7249A2038D103008C3F82 /* Structure.framework */; };
+		90C7249D2038D2ED008C3F82 /* libz.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C7249C2038D2EC008C3F82 /* libz.1.tbd */; };
+		90C724B82039E7EC008C3F82 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C724B32039E7E8008C3F82 /* ScannerViewController.swift */; };
+		90C724B92039E7EC008C3F82 /* ScannerViewController+Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C724B42039E7E9008C3F82 /* ScannerViewController+Camera.swift */; };
+		90C724BA2039E7EC008C3F82 /* ScannerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C724B52039E7E9008C3F82 /* ScannerExtensions.swift */; };
+		90C724BB2039E7EC008C3F82 /* ScannerViewController+OpenGL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C724B62039E7EA008C3F82 /* ScannerViewController+OpenGL.swift */; };
+		90C724BC2039E7EC008C3F82 /* ScannerViewController+SLAM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C724B72039E7EB008C3F82 /* ScannerViewController+SLAM.swift */; };
+		90C724C02039ECDF008C3F82 /* EAGLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C724BF2039ECDE008C3F82 /* EAGLView.swift */; };
 		F937F00A20190C140015B838 /* trash.png in Resources */ = {isa = PBXBuildFile; fileRef = F937F00920190C140015B838 /* trash.png */; };
 		F940433A2013B04B00493D38 /* modelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94043272013B04A00493D38 /* modelViewController.swift */; };
 		F940433B2013B04B00493D38 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = F94043282013B04A00493D38 /* art.scnassets */; };
@@ -26,12 +56,53 @@
 		F94043472013B04B00493D38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F94043362013B04B00493D38 /* LaunchScreen.storyboard */; };
 		F94043482013B04B00493D38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F94043382013B04B00493D38 /* Main.storyboard */; };
 		F940434A2013EAF300493D38 /* chair.png in Resources */ = {isa = PBXBuildFile; fileRef = F94043492013EAF300493D38 /* chair.png */; };
+		FAD959EB201E4C8E000779C2 /* Models.objassets in Resources */ = {isa = PBXBuildFile; fileRef = FAD959EA201E49DC000779C2 /* Models.objassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5A008CEB20166DEF0081255E /* falcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = falcon.png; sourceTree = "<group>"; };
 		5A9CACE9201637B900103E06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5A9CACEC2016389C00103E06 /* Artoolkit-logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Artoolkit-logo.jpg"; sourceTree = "<group>"; };
+		9039845C203B742800272C25 /* calibration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calibration.png; sourceTree = "<group>"; };
+		9039845D203B742800272C25 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		9039845E203B742800272C25 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
+		9039845F203B742800272C25 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		90398460203B742800272C25 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		90398461203B742800272C25 /* doneButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "doneButton@2x.png"; sourceTree = "<group>"; };
+		90398462203B742800272C25 /* resetScanButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "resetScanButton@2x.png"; sourceTree = "<group>"; };
+		90398463203B742800272C25 /* Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Splash.png; sourceTree = "<group>"; };
+		90398464203B742800272C25 /* startScanButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "startScanButton@2x.png"; sourceTree = "<group>"; };
+		90398465203B789C00272C25 /* Scanner-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Scanner-Info.plist"; sourceTree = "<group>"; };
+		90398467203B7C6C00272C25 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+		90398469203B7C7900272C25 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		9039846B203B7C8A00272C25 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		9039846D203B7CA400272C25 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		9039846F203B7CAA00272C25 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		90398471203B7CB900272C25 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		90398473203B7CC200272C25 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		90398475203B7CCC00272C25 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		90398477203B7CD500272C25 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		90398479203B7CDE00272C25 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		9039847B203B7CEF00272C25 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9039847D203B7CFB00272C25 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		9039847F203B7D0300272C25 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		903C4302203A609900BA406F /* CustomShaders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomShaders.swift; sourceTree = "<group>"; };
+		903C4303203A609A00BA406F /* ViewpointController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewpointController.swift; sourceTree = "<group>"; };
+		903C4304203A609A00BA406F /* MeshRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeshRenderer.swift; sourceTree = "<group>"; };
+		903C4305203A609B00BA406F /* MeshViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeshViewController.swift; sourceTree = "<group>"; };
+		9047F9132038CC2E00FFC0C7 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		9047F9152038CC3700FFC0C7 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
+		9047F9172038CC3E00FFC0C7 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		9047F9192038CC4400FFC0C7 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		90938523203A2D6D00DD2F5B /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
+		90C7249A2038D103008C3F82 /* Structure.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Structure.framework; sourceTree = "<group>"; };
+		90C7249C2038D2EC008C3F82 /* libz.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.tbd; path = usr/lib/libz.1.tbd; sourceTree = SDKROOT; };
+		90C724B32039E7E8008C3F82 /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		90C724B42039E7E9008C3F82 /* ScannerViewController+Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ScannerViewController+Camera.swift"; sourceTree = "<group>"; };
+		90C724B52039E7E9008C3F82 /* ScannerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerExtensions.swift; sourceTree = "<group>"; };
+		90C724B62039E7EA008C3F82 /* ScannerViewController+OpenGL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ScannerViewController+OpenGL.swift"; sourceTree = "<group>"; };
+		90C724B72039E7EB008C3F82 /* ScannerViewController+SLAM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ScannerViewController+SLAM.swift"; sourceTree = "<group>"; };
+		90C724BF2039ECDE008C3F82 /* EAGLView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAGLView.swift; sourceTree = "<group>"; };
 		F937F00920190C140015B838 /* trash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash.png; sourceTree = "<group>"; };
 		F94043272013B04A00493D38 /* modelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = modelViewController.swift; sourceTree = "<group>"; };
 		F94043282013B04A00493D38 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -49,6 +120,8 @@
 		F94043392013B04B00493D38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
 		F94043492013EAF300493D38 /* chair.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chair.png; sourceTree = "<group>"; };
 		F9BB320C200FD3BB00FD727C /* Ar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAB9428C20309E8C00479511 /* AR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AR-Bridging-Header.h"; sourceTree = "<group>"; };
+		FAD959EA201E49DC000779C2 /* Models.objassets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Models.objassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +129,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90398480203B7D0300272C25 /* CoreMotion.framework in Frameworks */,
+				9039847E203B7CFB00272C25 /* GLKit.framework in Frameworks */,
+				9039847C203B7CEF00272C25 /* Foundation.framework in Frameworks */,
+				9039847A203B7CDE00272C25 /* UIKit.framework in Frameworks */,
+				90398478203B7CD500272C25 /* OpenGLES.framework in Frameworks */,
+				90398476203B7CCD00272C25 /* AVFoundation.framework in Frameworks */,
+				90398474203B7CC200272C25 /* CoreVideo.framework in Frameworks */,
+				90398472203B7CB900272C25 /* CoreMedia.framework in Frameworks */,
+				90398470203B7CAA00272C25 /* QuartzCore.framework in Frameworks */,
+				9039846E203B7CA400272C25 /* CoreGraphics.framework in Frameworks */,
+				9039846C203B7C8A00272C25 /* CoreImage.framework in Frameworks */,
+				9039846A203B7C7900272C25 /* MessageUI.framework in Frameworks */,
+				90398468203B7C6C00272C25 /* Metal.framework in Frameworks */,
+				9047F91A2038CC4400FFC0C7 /* Accelerate.framework in Frameworks */,
+				9047F9182038CC3E00FFC0C7 /* ImageIO.framework in Frameworks */,
+				9047F9162038CC3700FFC0C7 /* ExternalAccessory.framework in Frameworks */,
+				90C7249D2038D2ED008C3F82 /* libz.1.tbd in Frameworks */,
+				90C7249B2038D103008C3F82 /* Structure.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +160,22 @@
 				F937F00920190C140015B838 /* trash.png */,
 			);
 			path = Image;
+			sourceTree = "<group>";
+		};
+		9039845B203B742800272C25 /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				9039845C203B742800272C25 /* calibration.png */,
+				9039845D203B742800272C25 /* Default-568h@2x.png */,
+				9039845E203B742800272C25 /* Default-Landscape@2x~ipad.png */,
+				9039845F203B742800272C25 /* Default-Landscape~ipad.png */,
+				90398460203B742800272C25 /* Default@2x.png */,
+				90398461203B742800272C25 /* doneButton@2x.png */,
+				90398462203B742800272C25 /* resetScanButton@2x.png */,
+				90398463203B742800272C25 /* Splash.png */,
+				90398464203B742800272C25 /* startScanButton@2x.png */,
+			);
+			path = Graphics;
 			sourceTree = "<group>";
 		};
 		F940432A2013B04A00493D38 /* Model */ = {
@@ -97,8 +204,12 @@
 		F9BB3203200FD3BA00FD727C = {
 			isa = PBXGroup;
 			children = (
+				90398465203B789C00272C25 /* Scanner-Info.plist */,
+				90938523203A2D6D00DD2F5B /* Main_iPad.storyboard */,
 				F9BB320E200FD3BB00FD727C /* Ar */,
 				F9BB320D200FD3BB00FD727C /* Products */,
+				90C7249A2038D103008C3F82 /* Structure.framework */,
+				FA0D66BD2030A2AF0031B50F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,19 +224,57 @@
 		F9BB320E200FD3BB00FD727C /* Ar */ = {
 			isa = PBXGroup;
 			children = (
+				FAD959EA201E49DC000779C2 /* Models.objassets */,
 				5A9CACEB2016388300103E06 /* Image */,
 				5A9CACE9201637B900103E06 /* Assets.xcassets */,
 				F94043322013B04A00493D38 /* AppDelegate.swift */,
 				F94043282013B04A00493D38 /* art.scnassets */,
+				9039845B203B742800272C25 /* Graphics */,
 				F94043352013B04B00493D38 /* Base.lproj */,
 				F94043332013B04B00493D38 /* Info.plist */,
 				F940432A2013B04A00493D38 /* Model */,
 				F94043302013B04A00493D38 /* Models.scnassets */,
 				F94043272013B04A00493D38 /* modelViewController.swift */,
 				F94043342013B04B00493D38 /* modelViewTableViewCell.swift */,
+				90C724BF2039ECDE008C3F82 /* EAGLView.swift */,
+				90C724B52039E7E9008C3F82 /* ScannerExtensions.swift */,
+				90C724B32039E7E8008C3F82 /* ScannerViewController.swift */,
+				90C724B42039E7E9008C3F82 /* ScannerViewController+Camera.swift */,
+				90C724B62039E7EA008C3F82 /* ScannerViewController+OpenGL.swift */,
+				90C724B72039E7EB008C3F82 /* ScannerViewController+SLAM.swift */,
 				F94043312013B04A00493D38 /* ViewController.swift */,
+				903C4302203A609900BA406F /* CustomShaders.swift */,
+				903C4304203A609A00BA406F /* MeshRenderer.swift */,
+				903C4305203A609B00BA406F /* MeshViewController.swift */,
+				903C4303203A609A00BA406F /* ViewpointController.swift */,
+				FAB9428C20309E8C00479511 /* AR-Bridging-Header.h */,
 			);
 			path = Ar;
+			sourceTree = "<group>";
+		};
+		FA0D66BD2030A2AF0031B50F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9039847F203B7D0300272C25 /* CoreMotion.framework */,
+				9039847D203B7CFB00272C25 /* GLKit.framework */,
+				9039847B203B7CEF00272C25 /* Foundation.framework */,
+				90398479203B7CDE00272C25 /* UIKit.framework */,
+				90398477203B7CD500272C25 /* OpenGLES.framework */,
+				90398475203B7CCC00272C25 /* AVFoundation.framework */,
+				90398473203B7CC200272C25 /* CoreVideo.framework */,
+				90398471203B7CB900272C25 /* CoreMedia.framework */,
+				9039846F203B7CAA00272C25 /* QuartzCore.framework */,
+				9039846D203B7CA400272C25 /* CoreGraphics.framework */,
+				9039846B203B7C8A00272C25 /* CoreImage.framework */,
+				90398469203B7C7900272C25 /* MessageUI.framework */,
+				90398467203B7C6C00272C25 /* Metal.framework */,
+				90C7249C2038D2EC008C3F82 /* libz.1.tbd */,
+				9047F9192038CC4400FFC0C7 /* Accelerate.framework */,
+				9047F9172038CC3E00FFC0C7 /* ImageIO.framework */,
+				9047F9152038CC3700FFC0C7 /* ExternalAccessory.framework */,
+				9047F9132038CC2E00FFC0C7 /* libz.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,7 +309,7 @@
 				TargetAttributes = {
 					F9BB320B200FD3BB00FD727C = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 0920;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -192,6 +341,7 @@
 				F94043472013B04B00493D38 /* LaunchScreen.storyboard in Resources */,
 				F94043482013B04B00493D38 /* Main.storyboard in Resources */,
 				5A9CACEA201637B900103E06 /* Assets.xcassets in Resources */,
+				90938524203A2D6D00DD2F5B /* Main_iPad.storyboard in Resources */,
 				F937F00A20190C140015B838 /* trash.png in Resources */,
 				5A008CEC20166DEF0081255E /* falcon.png in Resources */,
 				F940434A2013EAF300493D38 /* chair.png in Resources */,
@@ -200,7 +350,9 @@
 				F940433F2013B04B00493D38 /* vase.png in Resources */,
 				F940433B2013B04B00493D38 /* art.scnassets in Resources */,
 				F940433D2013B04B00493D38 /* duck.png in Resources */,
+				FAD959EB201E4C8E000779C2 /* Models.objassets in Resources */,
 				F94043412013B04B00493D38 /* lamp.png in Resources */,
+				90398466203B789D00272C25 /* Scanner-Info.plist in Resources */,
 				F94043422013B04B00493D38 /* Models.scnassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,11 +364,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90C724B82039E7EC008C3F82 /* ScannerViewController.swift in Sources */,
 				F94043442013B04B00493D38 /* AppDelegate.swift in Sources */,
 				F94043432013B04B00493D38 /* ViewController.swift in Sources */,
+				90C724BC2039E7EC008C3F82 /* ScannerViewController+SLAM.swift in Sources */,
 				F94043402013B04B00493D38 /* VirtualPlane.swift in Sources */,
+				903C4308203A609B00BA406F /* MeshRenderer.swift in Sources */,
+				90C724BA2039E7EC008C3F82 /* ScannerExtensions.swift in Sources */,
+				90C724BB2039E7EC008C3F82 /* ScannerViewController+OpenGL.swift in Sources */,
 				F94043462013B04B00493D38 /* modelViewTableViewCell.swift in Sources */,
+				903C4307203A609B00BA406F /* ViewpointController.swift in Sources */,
+				90C724C02039ECDF008C3F82 /* EAGLView.swift in Sources */,
+				903C4309203A609B00BA406F /* MeshViewController.swift in Sources */,
+				90C724B92039E7EC008C3F82 /* ScannerViewController+Camera.swift in Sources */,
 				F940433A2013B04B00493D38 /* modelViewController.swift in Sources */,
+				903C4306203A609B00BA406F /* CustomShaders.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,14 +518,24 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RV5GVD9EDE;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Structure.framework/Headers";
 				INFOPLIST_FILE = Ar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = PFE.Ar;
+				OTHER_LDFLAGS = "-lc++";
+				PRODUCT_BUNDLE_IDENTIFIER = Ar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Ar/Ar-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7s armv7";
 			};
 			name = Debug;
 		};
@@ -374,13 +546,23 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RV5GVD9EDE;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Structure.framework/Headers";
 				INFOPLIST_FILE = Ar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = PFE.Ar;
+				OTHER_LDFLAGS = "-lc++";
+				PRODUCT_BUNDLE_IDENTIFIER = Ar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Ar/Ar-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7s armv7";
 			};
 			name = Release;
 		};
