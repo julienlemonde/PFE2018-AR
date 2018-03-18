@@ -1,4 +1,4 @@
-# Revue documentaire
+e Revue documentaire
 - intro
 - Structure
   - Structure SDK headers
@@ -11,4 +11,4 @@
   - ...
 - Project management
   - GTI510/GTI515
-  - Documentation fourniew
+  - Documentation fournie

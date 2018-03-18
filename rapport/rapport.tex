@@ -18,6 +18,9 @@
 \renewcommand*\familydefault{\sfdefault}
 \usepackage[T1]{fontenc}
 
+\usepackage{graphicx}
+\graphicspath{{diagrams/}}
+
 \hypersetup{pdftex,colorlinks=true,allcolors=blue}
 \newcommand{\reportTitle}{\uppercase{Détection de modèle humain\\Pour application de réalité augumentée}}
 \newcommand{\reportAuthors}{Vincent \uppercase{Boiteau-Robert\\BOIV14029409}\\Marc-Antoine \uppercase{Hébert\\HEBM14019401}\\Julien \uppercase{Lemonde\\LEMJ20059208}\\Alexandre \uppercase{Malo\\MALA0702940}}
@@ -176,8 +179,26 @@ Afin de réaliser le projet, l'équipe de développement a du faire des recherch
 technologies utilisées n'étaient pas maitrisées par l'équipe au démarrage du projet. Donc, les
 recueille de documentation et les projets exemples présents sur internet ont été une bonne source
 d'information. Cette section présentera donc ces ressources pour les grandes parties du projets,
-soit le périphérique Structure, la trousse de développement logiciel de réalité augmentée de Apple
-et la gestion de projet.
+soit le périphérique Structure Sensor, la trousse de développement logiciel de réalité augmentée de
+Apple et la gestion de projet.
+\section*{Structure Sensor}
+\addcontentsline{toc}{section}{Structure Sensor}
+Occipital, la compagnie propriétaire du périphérique, publie régulièrement une version de leur
+trousse de développement logiciel exposant des interfaces de programmation. La dernière version
+publier par la compagnie est la version 0.7.1 en février 2018. \citep*{occipitalsdk} La version du
+SDK étant inférieur à 1.0.0, on comoprends que la première version complète est encore en
+développement.
+\par
+Dans l'état actuel, le SDK fourni quand même une liste d'interface disponible dans deux fichiers,
+Structure et StructureSLAM. Le permier est composé des différentes interfaces de contrôle du
+périphérique. Alors que le deuxièeme est un regroupement des classes permettant le contrôle des
+mailles en position tridimensionnelles et les textures de ceux-ci.
+\par
+\begin{figure}
+\includegraphics[width=\textwidth]{StructureClassDiagram.eps}
+\centering
+    \caption{Diagramme de classes du Structure Sensor SDK}
+\end{figure}
 \chapter*{\uppercase{Méthodologie de travail}}
 \addcontentsline{toc}{chapter}{MÉTHODOLOGIE DE TRAVAIL}
 méthodologie text

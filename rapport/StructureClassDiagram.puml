@@ -1,4 +1,5 @@
 @startuml
+scale 1000*2000
 title Structure SDK Interface Class diagram
 
 package Structure {
@@ -188,32 +189,45 @@ interface STColorizer {
 }
 
 STMeshIntersector -up-> STMesh
-STScene -right-> STMesh
-STTracker -up-> STColorFrame
-STTracker -up-> STDepthFrame
-STMapper -up-> STDepthFrame
-STCubeRenderer -up-> STDepthFrame
-STCameraPoseInitializer -up-> STDepthFrame
-STNormalEstimator -up-> STDepthFrame
-STKeyFrame -up-> STDepthFrame
+STScene -down-> STMesh
+STTracker -down-> STColorFrame
+STTracker -down-> STDepthFrame
+STMapper -right-> STDepthFrame
+STCubeRenderer -right-> STDepthFrame
+STCameraPoseInitializer -right-> STDepthFrame
+STNormalEstimator -right-> STDepthFrame
+STKeyFrame -right-> STDepthFrame
 STKeyFrame -up-> STColorFrame
 STTracker -down-> STScene
-STKeyFrameManager -up-> STDepthFrame
-STKeyFrameManager -up-> STColorFrame
-STKeyFrameManager -right-> STKeyFrame
-STMapper -right-> STScene
+STKeyFrameManager -right-> STDepthFrame
+STKeyFrameManager -right-> STColorFrame
+STKeyFrameManager -up-> STKeyFrame
+STMapper -left-> STScene
 STColorizer -right-> STMesh
-STColorizer -right-> STScene
-STColorizer -right-> STKeyFrame
-STColorizer -up-> STBackgroundTask 
+STColorizer -up-> STScene
+STColorizer -down-> STKeyFrame
+STColorizer -right-> STBackgroundTask 
 
-STDepthFrame <|-right- CColorFrame
-STColorFrame <|-down- CColorFrame
-STSensorControllerDelegate -right-> STDepthFrame
-STSensorControllerDelegate -down-> STInfraredFrame
-STSensorControllerDelegate -right-> CColorFrame
+STColorFrame <|-left- CColorFrame
+STSensorControllerDelegate -down-> STDepthFrame
+STSensorControllerDelegate -right-> STInfraredFrame
+STSensorControllerDelegate -down-> CColorFrame
 STSensorController -down-> STSensorControllerDelegate
-STDepthToRgba -up-> STDepthFrame
-STBackgroundTask -down-> STBackgroundTaskDelegate
+STDepthToRgba -left-> STDepthFrame
+STBackgroundTask -right-> STBackgroundTaskDelegate
+top to bottom direction
+Structure -[hidden]down- StructureSLAM
+STNormalEstimator -[hidden]up- STCameraPoseInitializer
+STNormalEstimator -[hidden]down- STTracker
+STTracker -[hidden]down- STMapper
+STMapper -[hidden]down- STScene
+STScene -[hidden]down- STColorizer
+STKeyFrameManager -[hidden]down- STCubeRenderer
+STDepthFrame -[hidden]down- STColorFrame
+STSensorController -[hidden]up- STBackgroundTask
+STBackgroundTask -[hidden]up- STGLTextureShaderRGBA
+STGLTextureShaderRGBA -[hidden]up- STGLTextureShaderYCbCr
+STGLTextureShaderYCbCr -[hidden]up- STGLTextureShaderGray
+STGLTextureShaderGray -[hidden]up-STWirelessLog
 
 @enduml
