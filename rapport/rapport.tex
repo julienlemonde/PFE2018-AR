@@ -11,6 +11,7 @@
 \usepackage{berasans}
 \usepackage{setspace}
 \usepackage{natbib}
+\usepackage{float}
 
 \usepackage{abstract}
 \renewcommand{\abstractname}{}
@@ -26,6 +27,7 @@
 \newcommand{\reportAuthors}{Vincent \uppercase{Boiteau-Robert\\BOIV14029409}\\Marc-Antoine \uppercase{Hébert\\HEBM14019401}\\Julien \uppercase{Lemonde\\LEMJ20059208}\\Alexandre \uppercase{Malo\\MALA0702940}}
 
 \newcommand{\abbrItem}[2]{\item[\uppercase{\textbf{#1}} -] #2}
+\setlength{\parskip}{1cm plus4mm minus3mm}
 
 \titleformat
 {\chapter}
@@ -178,7 +180,9 @@ de l'expérience acquise lors du développement.
 Afin de réaliser le projet, l'équipe de développement a du faire des recherche préliminaire. Les
 technologies utilisées n'étaient pas maitrisées par l'équipe au démarrage du projet. Donc, les
 recueille de documentation et les projets exemples présents sur internet ont été une bonne source
-d'information. Cette section présentera donc ces ressources pour les grandes parties du projets,
+d'information.
+\par
+Cette section présentera donc ces ressources pour les grandes parties du projets,
 soit le périphérique Structure Sensor, la trousse de développement logiciel de réalité augmentée de
 Apple et la gestion de projet.
 \section*{Structure Sensor}
@@ -194,11 +198,35 @@ Structure et StructureSLAM. Le permier est composé des différentes interfaces 
 périphérique. Alors que le deuxièeme est un regroupement des classes permettant le contrôle des
 mailles en position tridimensionnelles et les textures de ceux-ci.
 \par
-\begin{figure}
-\includegraphics[width=\textwidth]{StructureClassDiagram.eps}
+Ces interfaces seront la base de la conception du module de prise de modèle grâce au périphérique.
+Les tâches de chacunes des interfaces ont été identifiées lors de la lecture du code des entêtes
+des interfaces en Objective-C. L'équipe a produit un diagramme de classe afin d'améliorer la
+compréhension des responsabilité de chacune des interfaces et les relations entre celles-ci,
+Celui-ci est présenté à la page suivante.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{StructureClassDiagram.eps}
 \centering
     \caption{Diagramme de classes du Structure Sensor SDK}
 \end{figure}
+
+Dans le diagramme, on constate que plusieurs patrons de conception ont été utilisé et exposé dans
+l'interface. La classe STSensorControllerDelegate servira de point d'ancrage entre notre
+applications et le Structure Sensor. Cette interface permet donc de réduire les communication ou 
+les recherches d'informations dans la logique d'affaire. La plus part de l'usage du SDK dans
+l'application devra être fait par cette classe. \citep*{bpse01}
+\par
+Le Structure Sensor utilise les DepthFrame et ColorFrame pour comprendre l'environnement dans lequel
+il est utilisé. Ces concepts ont été introduits par Kinect un des premiers Senseurs 3D ayant connu
+un succès commercial étant donné sont intégration dans l'environnement Xbox 360 de Microsoft.
+\citep*{microsoft01}
+\par
+Le Structure SDK contient aussi plusieurs exemples d'application afin de guider les développeurs dans
+le développement de leurs applications. Le plus intéressant pour l'objectif du projet est le
+Scanneur. Celui-ci permet de convertir un objet dans l'espace de test en un modèle 3D et l'envoyer
+par courriel. D'autre fonction inclus dans cet exemple sont la colorisation du modèle et les
+différentes options de capture. L'espace de capture est aussi indiqué par un cube et un plan
+utilisant les couleurs pour indiquer les objets qui peuvent être capturer.
 \chapter*{\uppercase{Méthodologie de travail}}
 \addcontentsline{toc}{chapter}{MÉTHODOLOGIE DE TRAVAIL}
 méthodologie text
