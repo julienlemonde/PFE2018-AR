@@ -82,23 +82,48 @@ class modelViewController: UIViewController,UITableViewDelegate, UITableViewData
                 
             }
         }
+        print("MALO_SCANNING FOLDER FOR MODEL")
         var urlObjRunTime = FileMgr.sharedInstance.root() as String
-        urlObjRunTime += "/scannerCache/"
-        do{
+        urlObjRunTime += "/scannerCache/scannedObjs/"
+        do {
             let items = try fileManager.contentsOfDirectory(atPath: urlObjRunTime)
+            print("MALO_ITEMS")
             for item in items {
+                print(item)
                 if(fileManager.fileExists(atPath: urlObjRunTime + item))
                 {
-                    if item.range(of:".obj") != nil {
+                    if item.range(of:".zip") != nil {
                         modelListToReturn.append(String(item.dropLast(4)))
                         extensionList.append("objRunTime")
                     }
                 }
+//                if(fileManager.fileExists(atPath: urlObjRunTime + item, isDirectory:&isDir)) {
+//                    if(isDir.boolValue) {
+//                        modelListToReturn.append(item)
+//                        extensionList.append("objRunTime")
+//                    }
+//                }
             }
+            print("MALO_ITEMS_DONE")
         }
         catch{
             
         }
+//        do{
+//            let items = try fileManager.contentsOfDirectory(atPath: urlObjRunTime)
+//            for item in items {
+//                if(fileManager.fileExists(atPath: urlObjRunTime + item))
+//                {
+//                    if item.range(of:".obj") != nil {
+//                        modelListToReturn.append(String(item.dropLast(4)))
+//                        extensionList.append("objRunTime")
+//                    }
+//                }
+//            }
+//        }
+//        catch{
+//
+//        }
     
 
         
