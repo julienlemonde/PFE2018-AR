@@ -92,6 +92,10 @@
 \chapter*{\uppercase{Liste des abbréviations}}
 \begin{enumerate}
         \abbrItem{ÉTS}{École de Technologie Supérieure}
+        \abbrItem{AR}{Augmented Reality ou en français Réalité Augmentée}
+        \abbrItem{SDK}{Software Development Kit ou en français Trousse de développement logiciel}
+        \abbrItem{API}{Application Programming Interface ou en français Interface de programmation}
+        \abbrItem{AV}{audio-vidéo}
 \end{enumerate}
 \cleardoublepage
 \pagenumbering{arabic}
@@ -227,6 +231,24 @@ Scanneur. Celui-ci permet de convertir un objet dans l'espace de test en un mod�
 par courriel. D'autre fonction inclus dans cet exemple sont la colorisation du modèle et les
 différentes options de capture. L'espace de capture est aussi indiqué par un cube et un plan
 utilisant les couleurs pour indiquer les objets qui peuvent être capturer.
+\par
+Les principales sections du SDK utilisé dans cet exemple sont le STStructureSensorDelegate pour le
+contrôle du périphérique. Les STDepthFrames et les STColorFrames ou en français les grilles de
+profondeurs et les grilles de couleurs permettant de créer le modèle STMesh. Une fois le modèle
+scanner en maille celui-ci est présenté dans le MeshViewController grâce au rendu de maille,
+STMeshRenderer. Le language de programmation utilisé dans la globalité du SDK est le Objective-C.
+\par
+Dans le but d'utiliser des technologies qui sont à jour avec les pratiques de l'industrie, l'équipe
+de développement souhaite utiliser le nouveau langage de programmation Swift. Celui-ci est la
+nouveau langage proposé par Apple pour le développement mobile. Le langage est déjà à sa quatrième
+version majeure et a pour but de simplifier la syntax qui était au par avant utilisé soit le
+Objective-C. \citep*{swift01} Un membre de la communauté de développeur Structure à produit un
+port de l'exemple de Scanneur en Swift 2. L'équipe devra donc faire les changement nécessarie à
+cette version pour la compiler avec la version 4. \citep*{structureScannerSwift}
+\par
+L'exemple de scanneur qui sera utilisé comme base du module de scan utilise plusieurs autres APIs
+par Apple. Ces APIs sont documenter sur le site de Apple dans la section pour développeurs. \citep*{appleDev}
+L'équipe utilisera donc cette ressources en ligne pour compléter la tâche.
 \chapter*{\uppercase{Méthodologie de travail}}
 \addcontentsline{toc}{chapter}{MÉTHODOLOGIE DE TRAVAIL}
 méthodologie text
