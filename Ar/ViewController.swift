@@ -12,6 +12,16 @@ import ARKit
 import AudioToolbox
 import SceneKit.ModelIO
 
+extension MDLMaterial {
+    func setTexturePropreties(textures: [MDLMaterialSemantic:String]) -> Void {
+        for (key, value) in textures {
+            let url = URL(string: value)
+            let proprety = MDLMaterialProperty(name: value, semantic: key, url: url)
+            self.setProperty(proprety)
+        }
+    }
+}
+
 class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate, UIGestureRecognizerDelegate {
     
     
@@ -221,19 +231,67 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate, UIGesture
     
     func initializeObjRunTimeNode(Modelname: String) {
         // Obtain the scene the coffee mug is contained inside, and extract it.
-        print("AM : InitializeObjNode Called")
+        print("AM : initializeObjRunTimeNode Called")
         print(FileMgr.sharedInstance.root())
         var urltoParse = FileMgr.sharedInstance.root() as String
-        urltoParse += "/scannerCache/\(Modelname).obj"
-        let url2 = NSURL(string: urltoParse)
+        urltoParse += "/scannerCache/scannedObjs/\(Modelname).zip"
+        
+//        print("MALO_Creating_TMP_FOLDER")
+//        do{
+//            try FileManager.default.createDirectory(at: URL(fileURLWithPath: dest), withIntermediateDirectories: true, attributes: nil)
+//        }
+//        catch{
+//            print("MALO_FAILED_TO_ADD_DIRECTORY_ScannedObjs/modelunziped")
+//        }
+        
+        print("Unzipping...")
+        var tmpDirectory = NSTemporaryDirectory() as String
+        tmpDirectory += "\(Modelname)"
+        
+        let unzipSuccess: Bool = SSZipArchive.unzipFile(atPath: urltoParse, toDestination: tmpDirectory)
+        print(unzipSuccess)
+        
+        var urlToObjUnzipped = tmpDirectory
+        urlToObjUnzipped += "/\(Modelname).obj"
+        do{
+            let items = try FileManager.default.contentsOfDirectory(atPath: tmpDirectory)
+            for item in items {
+                print(item)
+            }
+        }
+        catch{
+            
+        }
+
+        var textureMTL = tmpDirectory
+        
+        textureMTL += "/\(Modelname).jpg"
+        print(textureMTL)
+        var scatFunc = MDLScatteringFunction()
+        var materialMDL = MDLMaterial(name: "baseMaterial", scatteringFunction: scatFunc)
+        
+        materialMDL.setTexturePropreties(textures: [
+            .baseColor:textureMTL,
+            .specular:textureMTL,
+            .emission:textureMTL])
+        
+        let url2 = NSURL(string: urlToObjUnzipped)
         print("AM : OBJ File read")
         let asset = MDLAsset(url: url2! as URL)
         guard let object = asset.object(at:0) as? MDLMesh else {
             fatalError("Failed to get mesh from asset.")
         }
+        for submesh in object.submeshes! {
+            if let submesh = submesh as? MDLSubmesh{
+                submesh.material = materialMDL
+            }
+        }
         print("AM : object file conversion")
         let rootNode = SCNNode()
         let node = SCNNode(mdlObject: object)
+
+
+        
         //Modification Node ICI
         let rotation = SCNAction.rotateBy(x: CGFloat( Double.pi), y: 0.0, z: 0.0, duration: 0.0)
         node.runAction(rotation)

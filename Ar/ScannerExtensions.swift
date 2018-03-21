@@ -151,7 +151,7 @@ public class FileMgr: NSObject {
     }
     func saveMeshObj( name: String, data: STMesh) -> NSData? {
         
-        let options: [NSObject : AnyObject] = [ kSTMeshWriteOptionFileFormatKey as NSObject : STMeshWriteOptionFileFormat.objFile.rawValue as AnyObject]
+        let options: [NSObject : AnyObject] = [ kSTMeshWriteOptionFileFormatKey as NSObject : STMeshWriteOptionFileFormat.objFileZip.rawValue as AnyObject]
         
         let fullPathFile = self.basePath.appendingPathComponent(name)
         

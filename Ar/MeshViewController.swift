@@ -370,23 +370,50 @@ public class MeshViewController: UIViewController, UIGestureRecognizerDelegate, 
             print("MALO-MODELNAME_ENTERED")
             print(modelName)
             if(!modelName.isEmpty){
-                var modelPath = "/"
-//                var modelPath = "/Models.objassets/"
-                //modelPath += modelName
+                //var modelPath = FileMgr.sharedInstance.root() as String
+                var modelPath = FileMgr.sharedInstance.root() as String
+                modelPath += "/scannerCache/scannedObjs"
+                do {
+                    try FileManager.default.createDirectory(atPath: modelPath, withIntermediateDirectories: true, attributes: nil)
+                } catch let error as NSError {
+                    print("MALO_FAILED_TO_ADD_DIRECTORY_ScannedObjs")
+                    print(error.localizedDescription);
+                }
 //                modelPath += "/"
-                print("MALO-MODELFULLPATH")
-                print(modelPath)
+//                modelPath += modelName
+//                print("MALO-MODELFULLPATH")
+//                print(modelPath)
 //                do {
-//                    try FileManager.default.createDirectory(atPath: modelPath, withIntermediateDirectories: false, attributes: nil)
+//                    try FileManager.default.createDirectory(atPath: modelPath, withIntermediateDirectories: true, attributes: nil)
 //                } catch let error as NSError {
-//                    print("MALO_FAILED_TO_ADD_DIRECTORY")
+//                    print("MALO_FAILED_TO_ADD_DIRECTORY_FULLPATH")
 //                    print(error.localizedDescription);
 //                }
-                var modelFileName = modelPath
-                modelFileName += "\(modelName).obj"
+                var modelPath2 = "/scannedObjs/"
+                var modelFileName = modelPath2
+                modelFileName += "\(modelName).zip"
                 print("MALO-MODELFULLPATH_OBJMODEL")
                 print(modelFileName)
-                FileMgr.sharedInstance.saveMeshObj(name: modelFileName, data: self.mesh!)
+                print("MALO-SAVING_ZIP")
+                //ileMgr.sharedInstance.saveMeshObj(name: modelFileName, data: self.mesh!)
+                if let meshToSend = self.mesh {
+                    let zipfile = FileMgr.sharedInstance.saveMesh(name: modelFileName, data: meshToSend)
+                }
+                print("MALO-SAVED_ZIP")
+//                var dest = (FileMgr.sharedInstance.root() as String)
+//                dest += "/scannerCache/scannedObjs/"
+//                dest += "\(modelName)"
+//                var sourceZipFile = dest + "\(modelName).zip"
+//                do{
+//                    try FileManager.default.createDirectory(at: URL(fileURLWithPath: dest), withIntermediateDirectories: true, attributes: nil)
+//                }
+//                catch{
+//                    print("MALO_FAILED_TO_ADD_DIRECTORY_ScannedObjs/modelunziped")
+//                }
+//                print("MALO-UNZIPing..")
+//                let unzipSuccess: Bool = SSZipArchive.unzipFile(atPath: sourceZipFile, toDestination: dest)
+//                print(unzipSuccess)
+                
                 //prepareScreenShot(screenshotPath: fullPathFilename)
             }
         }))

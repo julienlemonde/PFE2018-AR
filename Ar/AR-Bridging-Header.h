@@ -7,3 +7,4 @@
 #import "StructureSLAM.h"
 #import <OpenGLES/gltypes.h>
 #import <MessageUI/MessageUI.h>
+#import "SSZipArchive.h"
