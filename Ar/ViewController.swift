@@ -219,10 +219,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate, UIGesture
         print("AM : object file conversion")
         let rootNode = SCNNode()
         let node = SCNNode(mdlObject: object)
-        let rotation = SCNAction.rotateBy(x: CGFloat( Double.pi), y: 0.0, z: 0.0, duration: 0.0)
-        node.runAction(rotation)
-        let newPosition = float3(node.position.x, (node.position.y + 0.1), node.position.z)
-        node.simdPosition = newPosition
+        
+        // Change node's pivot to fit middle of his bounding box
+        alignObjPivot(node)
+        
         rootNode.addChildNode(node)
         self.modelSelected = rootNode.clone()
         print("AM : New node added to scene")
@@ -293,14 +293,26 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate, UIGesture
 
         
         //Modification Node ICI
-        let rotation = SCNAction.rotateBy(x: CGFloat( Double.pi), y: 0.0, z: 0.0, duration: 0.0)
-        node.runAction(rotation)
-        let newPosition = float3(node.position.x - 0.1, (Float(node.position.y) + Float(0.4)), node.position.z)
-        node.simdPosition = newPosition
+        alignObjPivot(node)
         rootNode.addChildNode(node)
         self.modelSelected = rootNode.clone()
         print("AM : New node added to scene")
         updateModelLabel(text: Modelname)
+    }
+    // Method to align new obj Object
+    func alignObjPivot(_ node: SCNNode){
+        // Flip the obj around because the scanner export them upside down
+        let rotation = SCNAction.rotateBy(x: CGFloat( Double.pi), y: 0.0, z: 0.0, duration: 0.0)
+        node.runAction(rotation)
+        
+        // Get the distance between axis from top left to bottom right
+        let bound = SCNVector3(
+            x: node.boundingBox.max.x - node.boundingBox.min.x,
+            y: node.boundingBox.max.y - node.boundingBox.min.y,
+            z: node.boundingBox.max.z - node.boundingBox.min.z)
+        
+        // Change the node pivot point to fit the middle of the object
+        node.pivot = SCNMatrix4MakeTranslation(node.boundingBox.max.x - (bound.x / 2),node.boundingBox.max.y, node.boundingBox.max.z - (bound.z / 2))
     }
     
     // Method delegate to change model after selection from modelViewController
@@ -468,3 +480,5 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate, UIGesture
         return true
     }
 }
+
+
