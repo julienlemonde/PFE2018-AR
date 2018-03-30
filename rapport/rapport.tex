@@ -369,6 +369,16 @@ pouvoir être déplacer, mis à l'échelle et être pivoter. Ce modèle devra po
 l'environnement. Toutes ces différentes tâches demandent donc un cadre de développement permettant
 la transformation des données provenant des périphérique de capture en scène tri-dimensionnelle
 avec lesquels les développeurs intéragissent.
+\par
+Un outil répondant à ce besoin a déjà été publié et il consiste en la deuxième option. Cet outil
+est la trousse de développement de Apple, le ARKit. Celui-ci fait le pont entre les interface du
+périphérique de capture et la trousse de gestion de scène SceneKit. Cette solution est très
+intéressante puisqu'elle diminue grandement le poid du travail à faire. Par contre, en ajoutant une
+interface avec une nouvelle frontière ont ajoute aussi des contraintes au développement. De plus,
+le ARKit permettant sont usage avec des appareil n'ayant pas de Structure Sensor représente des
+possibilités fonctionnelles plus limité. Un exemple de ces limitations est la détection d'objet
+en premier plan de la scène. Autrement dit, cacher un modèle numérique par un objet réel en le
+plaçant dans le monde réel est malheureusement impossible.
 \chapter*{\uppercase{Discussion}}
 \addcontentsline{toc}{chapter}{DISCUSSION}
 discussion text
