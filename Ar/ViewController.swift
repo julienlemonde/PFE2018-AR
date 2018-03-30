@@ -13,11 +13,20 @@ import AudioToolbox
 import SceneKit.ModelIO
 
 extension MDLMaterial {
-    func setTexturePropreties(textures: [MDLMaterialSemantic:String]) -> Void {
-        for (key, value) in textures {
-            let url = URL(string: value)
-            let proprety = MDLMaterialProperty(name: value, semantic: key, url: url)
-            self.setProperty(proprety)
+    func setTextureProperties(textures: [MDLMaterialSemantic:String]) -> Void {
+        for (key,value) in textures {
+            var baseTmpUrl = NSTemporaryDirectory()
+            baseTmpUrl += "\(value)/\(value).jpg"
+            let url = URL(fileURLWithPath: baseTmpUrl)
+            let fileManager = FileManager.default
+            if fileManager.fileExists(atPath: baseTmpUrl) {
+                print("FILE AVAILABLE")
+                let property = MDLMaterialProperty(name:value, semantic: key, url: url)
+                self.setProperty(property)
+            } else {
+                print("FILE NOT AVAILABLE")
+            }
+            
         }
     }
 }
@@ -264,16 +273,18 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate, UIGesture
         }
 
         var textureMTL = tmpDirectory
-        
+        var basemate = textureMTL + "/\(Modelname)"
         textureMTL += "/\(Modelname).jpg"
         print(textureMTL)
-        var scatFunc = MDLScatteringFunction()
-        var materialMDL = MDLMaterial(name: "baseMaterial", scatteringFunction: scatFunc)
+        let scatFunc = MDLScatteringFunction()
+        let materialMDL = MDLMaterial(name: basemate, scatteringFunction: scatFunc)
+
+        materialMDL.setTextureProperties(textures: [
+            .baseColor:Modelname])
         
-        materialMDL.setTexturePropreties(textures: [
-            .baseColor:textureMTL,
-            .specular:textureMTL,
-            .emission:textureMTL])
+//        let material = SCNMaterial()
+//        material.diffuse.contents = UIImage(named: textureMTL)
+//        sphere.materials = [material]
         
         let url2 = NSURL(string: urlToObjUnzipped)
         print("AM : OBJ File read")
@@ -289,8 +300,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate, UIGesture
         print("AM : object file conversion")
         let rootNode = SCNNode()
         let node = SCNNode(mdlObject: object)
-
-
+        
         
         //Modification Node ICI
         alignObjPivot(node)
