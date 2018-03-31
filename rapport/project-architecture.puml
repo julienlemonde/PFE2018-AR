@@ -2,7 +2,6 @@
 skinparam style strictuml
 skinparam linetype polyline
 hide empty members
-title PFEH18 - Détection d'un modèle humain en AR\nDiagramme de l'architecture de l'application iOS
 
 package "Structure SDK" as StructureSDK #EEEEEE{
 () Structure
