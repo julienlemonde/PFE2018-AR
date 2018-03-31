@@ -1,0 +1,88 @@
+@startuml
+skinparam style strictuml
+skinparam linetype polyline
+hide empty members
+title PFEH18 - Détection d'un modèle humain en AR\nDiagramme de l'architecture de l'application iOS
+
+package "Structure SDK" as StructureSDK #EEEEEE{
+() Structure
+() StructureSLAM 
+Structure -[hidden]up-> StructureSLAM
+}
+package "OpenGL ES" as OpenGL #EEEEEE{
+    [CAEAGLLayer]
+    () gl_UtilsFunction
+}
+
+package Application {
+node "Structure Sensor Scanner" as StructureSensorScanner #C8E6C9{
+[ViewController]
+node "Scanning View" {
+[CameraController] -up-> [ScannerViewController]
+[SLAMController] -up-> [ScannerViewController]
+[SensorController] -up-> [ScannerViewController]
+[OpenGLController] -up-> [ScannerViewController]
+node "MeshView" {
+[MeshRenderer] -up-> [MeshViewController]
+}
+}
+} 
+node "AR Interface" as ARInterface #BBDEFB{
+node "Model Editor View" as ModelEditorView {
+[ModelEditorViewController] 
+}
+node "Model Selection View" as ModelSelectionView #BBDEFB{
+}
+}
+[ModelEditorViewController] -down-> [ViewController]
+ModelSelectionView -[hidden]down-> ModelEditorView
+}
+
+package ARKit #EEEEEE{
+() ARSCNViewDelegate
+}
+
+package SceneKit #EEEEEE{
+() SCNSceneRender -down-> () SCNScene
+SCNScene -right-> () SCNNode
+}
+
+package AVKit #EEEEEE{
+() AVCaptureDevice
+}
+
+package ModelIO #EEEEEE{
+() MDLAsset
+}
+
+[SLAMController] -right-> StructureSLAM
+[SensorController] -right-> Structure
+[ScannerViewController] -right-> [CAEAGLLayer]
+[OpenGLController] .right.> gl_UtilsFunction : use
+[ScannerViewController] -up-> [ViewController]
+[MeshViewController] -left-> [ScannerViewController]
+[MeshViewController] -right-> StructureSLAM
+[CameraController] -right-> AVCaptureDevice
+SCNSceneRender -up-> ARSCNViewDelegate
+[ModelEditorViewController] -right-> ARSCNViewDelegate
+[MeshRenderer] -right-> OpenGLController
+MDLAsset -up-> SCNNode
+StructureSLAM -up-> MDLAsset
+OpenGL -[hidden]right-> ModelIO
+OpenGL -[hidden]left-> Application 
+OpenGL -[hidden]up-> SceneKit 
+StructureSDK -[hidden]up-> OpenGL
+StructureSDK -[hidden]down-> AVKit 
+StructureSDK -[hidden]left-> Application 
+AVKit -[hidden]left-> Application 
+StructureSensorScanner -[hidden]up-> ARInterface 
+
+legend
+    |= |= Type |
+    |<#EEEEEE>     | Unchange |
+    |<#C8E6C9>     | Adapted |
+    |<#BBDEFB>     | Added |
+endlegend
+
+@enduml
+
