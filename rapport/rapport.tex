@@ -388,8 +388,48 @@ poursuite de projet pourrait les rencontrées.
 \centering
     \caption{Diagramme des composantes de l'application}
 \end{figure}
+\par
+Comme on peut le voir le produit lorsqu'implémenter avec le ARKit consite en une application
+intégrant plusieurs interfaces. Ce qui représente définitivement un aspect facilitant au
+développement. Toutefois, un tel choix représente des limites et demande une adaptation de
+l'application pour réduire la friction au frontière de chacune.
+\par
+Les différentes interfaces adressent une variété d'enjeu et intègre une variété de technologies
+produite non seulement par Apple. L'interface de réalité augmentée récemment dévelopée par Apple,
+ARKit. Celle-ci a pour principale tâche d'intégrer des fonctionnalité de la caméra de la plateforme
+et les fonctionnalité de détection de mouvement afin de créer une expérience de réalité augmentée.\citep*{aRKitDoc}
+\par
+Cette API est utilisée en coopération avec le SceneKit l'interface de gestion d'environnement 3D
+dans iOS aussi produit par Apple. Celle-ci simplifie les principaux défis du développement 3D comme
+les animations, la simulation physique, les effets de particules et le rendu réaliste avec gestion
+d'effet de lumière. L'usage d'une interface produite par le propriétaire de l'appareil hôte de
+l'application permet de s'assurer d'une optimisation fournie.\citep*{sceneKitDoc}
+\par
+Les modèles utilisés par les Scène proviennent de modèle 3D importé par l'interface de Model I/O,
+il sont par la suite converti en ScnNode. Le modèle permet la gestion des textures, des assets, des
+caméras et des matériaux.\citep*{modelIODoc} Ce genre de modèle n'est pas propriétaire à Apple, il peut donc être
+utilisé par Unity\citep*{unityDoc} et Blender\citep*{blenderForumsRichardMarklew}.
+\par
+L'import des modèles 3D se fait à l'aide du senseur Structure qui est une des principal technologie
+du projet. Ce périphérique utilise la caméra de la tablette et la caméra sur le périphérique pour
+avoir une meilleur compréhension de l'environnement 3D. Le périphérique contient aussi un senseur
+infrarouge pour faciliter l'interprétation de l'environnement. Un kit de développement logiciel est
+fourni par les développeur du périphérique permettant le contrôle du senseur et l'export en
+modèle.\citep*{occipitalsdk} Les images capturer par le senseur et la caméra sont par la suite présenté par
+l'interface de programmation AVKit. La classe AVCaptureDevice est ainsi utilisé pour présenté à
+l'usager l'environnement pris par l'appareil.\citep*{aVKitDoc} Afin d'offrir un rendu plus réaliste, la librairie
+OpenGL est aussi utilisé.\citep*{openGLESDoc}
+\par
+Les liens entre la logique de notre application et celle des API se fait par des extensions au
+contrôleurs des vues principales de notre application et par l'intégration de certaines interfaces.
+Les interfaces de Structure, OpenGL, AVCaptureDevice se font par l'extension du contrôleur de vue du
+scanneur. Pour ce qui est du ARKit et SceneKit, les "delegates" pour chacun ont été implémenté dans
+le contrôleur de la vue de manipulation de modèle.
+\par
+Chacun des contrôleurs est lié à une vue dans le storyboard et par les liens créer par la logique ou
+par ceux créer dans le storyboard, ce qui permet à l'usager de transférer d'une à l'autre.
 \chapter*{\uppercase{Discussion}}
-\addcontentsline{toc}{chapter}{DISCUSSION}
+\addcontentsline{toc}{chapter}{DSCUSSION}
 discussion text
 \chapter*{\uppercase{Conclusion}}
 \addcontentsline{toc}{chapter}{CONCLUSION}
