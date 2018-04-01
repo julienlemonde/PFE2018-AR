@@ -353,51 +353,51 @@ documentaire, une solution à l'enjeu soulevé en début de projet a été conç
 le fonctionnement de la solution, les différentes solutions explorées et la solution retenue et
 prototypée seront présentés.
 \par
-Les responsabilités que la solution développée devra couvrir consiste en: La prise de modèle dans
+Les responsabilités que la solution développée devra couvrir consiste en: la prise de modèle dans
 l'environnement réel, la présentation de ces modèles dans l'environnement réel pris par la caméra,
-la compréhension des coordonnées de l'environnement capturé, la modifications du modèle et la
-reconnaissance des mouvements de l'appareil. La technologie Structure Sensor peut répondre au
-responsabilité de prise de modèle dans l'environnement et compréhension des coordonées de l'
+la compréhension des coordonnées de l'environnement capturé, la modification du modèle et la
+reconnaissance des mouvements de l'appareil. La technologie Structure Sensor peut répondre aux
+responsabilités de prise de modèle dans l'environnement et compréhension des coordonnées de l'
 environnement réel. Par contre, les autres responsabilités devront être résolues par d'autres
 moyens.
 \par
 Deux possibilités se sont révélées comme intéressantes lors des recherches. La première consistant
-en le développement d'une solution personnalisée permettant la gestion du modèle déjà scanner.
-Cette gestion devrait permettre l'ajout du modèle dans un environnements contrôlées à l'aide des
-coordonées acquise grâche au Structure Sensor. Une fois ajouté dans l'environnement le modèle doit 
+dans le développement d'une solution personnalisée permettant la gestion du modèle déjà scanner.
+Cette gestion devrait permettre l'ajout du modèle dans un environnement contrôlé à l'aide des
+coordonnées acquise avec le Structure Sensor. Une fois ajouté dans l'environnement, le modèle doit 
 pouvoir être déplacer, mis à l'échelle et être pivoter. Ce modèle devra pouvoir être supprimer de
 l'environnement. Toutes ces différentes tâches demandent donc un cadre de développement permettant
 la transformation des données provenant des périphérique de capture en scène tri-dimensionnelle
-avec lesquels les développeurs intéragissent.
+avec lesquels les développeurs interagissent.
 \par
-Un outil répondant à ce besoin a déjà été publié et il consiste en la deuxième option. Cet outil
-est la trousse de développement de Apple, le ARKit. Celui-ci fait le pont entre les interface du
+Un outil répondant à ce besoin a déjà été publié et il consiste dans la deuxième option. Cet outil
+est la trousse de développement de Apple, l'ARKit. Celui-ci fait le pont entre les interfaces du
 périphérique de capture et la trousse de gestion de scène SceneKit. Cette solution est très
-intéressante puisqu'elle diminue grandement le poid du travail à faire. Par contre, en ajoutant une
-interface avec une nouvelle frontière ont ajoute aussi des contraintes au développement. De plus,
-le ARKit permettant sont usage avec des appareil n'ayant pas de Structure Sensor représente des
+intéressante puisqu'elle diminue grandement le poids du travail à faire. Par contre, en ajoutant une
+interface avec une nouvelle frontière, on ajoute aussi des contraintes au développement. De plus,
+l'ARKit permettant son usage avec des appareils n'ayant pas de Structure Sensor représente des
 possibilités fonctionnelles plus limité. Un exemple de ces limitations est la détection d'objet
 en premier plan de la scène. Autrement dit, cacher un modèle numérique par un objet réel en le
 plaçant dans le monde réel est malheureusement impossible.
 \par
-Afin de diminuer la grosseur du travail à faire, la solution du ARKit a été sélectionner. Les
+Afin de diminuer la grosseur du travail à faire, la solution du ARKit a été sélectionné. Les
 limites que celle-ci importe ne seront pas atteintes dans le contexte du projet. Toutefois, une
-poursuite de projet pourrait les rencontrées.
+poursuite de projet pourrait atteindre ces limites.
 \begin{figure}[H]
     \includegraphics[width=0.61\textwidth]{project-architecture.eps}
 \centering
     \caption{Diagramme des composantes de l'application}
 \end{figure}
 \par
-Comme on peut le voir le produit lorsqu'implémenter avec le ARKit consite en une application
+Comme on peut le voir le produit lorsque implémenter avec l'ARKit consiste en une application
 intégrant plusieurs interfaces. Ce qui représente définitivement un aspect facilitant au
 développement. Toutefois, un tel choix représente des limites et demande une adaptation de
-l'application pour réduire la friction au frontière de chacune.
+l'application pour réduire la friction aux frontières de chacune.
 \par
-Les différentes interfaces adressent une variété d'enjeu et intègre une variété de technologies
-produite non seulement par Apple. L'interface de réalité augmentée récemment dévelopée par Apple,
-ARKit. Celle-ci a pour principale tâche d'intégrer des fonctionnalité de la caméra de la plateforme
-et les fonctionnalité de détection de mouvement afin de créer une expérience de réalité augmentée.\citep*{aRKitDoc}
+Les différentes interfaces font face à une variété d'enjeu et intègre une variété de technologies
+produite non seulement par Apple. L'interface de réalité augmentée récemment développée par Apple,
+ARKit. Cette librairie a pour principale tâche, l'intégration des fonctionnalités de la caméra
+et de la détection de mouvement afin de créer une expérience de réalité augmentée.\citep*{aRKitDoc}
 \par
 Cette API est utilisée en coopération avec le SceneKit l'interface de gestion d'environnement 3D
 dans iOS aussi produit par Apple. Celle-ci simplifie les principaux défis du développement 3D comme
@@ -405,25 +405,25 @@ les animations, la simulation physique, les effets de particules et le rendu ré
 d'effet de lumière. L'usage d'une interface produite par le propriétaire de l'appareil hôte de
 l'application permet de s'assurer d'une optimisation fournie.\citep*{sceneKitDoc}
 \par
-Les modèles utilisés par les Scène proviennent de modèle 3D importé par l'interface de Model I/O,
-il sont par la suite converti en ScnNode. Le modèle permet la gestion des textures, des assets, des
+Les modèles utilisés par les scènes proviennent de modèle 3D importé par l'interface de Model I/O,
+ils sont convertis par la suite en ScnNode. Le modèle permet la gestion des textures, des fichiers, des
 caméras et des matériaux.\citep*{modelIODoc} Ce genre de modèle n'est pas propriétaire à Apple, il peut donc être
 utilisé par Unity\citep*{unityDoc} et Blender\citep*{blenderForumsRichardMarklew}.
 \par
-L'import des modèles 3D se fait à l'aide du senseur Structure qui est une des principal technologie
+L'importation des modèles 3D se fait à l'aide du senseur Structure qui est une des principales technologies
 du projet. Ce périphérique utilise la caméra de la tablette et la caméra sur le périphérique pour
-avoir une meilleur compréhension de l'environnement 3D. Le périphérique contient aussi un senseur
+avoir une meilleure compréhension de l'environnement 3D. Le périphérique contient aussi un senseur
 infrarouge pour faciliter l'interprétation de l'environnement. Un kit de développement logiciel est
-fourni par les développeur du périphérique permettant le contrôle du senseur et l'export en
-modèle.\citep*{occipitalsdk} Les images capturer par le senseur et la caméra sont par la suite présenté par
-l'interface de programmation AVKit. La classe AVCaptureDevice est ainsi utilisé pour présenté à
+fourni par les développeurs du périphérique permettant le contrôle du senseur et l'exportation en
+modèle.\citep*{occipitalsdk} Les images capturées par le senseur et la caméra sont par la suite présentées par
+l'interface de programmation AVKit. La classe AVCaptureDevice est ainsi utilisé pour présenter à
 l'usager l'environnement pris par l'appareil.\citep*{aVKitDoc} Afin d'offrir un rendu plus réaliste, la librairie
 OpenGL est aussi utilisé.\citep*{openGLESDoc}
 \par
 Les liens entre la logique de notre application et celle des API se fait par des extensions au
 contrôleurs des vues principales de notre application et par l'intégration de certaines interfaces.
 Les interfaces de Structure, OpenGL, AVCaptureDevice se font par l'extension du contrôleur de vue du
-scanneur. Pour ce qui est du ARKit et SceneKit, les "delegates" pour chacun ont été implémenté dans
+scanner. Pour ce qui est du ARKit et SceneKit, les classes respectant le patron « delegates » pour chacun ont été implémentées dans
 le contrôleur de la vue de manipulation de modèle.
 \par
 Chacun des contrôleurs est lié à une vue dans le storyboard et par les liens créer par la logique ou
