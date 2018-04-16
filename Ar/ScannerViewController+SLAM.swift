@@ -652,6 +652,7 @@ extension ScannerViewController: STSensorControllerDelegate {
             // Scene rendering is triggered by new frames to avoid rendering the same view several times.
             renderSceneForDepthFrame(depthFrame: depthFrame, colorFrame: nil)        }
     }
+    
 }
 
 

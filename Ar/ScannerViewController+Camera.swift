@@ -406,7 +406,6 @@
 	}
     
     func captureOutput(_ captureOutput: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        print("MALO-CaptureOutpur")
 		// Pass color buffers directly to the driver, which will then produce synchronized depth/color pairs.
         _sensorController.frameSyncNewColorBuffer(sampleBuffer)
 	}

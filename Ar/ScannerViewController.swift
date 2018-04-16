@@ -989,4 +989,16 @@ class ScannerViewController: UIViewController, STBackgroundTaskDelegate, MeshVie
             break
         }
     }
+    @IBAction func returnToAR(_ sender: Any) {
+        _sensorController.stopStreaming()
+        
+        if _useColorCamera {
+            stopColorCamera()
+        }
+        let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainAr") as UIViewController
+        
+        self.present(viewController, animated: true, completion: nil)
+       
+    }
+    
 }

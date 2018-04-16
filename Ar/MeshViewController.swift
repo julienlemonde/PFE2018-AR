@@ -400,21 +400,12 @@ public class MeshViewController: UIViewController, UIGestureRecognizerDelegate, 
                     let zipfile = FileMgr.sharedInstance.saveMesh(name: modelFileName, data: meshToSend)
                 }
                 print("MALO-SAVED_ZIP")
-//                var dest = (FileMgr.sharedInstance.root() as String)
-//                dest += "/scannerCache/scannedObjs/"
-//                dest += "\(modelName)"
-//                var sourceZipFile = dest + "\(modelName).zip"
-//                do{
-//                    try FileManager.default.createDirectory(at: URL(fileURLWithPath: dest), withIntermediateDirectories: true, attributes: nil)
-//                }
-//                catch{
-//                    print("MALO_FAILED_TO_ADD_DIRECTORY_ScannedObjs/modelunziped")
-//                }
-//                print("MALO-UNZIPing..")
-//                let unzipSuccess: Bool = SSZipArchive.unzipFile(atPath: sourceZipFile, toDestination: dest)
-//                print(unzipSuccess)
                 
-                //prepareScreenShot(screenshotPath: fullPathFilename)
+                // Return to the ARScene
+                let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainAr") as UIViewController
+                
+                self.present(viewController, animated: true, completion: nil)
+//
             }
         }))
         

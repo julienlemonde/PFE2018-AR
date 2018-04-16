@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ARKit
 
 protocol MCDelegate {
     func passingModelSelection(modelSelection: String, type: String)
@@ -52,6 +53,7 @@ class modelViewController: UIViewController,UITableViewDelegate, UITableViewData
         popupView.layer.masksToBounds = true
         // Do any additional setup after loading the view.
     }
+
 
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -130,16 +132,9 @@ class modelViewController: UIViewController,UITableViewDelegate, UITableViewData
         return modelListToReturn
     }
     
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func test(){
+        dismiss(animated: true, completion: nil)
+        
     }
-    */
 
 }
