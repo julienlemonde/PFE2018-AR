@@ -262,6 +262,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, MCDelegate, UIGesture
         
         var urlToObjUnzipped = tmpDirectory
         urlToObjUnzipped += "/\(Modelname).obj"
+        
         do{
             let items = try FileManager.default.contentsOfDirectory(atPath: tmpDirectory)
             for item in items {

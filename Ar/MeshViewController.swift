@@ -366,7 +366,7 @@ public class MeshViewController: UIViewController, UIGestureRecognizerDelegate, 
         }
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
-            modelName = (textField?.text)!
+            modelName = (textField?.text?.replacingOccurrences(of: " ", with: "").trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines))!
             print("MALO-MODELNAME_ENTERED")
             print(modelName)
             if(!modelName.isEmpty){
@@ -398,6 +398,12 @@ public class MeshViewController: UIViewController, UIGestureRecognizerDelegate, 
                 //ileMgr.sharedInstance.saveMeshObj(name: modelFileName, data: self.mesh!)
                 if let meshToSend = self.mesh {
                     let zipfile = FileMgr.sharedInstance.saveMesh(name: modelFileName, data: meshToSend)
+                    print("Unzipping...")
+                    var tmpDirectory = NSTemporaryDirectory() as String
+                    tmpDirectory += "/\(modelName)"
+                    let url = modelPath + "/\(modelName).zip"
+                    let unzipSuccess: Bool = SSZipArchive.unzipFile(atPath: url, toDestination: tmpDirectory)
+                    print(unzipSuccess)
                 }
                 print("MALO-SAVED_ZIP")
                 

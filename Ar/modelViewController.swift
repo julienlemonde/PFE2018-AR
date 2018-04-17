@@ -18,6 +18,7 @@ class modelViewController: UIViewController,UITableViewDelegate, UITableViewData
     
     var valueToReturn: String?
     var delegate: MCDelegate?
+    var urlObjRunTime = FileMgr.sharedInstance.root() as String + "/scannerCache/scannedObjs/"
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return modelList.count
@@ -25,7 +26,16 @@ class modelViewController: UIViewController,UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! modelViewTableViewCell
-        cell.myImage.image = UIImage(named: "\(modelList[indexPath.row]).png")
+        let fileManager = FileManager.default
+        var tmpDirectory = NSTemporaryDirectory() as String
+        tmpDirectory += "\(modelList[indexPath.row])"
+        if(fileManager.fileExists(atPath: tmpDirectory)){
+            cell.myImage.image = UIImage(named: tmpDirectory + "/\(modelList[indexPath.row]).jpg")
+        }
+        else{
+            cell.myImage.image = UIImage(named: "\(modelList[indexPath.row]).png")
+        }
+        
         cell.myLabel.text = modelList[indexPath.row]
         return cell
     }
@@ -33,6 +43,55 @@ class modelViewController: UIViewController,UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.passingModelSelection(modelSelection: modelList[indexPath.row], type: extensionList[indexPath.row])
         dismiss(animated: true, completion: nil)
+    }
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let fileName = self.modelList[indexPath.row] + ".zip"
+        let fileManager = FileManager.default
+        let fileToEdit = self.urlObjRunTime + fileName
+        
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            do{
+                // Delete the file from disk
+                if (fileManager.fileExists(atPath: fileToEdit)){
+                    try fileManager.removeItem(atPath: fileToEdit)
+                    
+                    // if delete is sucessful
+                    self.modelList.remove(at: indexPath.row)
+                    self.extensionList.remove(at: indexPath.row)
+                    tableView.beginUpdates()
+                    tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+                    tableView.endUpdates()
+                    
+                }
+            }
+            catch let error as NSError {
+                self.showToast(message: "Could not delete file, doesn't exist")
+                print("Could not delete item, file not existant: \(error.description)")
+            }
+            
+            
+            
+        }
+        
+        let share = UITableViewRowAction(style: .normal, title: "Share") { (action, indexPath) in
+            // share item at indexPath
+            // set up activity view controller
+            if(fileManager.fileExists(atPath: fileToEdit)){
+                let url = NSURL.fileURL(withPath: fileToEdit)
+                let activityViewController = UIActivityViewController(activityItems:[url], applicationActivities: nil)
+                activityViewController.popoverPresentationController?.sourceView = self.view
+                // present the view controller
+                self.present(activityViewController, animated: true, completion: nil)
+            }
+            else {
+                self.showToast(message: "Cannot share default models")
+            }
+            
+        }
+        
+        share.backgroundColor = UIColor.blue
+        
+        return [delete, share]
     }
     
     
@@ -85,8 +144,6 @@ class modelViewController: UIViewController,UITableViewDelegate, UITableViewData
             }
         }
         print("MALO_SCANNING FOLDER FOR MODEL")
-        var urlObjRunTime = FileMgr.sharedInstance.root() as String
-        urlObjRunTime += "/scannerCache/scannedObjs/"
         do {
             let items = try fileManager.contentsOfDirectory(atPath: urlObjRunTime)
             print("MALO_ITEMS")
@@ -132,9 +189,23 @@ class modelViewController: UIViewController,UITableViewDelegate, UITableViewData
         return modelListToReturn
     }
     
-    func test(){
-        dismiss(animated: true, completion: nil)
+    func showToast(message : String) {
         
+        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 150, y: self.view.frame.size.height-100, width: 300, height: 35))
+        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        toastLabel.textColor = UIColor.white
+        toastLabel.textAlignment = .center;
+        toastLabel.font = UIFont(name: "Montserrat-Light", size: 12.0)
+        toastLabel.text = message
+        toastLabel.alpha = 1.0
+        toastLabel.layer.cornerRadius = 10;
+        toastLabel.clipsToBounds  =  true
+        self.view.addSubview(toastLabel)
+        UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {
+            toastLabel.alpha = 0.0
+        }, completion: {(isCompleted) in
+            toastLabel.removeFromSuperview()
+        })
     }
 
 }
