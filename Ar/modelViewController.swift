@@ -63,6 +63,9 @@ class modelViewController: UIViewController,UITableViewDelegate, UITableViewData
                     tableView.endUpdates()
                     
                 }
+                else {
+                    self.showToast(message: "Cannot delete default models")
+                }
             }
             catch let error as NSError {
                 self.showToast(message: "Could not delete file, doesn't exist")
