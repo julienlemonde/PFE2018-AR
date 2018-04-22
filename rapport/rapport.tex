@@ -85,4 +85,13 @@
 
     \bibliography{biblio_fr}
 \end{spacing}
+\chapter*{\uppercase{Annexe I - Mise à jour des exigences}}
+\addcontentsline{toc}{chapter}{ANNEXE I - MISE À JOUR DES EXIGENCES}
+\begin{longtable}{|c|p{4.5cm}|p{4.5cm}|p{6cm}|}\hline%
+    ID & Statut & Titre & Note \\\hline\hline
+    \csvreader[late after line=\\\hline,
+    table head=\caption{Liste des exigences}\label{tab:exigencesPlanif}\\\hline]
+    {./updatedSpec.csv}{id=\id,statut=\statut,titre=\titre,exp=\exp}%
+    {\id & \statut & \titre & \exp}
+\end{longtable}
 \end{document}
