@@ -1,0 +1,40 @@
+id,titre,description
+EX1,Application mobile,L'application doit être accessible d'une tablette iPad.
+EX2,Accès caméra,L'application doit avoir accès à la caméra de l'appareil l'hébergeant.
+EX3,API Structure,L'application doit faire façade à l'API de Structure Sensor.
+EX4,Scanner 3D,L'application doit pouvoir scanner des modèles 3D via le Structure Sensor.
+EX5,Insertion de modèle,L'application doit pouvoir ajouter un modèle 3D sur une surface plane à l'aide de l’ARKit.
+EX6,Transfert de modèle Structure à ARKit,L'application doit pouvoir exporter un modèle scanner à un modèle utilisable par l’ARKit.
+EX7,Accès au disque,L'application doit avoir accès aux disques de la tablette.
+EX8,Sauvegarde sur le disque,L'application doit pouvoir sauvegarder les modèles sur le disque.
+EX9,Liste des modèles,L'application doit pouvoir lister les modèles disponibles
+EX10,Ouverture sans caméra,L'application doit pouvoir ouvrir sans avoir directement accès à la caméra.
+EX11,Ouverture sans Structure Sensor,L'application doit pouvoir ouvrir sans avoir directement accès au Structure Sensor.
+EX12,Icon,L'application doit être présentée avec une icône sur la tablette.
+EX13,Données de distance,L'application doit permettre le scan avec une prise de données sur la distance.
+EX14,Transfert de la distance,L'application doit permettre le transfert des données de distance du modèle scanner au modèle ARKit.
+EX15,Présentation de distance,L'interface utilisant l’ARKit doit permettre de présenter la distance du modèle à l'utilisateur.
+EX16,Interface accueil,L'application doit présenter une interface d'accueil efficace.
+EX17,Interface Navigation,L'application doit présenter une navigation naturelle à l'utilisateur.
+EX18,Interface de scan,L'application doit présenter une interface adéquate pour la prise de modèle 3D.
+EX19,Interface de manipulation 3D,L'application doit présenter une interface adéquate pour la manipulation de réalité augmentée.
+EX20,Interface catalogue,L'application doit présenter un catalogue des modèles.
+EX21,Interface descriptive d'un modèle,L'application doit présenter une interface adéquate de description de modèle adéquate.
+EX22,Normes Apple,L'application doit présenter une expérience utilisateur suivant les lignes directrices des applications mobiles Apple.
+EX23,Code testable,Les fonctionnalités et modules de l'application doivent être testables de façon unitaire.
+EX24,Swift et Objective-C,L'application doit être programmée en Swift et Objective-C.
+EX25,Normes de programmation,L'application doit respecter les normes de programmation des langages Swift et Objective-C.
+EX26,Exportation dans un fichier scène,L'application doit permettre l'export de modèle ARKit sur un ordinateur.
+EX27,Exportation dans un fichier objet,L'application doit permettre l'export de modèle Structure Sensor sur un ordinateur.
+EX28,Temps de démarrage,L'application doit ouvrir dans les temps normaux d'une application (2 secondes maximum).
+EX29,Fluidité,L'application doit être fluide dans ces animations et navigations.
+EX30,Exigences de sécurité par l'Apple Store,L'application doit respecter les exigences de sécurité Apple ce qui permettrait de la publier sur le App Store.
+EX31,Données usagers sécurisés,Les données de l'usager doivent toujours être sécurisées et non accessibles de l'extérieur de l'application.
+EX32,Création de nœuds,L'application doit permettre l'identification de nœuds dans un modèle.
+EX33,Liaison entre les nœuds,L'application doit permettre la création de segments entre les nœuds d'un modèle.
+EX34,Mouvement de nœuds,L'application doit permettre le mouvement d'un nœud dans un modèle.
+EX35,Transfert du mouvement sur le modèle AR,L'application doit être capable de calculer l'effet du mouvement d'un nœud sur le modèle AR.
+EX36,Détection de squelette dans un modèle (simple),L'application doit être capable de détecter un squelette de nœuds dans un modèle simple scanner.
+EX37,Détection de squelette dans un modèle (humain),L'application doit être capable de détecter un squelette de nœuds dans un modèle humain scanner.
+EX38,Limitation des mouvements,L'application doit être capable de limiter les mouvements et angles entre les segments et nœuds.
+EX39,Fluidité des squelettes,L'application doit rester fluide lors de l'édition d'un squelette et l'animation de celui-ci.

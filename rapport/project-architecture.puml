@@ -1,80 +1,77 @@
 @startuml
 skinparam style strictuml
 skinparam linetype polyline
+skinparam PackagePadding 10
 hide empty members
 
-package "Structure SDK" as StructureSDK #EEEEEE{
-() Structure
-() StructureSLAM 
-Structure -[hidden]up-> StructureSLAM
-}
-package "OpenGL ES" as OpenGL #EEEEEE{
-    [CAEAGLLayer]
-    () gl_UtilsFunction
-}
-
 package Application {
-node "Structure Sensor Scanner" as StructureSensorScanner #C8E6C9{
-[ViewController]
-node "Scanning View" {
-[CameraController] -up-> [ScannerViewController]
-[SLAMController] -up-> [ScannerViewController]
-[SensorController] -up-> [ScannerViewController]
-[OpenGLController] -up-> [ScannerViewController]
-node "MeshView" {
-[MeshRenderer] -up-> [MeshViewController]
-}
-}
-} 
-node "AR Interface" as ARInterface #BBDEFB{
-node "Model Editor View" as ModelEditorView {
-[ModelEditorViewController] 
-}
-node "Model Selection View" as ModelSelectionView #BBDEFB{
-}
-}
-[ModelEditorViewController] -down-> [ViewController]
-ModelSelectionView -[hidden]down-> ModelEditorView
+    package "Structure SDK" as StructureSDK #EEEEEE{
+        () Structure
+        () StructureSLAM 
+    }
+
+    package "OpenGL ES" as OpenGL #EEEEEE{
+        [CAEAGLLayer]
+        () gl_UtilsFunction
+    }
+
+    node "Structure Sensor Scanner" as StructureSensorScanner #C8E6C9{
+        [ViewController]
+        node "Scanning View" {
+            [CameraController] --> [ScannerViewController]
+            [SLAMController] --> [ScannerViewController]
+            [SensorController] --> [ScannerViewController]
+            [OpenGLController] --> [ScannerViewController]
+            node "MeshView" {
+                [MeshRenderer] --> [MeshViewController]
+            }
+        } 
+    }
+
+    node "AR Interface" as ARInterface #BBDEFB{
+        node "Model Editor View" as ModelEditorView {
+            [ModelEditorViewController] 
+        }
+
+        node "Model Selection View" as ModelSelectionView #BBDEFB{
+        }
+
+        [ModelEditorViewController] --> [ViewController]
+    }
+
+    package ARKit #EEEEEE{
+        () ARSCNViewDelegate
+    }
+
+    package SceneKit #EEEEEE{
+        () SCNSceneRender --> () SCNScene
+        SCNScene --> () SCNNode
+    }
+
+    package AVKit #EEEEEE{
+        () AVCaptureDevice
+    }
+
+    package ModelIO #EEEEEE{
+        () MDLAsset
+    }
 }
 
-package ARKit #EEEEEE{
-() ARSCNViewDelegate
-}
 
-package SceneKit #EEEEEE{
-() SCNSceneRender -down-> () SCNScene
-SCNScene -right-> () SCNNode
-}
 
-package AVKit #EEEEEE{
-() AVCaptureDevice
-}
-
-package ModelIO #EEEEEE{
-() MDLAsset
-}
-
-[SLAMController] -right-> StructureSLAM
-[SensorController] -right-> Structure
-[ScannerViewController] -right-> [CAEAGLLayer]
-[OpenGLController] .right.> gl_UtilsFunction : use
-[ScannerViewController] -up-> [ViewController]
-[MeshViewController] -left-> [ScannerViewController]
-[MeshViewController] -right-> StructureSLAM
-[CameraController] -right-> AVCaptureDevice
-SCNSceneRender -up-> ARSCNViewDelegate
-[ModelEditorViewController] -right-> ARSCNViewDelegate
-[MeshRenderer] -right-> OpenGLController
-MDLAsset -up-> SCNNode
-StructureSLAM -up-> MDLAsset
-OpenGL -[hidden]right-> ModelIO
-OpenGL -[hidden]left-> Application 
-OpenGL -[hidden]up-> SceneKit 
-StructureSDK -[hidden]up-> OpenGL
-StructureSDK -[hidden]down-> AVKit 
-StructureSDK -[hidden]left-> Application 
-AVKit -[hidden]left-> Application 
-StructureSensorScanner -[hidden]up-> ARInterface 
+[SLAMController] --> StructureSLAM
+[SensorController] --> Structure
+[ScannerViewController] --> [CAEAGLLayer]
+[OpenGLController] ..> gl_UtilsFunction : use
+[ScannerViewController] --> [ViewController]
+[MeshViewController] --> [ScannerViewController]
+[MeshViewController] --> StructureSLAM
+[CameraController] --> AVCaptureDevice
+SCNSceneRender --> ARSCNViewDelegate
+[ModelEditorViewController] --> ARSCNViewDelegate
+[MeshRenderer] --> OpenGLController
+MDLAsset --> SCNNode
+StructureSLAM --> MDLAsset
 
 legend
     |= |= Type |

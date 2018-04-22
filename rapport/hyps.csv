@@ -1,0 +1,5 @@
+id,titre,desc
+HYP1,Interface de programmation,S'assurer du bon fonctionnement des interfaces de programmation et le matériel sera la plus grande difficulté de la première moitié du projet.
+HYP2,Détection de squelette,La détection de squelette sera seulement une preuve de concept fonctionnant dans des conditions précises.
+HYP3,Mouvement et calcul,Le mouvement des squelettes et modèles est une tâche très exigeante en termes de calcul et impliquera des pertes de performance.
+HYP4,Communauté de développeurs d'application pour l'ARKit d'Apple,L’ARKit étant développé par Apple doit avoir une grande communauté de développeurs et un bon support ce qui le rend plus intéressant qu'un simple modèle Structure Sensor.
